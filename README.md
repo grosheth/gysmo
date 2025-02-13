@@ -2,7 +2,7 @@
 
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
 ![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)
-![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/0.1.0?style=for-the-badge)
+[![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/0.1.0?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/0.1.0)
 
 </div>
 
