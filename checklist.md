@@ -19,6 +19,8 @@
 
 - [ ] - Change configuration files to use ./config/gysmo
 
+- [ ] - Go through all codefactor checkup
+
 - [ ] - Test ascii position feature
 
 - [ ] - Config examples for README

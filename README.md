@@ -1,8 +1,8 @@
 # gysmo 🚀
 
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
-![GitHub Release Date](https://img.shields.io/github/release-date-pre/grosheth/gysmo?style=for-the-badge&color=purple)
 ![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/grosheth/gysmo)
 
 </div>
 

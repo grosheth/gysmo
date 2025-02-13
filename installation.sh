@@ -25,16 +25,14 @@ fi
 echo ""
 echo "Installation..."
 
-wget -O gysmo "$RELEASE_URL"
-if [ $? -ne 0 ]; then
+if ! wget -O gysmo "$RELEASE_URL"; then
     echo "Error: Failed to download the release binary."
     exit 1
 fi
 
 chmod +x gysmo
 
-mv gysmo "$INSTALL_PATH"
-if [ $? -ne 0 ]; then
+if ! mv gysmo "$INSTALL_PATH"; then
     echo "Error: Failed to move the binary to $INSTALL_PATH."
     exit 1
 fi
@@ -47,7 +45,7 @@ if [ ! -d "$CONFIGURATION_PATH" ]; then
     fi
 fi
 
-read -p "Do you want to add $INSTALL_DIR to your PATH? (y/n): " response
+read -rp "Do you want to add $INSTALL_DIR to your PATH? (y/n): " response
 case "$response" in
     [yY][eE][sS]|[yY])
         if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
