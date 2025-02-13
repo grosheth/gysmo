@@ -15,9 +15,11 @@
 
 - [x] - Move to new Repo
 
-- [ ] - Installation script
+- [x] - Installation script
 
-- [ ] - Test on Filesystem directly
+- [ ] - Change configuration files to use ./config/gysmo
+
+- [ ] - Test ascii position feature
 
 - [ ] - Config examples for README
 
@@ -29,6 +31,10 @@
 
 - [ ] - Github action versioning Workflow
 
+- [ ] - Add Github tracking in README (see nitch)
+
 - [ ] - Redo README
 
 - [ ] - Github action Go test workflow
+
+- [ ] - First Release

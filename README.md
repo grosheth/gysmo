@@ -1,5 +1,14 @@
 # gysmo 🚀
 
+![Maintenance](https://shields.io/maintenance/yes/2022?style=for-the-badge)
+![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge)
+![Commits](https://shields.io/github/commit-activity/m/grosheth/gysmo?style=for-the-badge)
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/grosheth/gysmo?style=for-the-badge)
+
+</div>
+
+
 **gysmo** is a fun and visually engaging CLI tool written in Go, designed to enhance your terminal experience. While it does provide system information, its primary purpose is to showcase your stylish terminal setup.
 
 **Key Features:**
@@ -39,6 +48,73 @@ go build
 Like I said in the introduction, the default configuration is not meant to be used and although it can show off your system, it also can show anything you want.
 
 Here are every section of the configuration file you can modify:
+
+<details>
+  <summary>📝 Example Configuration</summary>
+
+  ```json
+  {
+    "items": [
+      {
+        "text": "user",
+        "keyword": "user",
+        "icon": "",
+        "value_color": "red",
+        "text_color": "",
+        "icon_color": "red",
+        "value": "My user"
+      },
+      {
+        "text": "shell",
+        "keyword": "shell",
+        "icon": "",
+        "value_color": "yellow",
+        "text_color": "",
+        "icon_color": "yellow"
+      }
+    ],
+    "ascii": {
+      "path": "ascii/gysmo2",
+      "colors": "",
+      "enabled": true,
+      "horizontal_padding": 0,
+      "vertical_padding": 0,
+      "position": "left"
+    },
+    "header": {
+      "enabled": true,
+      "text": "NixOS",
+      "text_color": "purple",
+      "line": true,
+      "line_color": ""
+    },
+    "footer": {
+      "enabled": true,
+      "text": "gysmo",
+      "text_color": "blue",
+      "line": true,
+      "line_color": ""
+    },
+    "general": {
+      "menu_type": "box",
+      "columns": false
+    }
+  }
+
+  ```
+
+</details>
+<details>
+  <summary>📝 general</summary>
+
+  ```json
+  "general": {
+    "left_padding": 200,
+    "menu_type": "box"
+  }
+  ```
+
+</details>
 <details>
   <summary>📝Items</summary>
   The items section is where you define what you want to show in your gysmo main menu. The following is an example configuration:
@@ -184,19 +260,6 @@ the ascii section is a simple dictionnary with the following options:
     "line_color": "red"
   },
   ```
-</details>
-
-<details>
-  <summary>📝 general</summary>
-
-  ```json
-  "general": {
-    "padding": 2,
-    "left_padding": 200,
-    "menu_type": "box"
-  }
-  ```
-
 </details>
 
 Here are some examples of what you can do with gysmo.
