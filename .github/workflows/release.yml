@@ -1,0 +1,46 @@
+---
+name: Update version and create release
+
+on:
+  pull_request:
+    merge:
+      - "v*"
+permissions:
+  contents: write
+
+  jobs:
+    update-version:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: Set up Node.js
+          uses: actions/setup-node@v2
+          with:
+            node-version: "14"
+
+        - name: Install dependencies
+          run: npm install
+
+        - name: Bump version and push changes
+          id: bump_version
+          run: |
+            # Bump the version using npm version
+            NEW_VERSION=$(npm version patch -m "Bump version to %s [skip ci]")
+            echo "New version: $NEW_VERSION"
+
+            # Push the changes
+            git push origin HEAD:main
+            git push origin HEAD:main --tags
+
+        - name: Create release
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            tag: ${{ github.ref_name }}
+          run: |
+            gh release create "$tag" \\
+                --repo="$GITHUB_REPOSITORY" \\
+                --title="${tag#v}" \\
+                --generate-notes

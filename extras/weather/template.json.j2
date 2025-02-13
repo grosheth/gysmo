@@ -1,0 +1,66 @@
+{
+  "items": [
+    {
+      "text": "Time",
+      "icon": "\udb85\udc46",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "{{ time }}"
+    },
+    {
+      "text": "Temperature",
+      "icon": "\udb81\udd04",
+      "value_color": "",
+      "text_color": "",
+      {% if temperature > 10 %}
+      "icon_color": "red",
+      {% else %}
+      "icon_color": "cyan",
+      {% endif %}
+      "value": "{{ temperature }}"
+    },
+    {
+      "text": "Wind Speed",
+      "icon": "\ue27e",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "{{ windspeed }}"
+    },
+    {
+      "text": "Outside it is:",
+      "icon": "\udb83\udf30",
+      "value_color": "",
+      "text_color": "",
+      {% if weather_description == "sunny" %}"icon_color": "yellow",{% else %}"icon_color": "blue",{% endif %}
+      "value": "{{ weather_description }}"
+    }
+  ],
+  "ascii": {
+    "path": "ascii/{{ weather_description }}",
+    "colors": "",
+    "enabled": true,
+    "horizontal_padding": 0,
+    "vertical_padding": 0,
+    "position": "left"
+  },
+  "header": {
+    "enabled": true,
+    "text": "Today's Weather",
+    "text_color": "green",
+    "line": true,
+    "line_color": ""
+  },
+  "footer": {
+    "enabled": false,
+    "text": "",
+    "text_color": "",
+    "line": true,
+    "line_color": ""
+  },
+  "general": {
+    "menu_type": "box",
+    "columns": false
+  }
+}

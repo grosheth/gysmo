@@ -1,0 +1,40 @@
+{
+  "items": [
+    {% for lang in languages %}
+    {
+      "text": "{{ lang.language }}",
+      "icon": "{{ lang.icon }}",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "{{ lang.stats }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "ascii": {
+    "path": "ascii/github",
+    "colors": "",
+    "enabled": true,
+    "horizontal_padding": 10,
+    "vertical_padding": 0,
+    "position": "top"
+  },
+  "header": {
+    "enabled": false,
+    "text": "",
+    "text_color": "",
+    "line": true,
+    "line_color": ""
+  },
+  "footer": {
+    "enabled": false,
+    "text": "",
+    "text_color": "",
+    "line": true,
+    "line_color": ""
+  },
+  "general": {
+    "menu_type": "list",
+    "columns": true
+  }
+}

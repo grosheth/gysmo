@@ -1,7 +1,8 @@
 import urllib.request
 import urllib.parse
 import json
-from jinja2 import Template
+from jinja2 import Template, Environment, FileSystemLoader, select_autoescape
+from urllib.parse import urlparse
 
 # Define the URL and parameters for the Open-Meteo API
 url = "https://api.open-meteo.com/v1/forecast"
@@ -17,6 +18,11 @@ params = {
 # Encode the parameters and create the full URL
 query_string = urllib.parse.urlencode(params)
 full_url = f"{url}?{query_string}"
+
+# Validate the URL scheme
+parsed_url = urlparse(full_url)
+if parsed_url.scheme not in ('http', 'https'):
+    raise ValueError("URL scheme is not permitted")
 
 # Make the HTTP request to the Open-Meteo API
 with urllib.request.urlopen(full_url) as response:
@@ -90,8 +96,14 @@ print(f"Current Time: {current_time}")
 with open('template.json.j2', 'r') as template_file:
     template_content = template_file.read()
 
+# Create a Jinja2 environment with autoescape enabled
+env = Environment(
+    loader=FileSystemLoader('/'),
+    autoescape=select_autoescape(['html', 'xml', 'j2', 'json'])
+)
+
 # Create a Jinja2 template from the template content
-template = Template(template_content)
+template = env.from_string(template_content)
 
 # Render the template with actual values
 output_content = template.render(
