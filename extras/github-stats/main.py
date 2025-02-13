@@ -15,7 +15,6 @@ def get_user_info(username):
         print(f"Failed to fetch user info: {response.status_code}")
         return None
 
-# Function to get user repositories
 def get_user_repos(username):
     url = f"{BASE_URL}/users/{username}/repos"
     response = requests.get(url)

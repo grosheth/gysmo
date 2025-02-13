@@ -30,7 +30,7 @@ There is still a way to generate your gysmo config with home-manager.
 
 ### Build From Source
 ```shell
-git clone https://github.com/yourusername/gysmo.git
+git clone https://github.com/grosheth/gysmo.git
 cd gysmo
 go build
 ```
