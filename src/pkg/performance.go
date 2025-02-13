@@ -54,7 +54,8 @@ func MeasureMenuItems() string {
 			{Keyword: "resolution"},
 		},
 	}
-	items := MenuItems(config)
+	useDataFile := false // or true, depending on what you want to test
+	items := MenuItems(config, useDataFile)
 	return fmt.Sprintf("%v", items)
 }
 

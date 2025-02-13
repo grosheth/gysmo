@@ -12,7 +12,7 @@
           "icon": { "type": "string" },
           "text_color": { "type": "string" },
           "value_color": { "type": "string" },
-          "image_color": { "type": "string" },
+          "icon_color": { "type": "string" },
           "value": { "type": "string" }
         },
         "required": ["text", "keyword", "icon"]
@@ -24,9 +24,13 @@
         "path": { "type": "string" },
         "colors": { "type": "string" },
         "enabled": { "type": "boolean" },
-        "padding": { "type": "integer" }
+        "padding": { "type": "integer" },
+        "position": {
+          "type": "string",
+          "enum": ["top", "bottom", "left", "right"]
+        }
       },
-      "required": ["path", "enabled"]
+      "required": ["path", "enabled", "position"]
     },
     "header": {
       "type": "object",
@@ -54,7 +58,10 @@
       "type": "object",
       "properties": {
         "padding": { "type": "integer" },
-        "menu_type": { "type": "string" },
+        "menu_type": {
+          "type": "string",
+          "enum": ["box", "list"]
+        },
         "columns": { "type": "boolean" }
       },
       "required": ["menu_type"]
