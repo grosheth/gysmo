@@ -83,10 +83,8 @@ else
     echo "ASCII file already exists. Skipping download."
 fi
 
-# Create the install directory if it doesn't exist
 if [ ! -d "$INSTALL_DIR" ]; then
-    mkdir -p "$INSTALL_DIR"
-    if [ $? -ne 0 ]; then
+    if ! mkdir -p "$INSTALL_DIR"; then
         echo "Error: Failed to create directory $INSTALL_DIR."
         exit 1
     fi
