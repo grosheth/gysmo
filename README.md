@@ -1,10 +1,10 @@
 # gysmo 🚀
 
-![Maintenance](https://shields.io/maintenance/yes/2022?style=for-the-badge)
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge)
 ![Commits](https://shields.io/github/commit-activity/m/grosheth/gysmo?style=for-the-badge)
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/grosheth/gysmo?style=for-the-badge)
+![GitHub Release Date](https://img.shields.io/github/release-date-pre/grosheth/gysmo?style=for-the-badge)
+![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)
 
 </div>
 
