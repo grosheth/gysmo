@@ -1,0 +1,65 @@
+{
+    "items": [
+        {
+            "text": "Temperature",
+            "keyword": "user",
+            "icon": "\udb84\udd83",
+            "value_color": "red",
+            "text_color": "",
+            "icon_color": "green",
+            "value": "-8.6"
+        },
+        {
+            "text": "Python",
+            "keyword": "shell",
+            "icon": "\ue606",
+            "value_color": "yellow",
+            "text_color": "",
+            "icon_color": "cyan",
+            "value": "18.1"
+        },
+        {
+            "text": "Go",
+            "keyword": "shell",
+            "icon": "\udb81\udfd3",
+            "value_color": "yellow",
+            "text_color": "",
+            "icon_color": "blue",
+            "value": "2025-02-10T14:15"
+        },
+        {
+            "text": "Rust",
+            "keyword": "shell",
+            "icon": "\ue68b",
+            "value_color": "yellow",
+            "text_color": "",
+            "icon_color": "red",
+            "value": "mainly clear"
+        }
+    ],
+    "ascii": {
+        "path": "ascii/mainly clear",
+        "colors": "",
+        "enabled": false,
+        "padding": 2
+    },
+    "header": {
+        "enabled": true,
+        "text": "Github Languages Stats",
+        "text_color": "white",
+        "line": true,
+        "line_color": "red"
+    },
+    "footer": {
+        "enabled": false,
+        "text": "gysmo",
+        "text_color": "white",
+        "line": true,
+        "line_color": "red"
+    },
+    "general": {
+        "padding": 2,
+        "menu_type": "box",
+        "columns": false
+    }
+}

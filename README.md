@@ -19,14 +19,20 @@ gysmo is not intended to be an accurate system information tool. There are many 
 
 ## 📥 Installation
 
-### Download the Binary
+### Download the Binary (Why not take the easy way?)
+The installation/update script basically does the following
+1. Download the binary
+2. Create the directory structure ~/.config/gysmo/... && ~/bin/gysmo
+3. Copy the template config.json file IF it doesn't exist (don't want to lose your config in an update)
+4. Copy the schema validator file
+5. Copy the ASCII art IF it doesn't exist
+
 ```shell
-wget setup.sh
+wget installation.sh
 ```
 
-### Home-manager
-The program is not included in nixpkgs, I might do it later.
-There is still a way to generate your gysmo config with home-manager.
+### Home-manager (NIxOS users go brrrrrrr)
+Package will be included in nixpkgs at first release.
 
 ```nix
 { pkgs, ... }:
@@ -35,17 +41,26 @@ There is still a way to generate your gysmo config with home-manager.
 }
 ```
 
-### Build From Source
+### Build From Source (RECOMMENDED)
+If you are a true Linux user and you won't submit to anyone's else automated processes (as is your right), you can always prove your superiority by building the project from source.
+This also allows you to understand how the project works a little better.
+
 ```shell
 git clone https://github.com/grosheth/gysmo.git
-cd gysmo
-go build
+cd gysmo/src
+# -o only renames the binary (default is src)
+go build -o gysmo
+mkdir ~/.config/gysmo
+cp -R config ~/.config/gysmo/
+cp -R ascii ~/.config/gysmo/
 ```
 
 ## ⚙️ Configuration
 Like I said in the introduction, the default configuration is not meant to be used and although it can show off your system, it also can show anything you want.
 
 Here are every section of the configuration file you can modify:
+
+### File structure
 
 <details>
   <summary>📝 Example Configuration</summary>
@@ -151,6 +166,8 @@ Here is a brief explanation of each option:
 | `image_color`| The color of the icon.                                                      | `"red"`             |
 | `value`      | A custom value to display for the item. (will replace the value returned by the keyword)                                    | `"Custom value"`    |
 
+## Text
+
 ## Keywords for `name` Option
 Some values of /etc/os-release are not available on some distros, look at [os-release](https://github.com/which-distro/os-release) to get an idea.
 
@@ -202,7 +219,14 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 | `processes`            | Number of running processes                      | `"121"`|
 | `processes`            | Number of running processes                      | `"121"`|
 
+## Icon
   ⚠️ **WARNING**: If you are using custom images, the borders might get messed up. Using icons from [Nerd Fonts](https://www.nerdfonts.com/) seems to work fine.
+
+
+## Colors
+Add anchor from the table to here
+## Value
+
 </details>
 
 <details>
@@ -266,8 +290,14 @@ Here are some examples of what you can do with gysmo.
 - Weather information
 - System information
 
+## Other Information
+
+## Json Validation
+
 ## 🤝 Contributing
 
 ### Versioning
 A github workflow is in place to automatically bump the version of the project. I will merge the PRs when I am ready.
 To version this project, I use [Semantic Versioning](https://semver.org/).
+
+## 📜 License

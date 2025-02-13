@@ -4,6 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
+
+	"github.com/xeipuuv/gojsonschema"
 )
 
 var (
@@ -54,7 +57,7 @@ type Config struct {
 
 func LoadConfig(filename string) (Config, error) {
 	var config Config
-	file, err := OpenFile(filename)
+	file, err := os.Open(filename)
 	if err != nil {
 		return config, fmt.Errorf("error opening config file: %w", err)
 	}
@@ -67,4 +70,24 @@ func LoadConfig(filename string) (Config, error) {
 	}
 
 	return config, nil
+}
+
+func ValidateJsonConfig(configPath string, schemaPath string) error {
+	schemaLoader := gojsonschema.NewReferenceLoader("file://" + schemaPath)
+	documentLoader := gojsonschema.NewReferenceLoader("file://" + configPath)
+
+	result, err := gojsonschema.Validate(schemaLoader, documentLoader)
+	if err != nil {
+		return fmt.Errorf("error validating config: %v", err)
+	}
+
+	if !result.Valid() {
+		var errorMessages []string
+		for _, desc := range result.Errors() {
+			errorMessages = append(errorMessages, fmt.Sprintf("- %s", desc))
+		}
+		return fmt.Errorf("config file is not valid:\n%s", strings.Join(errorMessages, "\n"))
+	}
+
+	return nil
 }

@@ -17,9 +17,9 @@
 
 - [x] - Installation script
 
-- [ ] - Change configuration files to use ./config/gysmo
+- [x] - Change configuration files to use ./config/gysmo
 
-- [ ] - Go through all codefactor checkup
+- [x] - Go through all codefactor checkup
 
 - [ ] - Test ascii position feature
 

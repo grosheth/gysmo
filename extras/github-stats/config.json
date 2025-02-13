@@ -6,7 +6,7 @@
       "icon": "",
       "value_color": "red",
       "text_color": "",
-      "image_color": "5%"
+      "icon_color": "5%"
     },
     {
       "text": "Python",
@@ -14,7 +14,7 @@
       "icon": "",
       "value_color": "yellow",
       "text_color": "",
-      "image_color": "yellow",
+      "icon_color": "yellow",
       "value": "10%"
     },
     {
@@ -23,7 +23,7 @@
       "icon": "",
       "value_color": "yellow",
       "text_color": "",
-      "image_color": "yellow",
+      "icon_color": "yellow",
       "value": "35%"
     },
     {
@@ -32,7 +32,7 @@
       "icon": "",
       "value_color": "yellow",
       "text_color": "",
-      "image_color": "yellow",
+      "icon_color": "yellow",
       "value": "20%"
     }
   ],

@@ -4,17 +4,26 @@ import (
 	"flag"
 	"fmt"
 	"gysmo/src/pkg"
+	"os"
 	"path/filepath"
 )
 
 func main() {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Println("Error getting home directory:", err)
+		return
+	}
 
-	filename := flag.String("f", "config.json", "name of the config file in /.config/gysmo/")
+	filename := flag.String("f", "config.json", "name of the config file in ~/.config/gysmo/")
 	useDataFile := flag.Bool("c", false, "use data file for all values")
+	workingPath := filepath.Join(homeDir, ".config", "gysmo")
 
 	flag.Parse()
-	configPath := filepath.Join("config", *filename)
-	err := pkg.ValidateJsonConfig(configPath, "config/config_schema.json")
+	configPath := filepath.Join(workingPath, "config", *filename)
+	schemaPath := filepath.Join(workingPath, "config", "schema", "config_schema.json")
+
+	err = pkg.ValidateJsonConfig(configPath, schemaPath)
 	if err != nil {
 		fmt.Println("Error validating config.json:", err)
 		return
@@ -28,7 +37,7 @@ func main() {
 
 	var asciiArt string
 	if config.Ascii.Enabled {
-		asciiArt, err = pkg.ReadAsciiArt(config.Ascii.Path)
+		asciiArt, err = pkg.ReadAsciiArt(filepath.Join(workingPath, config.Ascii.Path))
 		if err != nil {
 			fmt.Println("Error reading ASCII art:", err)
 			return
@@ -42,8 +51,6 @@ func main() {
 		menu = pkg.BuildBoxMenu(pkg.MenuItems(config, *useDataFile), asciiArt, config, borderWidth)
 	case "list":
 		menu = pkg.BuildListMenu(pkg.MenuItems(config, *useDataFile), asciiArt, config, borderWidth)
-	case "wtf":
-		menu = pkg.BuildWTFMenu(pkg.MenuItems(config, *useDataFile), asciiArt, config, borderWidth)
 	default:
 		menu = pkg.BuildBoxMenu(pkg.MenuItems(config, *useDataFile), asciiArt, config, borderWidth)
 	}

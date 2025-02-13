@@ -6,8 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-
-	"github.com/xeipuuv/gojsonschema"
 )
 
 const (
@@ -65,14 +63,12 @@ func GetRunningProcess(processes map[string]string) string {
 	return defaultConfigValue
 }
 
-// hexToRGB converts a hex color code to RGB values
 func hexToRGB(hex string) (int, int, int) {
 	var r, g, b int
 	fmt.Sscanf(hex, "#%02x%02x%02x", &r, &g, &b)
 	return r, g, b
 }
 
-// Abs returns the Absolute value of an integer
 func Abs(x int64) int64 {
 	if x < 0 {
 		return -x
@@ -80,7 +76,6 @@ func Abs(x int64) int64 {
 	return x
 }
 
-// charsToString converts a [65]int8 array to a string
 func charsToString(ca [65]int8) string {
 	s := make([]byte, len(ca))
 	for i, v := range ca {
@@ -92,7 +87,6 @@ func charsToString(ca [65]int8) string {
 	return strings.TrimRight(string(s), "\x00")
 }
 
-// isCommandAvailable checks if a command is available on the system
 func isCommandAvailable(name string) bool {
 	cmd := exec.Command("which", name)
 	if err := cmd.Run(); err != nil {
@@ -101,7 +95,6 @@ func isCommandAvailable(name string) bool {
 	return true
 }
 
-// isProcessRunning checks if a process with the given name is running
 func isProcessRunning(processName string) bool {
 	procDir := "/proc"
 	entries, err := os.ReadDir(procDir)
@@ -122,26 +115,6 @@ func isProcessRunning(processName string) bool {
 	return false
 }
 
-func ValidateJsonConfig(configPath string, schemaPath string) error {
-	schemaLoader := gojsonschema.NewReferenceLoader("file://" + schemaPath)
-	documentLoader := gojsonschema.NewReferenceLoader("file://" + configPath)
-
-	result, err := gojsonschema.Validate(schemaLoader, documentLoader)
-	if err != nil {
-		return fmt.Errorf("error validating config: %v", err)
-	}
-
-	if !result.Valid() {
-		var errorMessages []string
-		for _, desc := range result.Errors() {
-			errorMessages = append(errorMessages, fmt.Sprintf("- %s", desc))
-		}
-		return fmt.Errorf("config file is not valid:\n%s", strings.Join(errorMessages, "\n"))
-	}
-
-	return nil
-}
-
 func SaveDataToFile(data map[string]string, filename string) error {
 	// Read existing data from the file
 	existingData := make(map[string]string)
@@ -154,12 +127,10 @@ func SaveDataToFile(data map[string]string, filename string) error {
 		}
 	}
 
-	// Update existing data with new data
 	for key, value := range data {
 		existingData[key] = value
 	}
 
-	// Write updated data back to the file
 	file, err = os.Create(filename)
 	if err != nil {
 		return err

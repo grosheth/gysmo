@@ -58,11 +58,36 @@ var (
 	HttpGet     = http.Get
 )
 
-// GetOsRelease reads the OS release information from a reader
 func GetOsRelease(reader io.Reader) OSRelease {
 	osRelease := OSRelease{}
 	data := make(map[string]string)
 	scanner := bufio.NewScanner(reader)
+
+	fieldMap := map[string]func(string){
+		"ANSI_COLOR":        func(value string) { osRelease.ANSI_COLOR = value; data["os_ansi_color"] = value },
+		"BUG_REPORT_URL":    func(value string) { osRelease.BUG_REPORT_URL = value; data["os_bug_report_url"] = value },
+		"BUILD_ID":          func(value string) { osRelease.BUILD_ID = value; data["os_build_id"] = value },
+		"CPE_NAME":          func(value string) { osRelease.CPE_NAME = value; data["os_cpe_name"] = value },
+		"DEFAULT_HOSTNAME":  func(value string) { osRelease.DEFAULT_HOSTNAME = value; data["os_default_hostname"] = value },
+		"DOCUMENTATION_URL": func(value string) { osRelease.DOCUMENTATION_URL = value; data["os_documentation_url"] = value },
+		"HOME_URL":          func(value string) { osRelease.HOME_URL = value; data["os_home_url"] = value },
+		"ID":                func(value string) { osRelease.ID = value; data["os_id"] = value },
+		"ID_LIKE":           func(value string) { osRelease.ID_LIKE = value; data["os_id_like"] = value },
+		"IMAGE_ID":          func(value string) { osRelease.IMAGE_ID = value; data["os_image_id"] = value },
+		"IMAGE_VERSION":     func(value string) { osRelease.IMAGE_VERSION = value; data["os_image_version"] = value },
+		"LOGO":              func(value string) { osRelease.LOGO = value; data["os_logo"] = value },
+		"NAME":              func(value string) { osRelease.NAME = value; data["os_name"] = value },
+		"PRETTY_NAME":       func(value string) { osRelease.PRETTY_NAME = value; data["os_pretty_name"] = value },
+		"SUPPORT_URL":       func(value string) { osRelease.SUPPORT_URL = value; data["os_support_url"] = value },
+		"VARIANT":           func(value string) { osRelease.VARIANT = value; data["os_variant"] = value },
+		"VARIANT_ID":        func(value string) { osRelease.VARIANT_ID = value; data["os_variant_id"] = value },
+		"VENDOR_NAME":       func(value string) { osRelease.VENDOR_NAME = value; data["os_vendor_name"] = value },
+		"VENDOR_URL":        func(value string) { osRelease.VENDOR_URL = value; data["os_vendor_url"] = value },
+		"VERSION":           func(value string) { osRelease.VERSION = value; data["os_version"] = value },
+		"VERSION_CODENAME":  func(value string) { osRelease.VERSION_CODENAME = value; data["os_version_codename"] = value },
+		"VERSION_ID":        func(value string) { osRelease.VERSION_ID = value; data["os_version_id"] = value },
+	}
+
 	for scanner.Scan() {
 		line := scanner.Text()
 		parts := strings.SplitN(line, "=", 2)
@@ -72,73 +97,8 @@ func GetOsRelease(reader io.Reader) OSRelease {
 		key := parts[0]
 		value := strings.Trim(parts[1], `"`)
 
-		switch key {
-		case "ANSI_COLOR":
-			osRelease.ANSI_COLOR = value
-			data["os_ansi_color"] = value
-		case "BUG_REPORT_URL":
-			osRelease.BUG_REPORT_URL = value
-			data["os_bug_report_url"] = value
-		case "BUILD_ID":
-			osRelease.BUILD_ID = value
-			data["os_build_id"] = value
-		case "CPE_NAME":
-			osRelease.CPE_NAME = value
-			data["os_cpe_name"] = value
-		case "DEFAULT_HOSTNAME":
-			osRelease.DEFAULT_HOSTNAME = value
-			data["os_default_hostname"] = value
-		case "DOCUMENTATION_URL":
-			osRelease.DOCUMENTATION_URL = value
-			data["os_documentation_url"] = value
-		case "HOME_URL":
-			osRelease.HOME_URL = value
-			data["os_home_url"] = value
-		case "ID":
-			osRelease.ID = value
-			data["os_id"] = value
-		case "ID_LIKE":
-			osRelease.ID_LIKE = value
-			data["os_id_like"] = value
-		case "IMAGE_ID":
-			osRelease.IMAGE_ID = value
-			data["os_image_id"] = value
-		case "IMAGE_VERSION":
-			osRelease.IMAGE_VERSION = value
-			data["os_image_version"] = value
-		case "LOGO":
-			osRelease.LOGO = value
-			data["os_logo"] = value
-		case "NAME":
-			osRelease.NAME = value
-			data["os_name"] = value
-		case "PRETTY_NAME":
-			osRelease.PRETTY_NAME = value
-			data["os_pretty_name"] = value
-		case "SUPPORT_URL":
-			osRelease.SUPPORT_URL = value
-			data["os_support_url"] = value
-		case "VARIANT":
-			osRelease.VARIANT = value
-			data["os_variant"] = value
-		case "VARIANT_ID":
-			osRelease.VARIANT_ID = value
-			data["os_variant_id"] = value
-		case "VENDOR_NAME":
-			osRelease.VENDOR_NAME = value
-			data["os_vendor_name"] = value
-		case "VENDOR_URL":
-			osRelease.VENDOR_URL = value
-			data["os_vendor_url"] = value
-		case "VERSION":
-			osRelease.VERSION = value
-			data["os_version"] = value
-		case "VERSION_CODENAME":
-			osRelease.VERSION_CODENAME = value
-			data["os_version_codename"] = value
-		case "VERSION_ID":
-			osRelease.VERSION_ID = value
-			data["os_version_id"] = value
+		if assignFunc, exists := fieldMap[key]; exists {
+			assignFunc(value)
 		}
 	}
 
@@ -768,100 +728,61 @@ func MenuItems(config Config, usedatafile bool) map[string]string {
 
 		osRelease := GetOsRelease(osReleaseFile)
 
+		valueMap := map[string]func() string{
+			"os_ansi_color":        func() string { return osRelease.ANSI_COLOR },
+			"os_pretty_name":       func() string { return osRelease.PRETTY_NAME },
+			"os_bug_report_url":    func() string { return osRelease.BUG_REPORT_URL },
+			"os_build_id":          func() string { return osRelease.BUILD_ID },
+			"os_cpe_name":          func() string { return osRelease.CPE_NAME },
+			"os_default_hostname":  func() string { return osRelease.DEFAULT_HOSTNAME },
+			"os_documentation_url": func() string { return osRelease.DOCUMENTATION_URL },
+			"os_home_url":          func() string { return osRelease.HOME_URL },
+			"os_id":                func() string { return osRelease.ID },
+			"os_id_like":           func() string { return osRelease.ID_LIKE },
+			"os_image_id":          func() string { return osRelease.IMAGE_ID },
+			"os_image_version":     func() string { return osRelease.IMAGE_VERSION },
+			"os_version":           func() string { return osRelease.VERSION },
+			"os_logo":              func() string { return osRelease.LOGO },
+			"os_name":              func() string { return osRelease.NAME },
+			"os_support_url":       func() string { return osRelease.SUPPORT_URL },
+			"os_variant":           func() string { return osRelease.VARIANT },
+			"os_variant_id":        func() string { return osRelease.VARIANT_ID },
+			"os_vendor_name":       func() string { return osRelease.VENDOR_NAME },
+			"os_vendor_url":        func() string { return osRelease.VENDOR_URL },
+			"os_version_codename":  func() string { return osRelease.VERSION_CODENAME },
+			"os_version_id":        func() string { return osRelease.VERSION_ID },
+			"user":                 GetUsername,
+			"hostname":             GetHostname,
+			"kernel":               GetKernelVersion,
+			"shell":                GetShell,
+			"uptime":               GetUptime,
+			"dm":                   GetDesktopManager,
+			"gpu":                  GetGPUInfo,
+			"cpu":                  GetCPUInfo,
+			"ram":                  GetRAMInfo,
+			"drive":                GetDriveInfo,
+			"gpu %":                GetGPUUsage,
+			"cpu %":                GetCPUUsage,
+			"ram %":                GetRAMUsage,
+			"drive %":              GetDriveUsage,
+			"term":                 GetTerminal,
+			"processes":            GetRunningProcessesCount,
+			"wm":                   GetWM,
+			"ip":                   GetIP,
+			"public ip":            GetPublicIP,
+			"resolution":           GetResolution,
+		}
+
 		for _, item := range config.Items {
 			wg.Add(1)
 			go func(item ConfigItem) {
 				defer wg.Done()
-				var value string
-				switch item.Keyword {
-				case "os_ansi_color":
-					value = osRelease.ANSI_COLOR
-				case "os_pretty_name":
-					value = osRelease.PRETTY_NAME
-				case "os_bug_report_url":
-					value = osRelease.BUG_REPORT_URL
-				case "os_build_id":
-					value = osRelease.BUILD_ID
-				case "os_cpe_name":
-					value = osRelease.CPE_NAME
-				case "os_default_hostname":
-					value = osRelease.DEFAULT_HOSTNAME
-				case "os_documentation_url":
-					value = osRelease.DOCUMENTATION_URL
-				case "os_home_url":
-					value = osRelease.HOME_URL
-				case "os_id":
-					value = osRelease.ID
-				case "os_id_like":
-					value = osRelease.ID_LIKE
-				case "os_image_id":
-					value = osRelease.IMAGE_ID
-				case "os_image_version":
-					value = osRelease.IMAGE_VERSION
-				case "os_version":
-					value = osRelease.VERSION
-				case "os_logo":
-					value = osRelease.LOGO
-				case "os_name":
-					value = osRelease.NAME
-				case "os_support_url":
-					value = osRelease.SUPPORT_URL
-				case "os_variant":
-					value = osRelease.VARIANT
-				case "os_variant_id":
-					value = osRelease.VARIANT_ID
-				case "os_vendor_name":
-					value = osRelease.VENDOR_NAME
-				case "os_vendor_url":
-					value = osRelease.VENDOR_URL
-				case "os_version_codename":
-					value = osRelease.VERSION_CODENAME
-				case "os_version_id":
-					value = osRelease.VERSION_ID
-				case "user":
-					value = GetUsername()
-				case "hostname":
-					value = GetHostname()
-				case "kernel":
-					value = GetKernelVersion()
-				case "shell":
-					value = GetShell()
-				case "uptime":
-					value = GetUptime()
-				case "dm":
-					value = GetDesktopManager()
-				case "gpu":
-					value = GetGPUInfo()
-				case "cpu":
-					value = GetCPUInfo()
-				case "ram":
-					value = GetRAMInfo()
-				case "drive":
-					value = GetDriveInfo()
-				case "gpu %":
-					value = GetGPUUsage()
-				case "cpu %":
-					value = GetCPUUsage()
-				case "ram %":
-					value = GetRAMUsage()
-				case "drive %":
-					value = GetDriveUsage()
-				case "term":
-					value = GetTerminal()
-				case "processes":
-					value = GetRunningProcessesCount()
-				case "wm":
-					value = GetWM()
-				case "ip":
-					value = GetIP()
-				case "public ip":
-					value = GetPublicIP()
-				case "resolution":
-					value = GetResolution()
+				if valueFunc, exists := valueMap[item.Keyword]; exists {
+					value := valueFunc()
+					mu.Lock()
+					items[item.Keyword] = value
+					mu.Unlock()
 				}
-				mu.Lock()
-				items[item.Keyword] = value
-				mu.Unlock()
 			}(item)
 		}
 		wg.Wait()

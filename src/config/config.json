@@ -10,8 +10,16 @@
       "value": "My user"
     },
     {
-      "text": "shell",
-      "keyword": "shell",
+      "text": "cpu",
+      "keyword": "cpu",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "yellow"
+    },
+    {
+      "text": "cpu",
+      "keyword": "cpu %",
       "icon": "",
       "value_color": "yellow",
       "text_color": "",
@@ -19,7 +27,7 @@
     }
   ],
   "ascii": {
-    "path": "ascii/gysmo2",
+    "path": "ascii/gysmo",
     "colors": "",
     "enabled": true,
     "horizontal_padding": 0,

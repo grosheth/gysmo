@@ -3,11 +3,12 @@ package pkg
 import (
 	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
 func ReadAsciiArt(filename string) (string, error) {
-	file, err := OpenFile(filename)
+	file, err := os.Open(filename)
 	if err != nil {
 		return "", fmt.Errorf("error opening ASCII art file: %w", err)
 	}

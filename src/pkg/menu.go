@@ -5,8 +5,6 @@ import (
 	"strings"
 )
 
-// making padding fixed cuz it keeps making the menu look weird and too lazy
-// to figure out a clean way to fix it
 const padding = 2
 
 func AddPaddingToMultilineString(s string, horizontalPadding int, verticalPadding int) string {
@@ -63,12 +61,7 @@ func BuildBoxMenu(items map[string]string, asciiArt string, config Config, borde
 	paddedAsciiArt := AddPaddingToMultilineString(asciiArt, config.Ascii.HorizontalPadding, config.Ascii.VerticalPadding)
 
 	asciiLines := strings.Split(paddedAsciiArt, "\n")
-	maxAsciiWidth := 0
-	for _, line := range asciiLines {
-		if len(line) > maxAsciiWidth {
-			maxAsciiWidth = len(line)
-		}
-	}
+	maxAsciiWidth := getMaxLineWidth(asciiLines)
 
 	if config.Ascii.Position == "top" {
 		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
@@ -77,26 +70,125 @@ func BuildBoxMenu(items map[string]string, asciiArt string, config Config, borde
 		menu += fmt.Sprintf("  ╭%s╮\n", border)
 	}
 
-	// Icon length can be weird so that's why this exists
+	minIconLength := getMinIconLength(config.Items)
+
+	if config.Header.Enabled {
+		menu += buildHeader(config, borderWidth, border)
+	}
+
+	menu += buildMenuItems(config, items, borderWidth, minIconLength)
+
+	if config.Footer.Enabled {
+		menu += buildFooter(config, borderWidth, border)
+	}
+
+	if config.Ascii.Position == "bottom" {
+		menu += fmt.Sprintf("  ╰%s╯\n", border)
+		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
+	} else {
+		menu += fmt.Sprintf("  ╰%s╯\n", border)
+	}
+
+	if config.Ascii.Position == "left" || config.Ascii.Position == "right" {
+		menu = combineAsciiAndMenu(menu, paddedAsciiArt, asciiColors, config.Ascii.Position, maxAsciiWidth)
+	}
+
+	return menu
+}
+
+func BuildListMenu(items map[string]string, asciiArt string, config Config, borderWidth int) string {
+	asciiColors := GetColorCode(config.Ascii.Colors)
+
+	paddedAsciiArt := AddPaddingToMultilineString(asciiArt, config.Ascii.HorizontalPadding, config.Ascii.VerticalPadding)
+	border := strings.Repeat("─", borderWidth)
+
+	asciiLines := strings.Split(paddedAsciiArt, "\n")
+	maxAsciiWidth := getMaxLineWidth(asciiLines)
+
+	menu := ""
+
+	if config.Ascii.Position == "top" {
+		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
+	}
+
+	if config.Header.Enabled {
+		menu += buildHeader(config, borderWidth, border)
+	}
+
+	minIconLength := getMinIconLength(config.Items)
+
+	formattedItems := formatMenuItems(config, items, borderWidth, minIconLength)
+
+	if config.General.Columns {
+		menu += buildColumns(formattedItems)
+	} else {
+		for _, item := range formattedItems {
+			menu += fmt.Sprintf("%s\n", item)
+		}
+	}
+
+	if config.Footer.Enabled {
+		menu += buildFooter(config, borderWidth, border)
+	}
+
+	if config.Ascii.Position == "bottom" {
+		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
+	}
+
+	menu = combineAsciiAndMenu(menu, paddedAsciiArt, asciiColors, config.Ascii.Position, maxAsciiWidth)
+
+	return menu
+}
+
+func getMaxLineWidth(lines []string) int {
+	maxWidth := 0
+	for _, line := range lines {
+		if len(line) > maxWidth {
+			maxWidth = len(line)
+		}
+	}
+	return maxWidth
+}
+
+func getMinIconLength(items []ConfigItem) int {
 	minIconLength := 1000
-	for _, item := range config.Items {
+	for _, item := range items {
 		imageLength := len(item.Icon)
 		if imageLength < minIconLength {
 			minIconLength = imageLength
 		}
 	}
+	return minIconLength
+}
 
-	if config.Header.Enabled {
-		headerColor := GetColorCode(config.Header.TextColor)
-		headerPaddingLength := max(0, borderWidth-len(config.Header.Text)-padding)
-		headerPadding := strings.Repeat(" ", headerPaddingLength)
-		menu += fmt.Sprintf("  │ %s%s%s%s │\n", headerColor, config.Header.Text, headerPadding, Reset)
-		if config.Header.Line {
-			lineColor := GetColorCode(config.Header.LineColor)
-			menu += fmt.Sprintf("  ├%s%s%s┤\n", lineColor, border, Reset)
-		}
+func buildHeader(config Config, borderWidth int, border string) string {
+	header := ""
+	headerColor := GetColorCode(config.Header.TextColor)
+	headerPaddingLength := max(0, borderWidth-len(config.Header.Text)-padding)
+	headerPadding := strings.Repeat(" ", headerPaddingLength)
+	header += fmt.Sprintf("  │ %s%s%s%s │\n", headerColor, config.Header.Text, headerPadding, Reset)
+	if config.Header.Line {
+		lineColor := GetColorCode(config.Header.LineColor)
+		header += fmt.Sprintf("  ├%s%s%s┤\n", lineColor, border, Reset)
 	}
+	return header
+}
 
+func buildFooter(config Config, borderWidth int, border string) string {
+	footer := ""
+	if config.Footer.Line {
+		lineColor := GetColorCode(config.Footer.LineColor)
+		footer += fmt.Sprintf("  ├%s%s%s┤\n", lineColor, border, Reset)
+	}
+	footerColor := GetColorCode(config.Footer.TextColor)
+	footerPaddingLength := max(0, borderWidth-len(config.Footer.Text)-padding)
+	footerPadding := strings.Repeat(" ", footerPaddingLength)
+	footer += fmt.Sprintf("  │ %s%s%s%s │\n", footerColor, config.Footer.Text, footerPadding, Reset)
+	return footer
+}
+
+func buildMenuItems(config Config, items map[string]string, borderWidth int, minIconLength int) string {
+	menuItems := ""
 	for _, item := range config.Items {
 		value, exists := items[item.Keyword]
 		if exists {
@@ -117,106 +209,12 @@ func BuildBoxMenu(items map[string]string, asciiArt string, config Config, borde
 		itemTextColor := GetColorCode(item.TextColor)
 		itemIconColor := GetColorCode(item.IconColor)
 		itemValueColor := GetColorCode(item.ValueColor)
-		menu += fmt.Sprintf("  │ %s%s%s  %s%s%s%s │ %s%s%s\n", itemIconColor, item.Icon, Reset, itemTextColor, item.Text, Reset, padding, itemValueColor, value, Reset)
+		menuItems += fmt.Sprintf("  │ %s%s%s  %s%s%s%s │ %s%s%s\n", itemIconColor, item.Icon, Reset, itemTextColor, item.Text, Reset, padding, itemValueColor, value, Reset)
 	}
-
-	if config.Footer.Enabled {
-		if config.Footer.Line {
-			lineColor := GetColorCode(config.Footer.LineColor)
-			menu += fmt.Sprintf("  ├%s%s%s┤\n", lineColor, border, Reset)
-		}
-		footerColor := GetColorCode(config.Footer.TextColor)
-		footerPaddingLength := max(0, borderWidth-len(config.Footer.Text)-padding)
-		footerPadding := strings.Repeat(" ", footerPaddingLength)
-		menu += fmt.Sprintf("  │ %s%s%s%s │\n", footerColor, config.Footer.Text, footerPadding, Reset)
-	}
-
-	if config.Ascii.Position == "bottom" {
-		menu += fmt.Sprintf("  ╰%s╯\n", border)
-		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
-	} else {
-		menu += fmt.Sprintf("  ╰%s╯\n", border)
-	}
-
-	if config.Ascii.Position == "left" || config.Ascii.Position == "right" {
-		menuLines := strings.Split(menu, "\n")
-		asciiLines := strings.Split(paddedAsciiArt, "\n")
-
-		// Calculate the length of the longest menu line
-		maxMenuWidth := 0
-		for _, line := range menuLines {
-			if len(line) > maxMenuWidth {
-				maxMenuWidth = len(line)
-			}
-		}
-
-		maxLines := max(len(menuLines), len(asciiLines))
-		for len(menuLines) < maxLines {
-			menuLines = append(menuLines, "")
-		}
-		for len(asciiLines) < maxLines {
-			asciiLines = append(asciiLines, "")
-		}
-
-		combinedLines := []string{}
-		for i := 0; i < maxLines; i++ {
-			if config.Ascii.Position == "left" {
-				combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s %s%s", asciiColors, asciiLines[i], Reset, strings.Repeat(" ", maxAsciiWidth-len(asciiLines[i])), menuLines[i]))
-			} else if config.Ascii.Position == "right" {
-				menuLine := menuLines[i]
-				padding := strings.Repeat(" ", maxMenuWidth-len(menuLine))
-				combinedLines = append(combinedLines, fmt.Sprintf("%s%s %s%s%s", menuLine, padding, asciiColors, asciiLines[i], Reset))
-			} else {
-				combinedLines = append(combinedLines, menuLines[i])
-			}
-		}
-
-		menu = strings.Join(combinedLines, "\n")
-	}
-
-	return menu
+	return menuItems
 }
 
-func BuildListMenu(items map[string]string, asciiArt string, config Config, borderWidth int) string {
-	asciiColors := GetColorCode(config.Ascii.Colors)
-
-	paddedAsciiArt := AddPaddingToMultilineString(asciiArt, config.Ascii.HorizontalPadding, config.Ascii.VerticalPadding)
-	border := strings.Repeat("─", borderWidth)
-
-	asciiLines := strings.Split(paddedAsciiArt, "\n")
-	maxAsciiWidth := 0
-	for _, line := range asciiLines {
-		if len(line) > maxAsciiWidth {
-			maxAsciiWidth = len(line)
-		}
-	}
-
-	menu := ""
-
-	if config.Ascii.Position == "top" {
-		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
-	}
-
-	if config.Header.Enabled {
-		headerColor := GetColorCode(config.Header.TextColor)
-		headerPaddingLength := max(0, borderWidth-len(config.Header.Text)-padding)
-		headerPadding := strings.Repeat(" ", headerPaddingLength)
-		menu += fmt.Sprintf("   %s%s%s%s \n", headerColor, config.Header.Text, headerPadding, Reset)
-		if config.Header.Line {
-			lineColor := GetColorCode(config.Header.LineColor)
-			menu += fmt.Sprintf("  %s%s%s\n", lineColor, border, Reset)
-		}
-	}
-
-	// Icon length can be weird so that's why this exists
-	minIconLength := 1000
-	for _, item := range config.Items {
-		imageLength := len(item.Icon)
-		if imageLength < minIconLength {
-			minIconLength = imageLength
-		}
-	}
-
+func formatMenuItems(config Config, items map[string]string, borderWidth int, minIconLength int) []string {
 	formattedItems := []string{}
 	for _, item := range config.Items {
 		value, exists := items[item.Keyword]
@@ -238,57 +236,45 @@ func BuildListMenu(items map[string]string, asciiArt string, config Config, bord
 		formattedItem := fmt.Sprintf("   %s%s%s %s%s%s%s  %s%s%s", itemIconColor, item.Icon, Reset, itemTextColor, item.Text, Reset, padding, itemValueColor, value, Reset)
 		formattedItems = append(formattedItems, formattedItem)
 	}
+	return formattedItems
+}
 
-	if config.General.Columns {
-		half := (len(formattedItems) + 1) / 2
-		leftColumn := formattedItems[:half]
-		rightColumn := formattedItems[half:]
+func buildColumns(formattedItems []string) string {
+	menu := ""
+	half := (len(formattedItems) + 1) / 2
+	leftColumn := formattedItems[:half]
+	rightColumn := formattedItems[half:]
 
-		maxLeftLength := 0
-		for _, item := range leftColumn {
-			if len(item) > maxLeftLength {
-				maxLeftLength = len(item)
-			}
-		}
-
-		for i := 0; i < len(leftColumn); i++ {
-			if i < len(rightColumn) {
-				menu += fmt.Sprintf("%-*s %s\n", maxLeftLength, leftColumn[i], rightColumn[i])
-			} else {
-				menu += fmt.Sprintf("%s\n", leftColumn[i])
-			}
-		}
-	} else {
-		for _, item := range formattedItems {
-			menu += fmt.Sprintf("%s\n", item)
+	maxLeftLength := 0
+	for _, item := range leftColumn {
+		if len(item) > maxLeftLength {
+			maxLeftLength = len(item)
 		}
 	}
 
-	if config.Footer.Enabled {
-		if config.Footer.Line {
-			lineColor := GetColorCode(config.Footer.LineColor)
-			menu += fmt.Sprintf("  %s%s%s\n", lineColor, border, Reset)
+	for i := 0; i < len(leftColumn); i++ {
+		if i < len(rightColumn) {
+			menu += fmt.Sprintf("%-*s %s\n", maxLeftLength, leftColumn[i], rightColumn[i])
+		} else {
+			menu += fmt.Sprintf("%s\n", leftColumn[i])
 		}
-		footerColor := GetColorCode(config.Footer.TextColor)
-		footerPaddingLength := max(0, borderWidth-len(config.Footer.Text)-padding)
-		footerPadding := strings.Repeat(" ", footerPaddingLength)
-		menu += fmt.Sprintf("   %s%s%s%s \n", footerColor, config.Footer.Text, footerPadding, Reset)
 	}
+	return menu
+}
 
-	if config.Ascii.Position == "bottom" {
-		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
-	}
-
+func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string, position string, maxAsciiWidth int) string {
 	menuLines := strings.Split(menu, "\n")
+	asciiLines := strings.Split(paddedAsciiArt, "\n")
+
 	maxLines := max(len(menuLines), len(asciiLines))
 
+	// Calculate the length of the longest ASCII art line
+	maxAsciiLineWidth := getMaxLineWidth(asciiLines)
+	println("ascii", maxAsciiLineWidth)
+
 	// Calculate the length of the longest menu line
-	maxMenuWidth := 0
-	for _, line := range menuLines {
-		if len(line) > maxMenuWidth {
-			maxMenuWidth = len(line)
-		}
-	}
+	maxMenuWidth := getMaxLineWidth(menuLines)
+	println("menu", maxMenuWidth)
 
 	for len(menuLines) < maxLines {
 		menuLines = append(menuLines, "")
@@ -297,27 +283,32 @@ func BuildListMenu(items map[string]string, asciiArt string, config Config, bord
 		asciiLines = append(asciiLines, "")
 	}
 
+	paddingBetween := 2 // Number of spaces between the menu and the ASCII art
 	combinedLines := []string{}
+
 	for i := 0; i < maxLines; i++ {
-		if config.Ascii.Position == "left" {
-			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s %s%s", asciiColors, asciiLines[i], Reset, strings.Repeat(" ", maxAsciiWidth-len(asciiLines[i])), menuLines[i]))
-		} else if config.Ascii.Position == "right" {
+		if position == "left" {
+			asciiLine := asciiLines[i]
 			menuLine := menuLines[i]
-			padding := strings.Repeat(" ", maxMenuWidth-len(menuLine))
-			println(len(padding))
-			combinedLines = append(combinedLines, fmt.Sprintf("%s%s %s%s%s", menuLine, padding, asciiColors, asciiLines[i], Reset))
+			padding := strings.Repeat(" ", maxAsciiLineWidth-len(asciiLine)+paddingBetween)
+			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", asciiColors, asciiLine, Reset, padding, menuLine))
+		} else if position == "right" {
+			menuLine := menuLines[i]
+			padding := strings.Repeat(" ", maxMenuWidth-len(menuLine)+paddingBetween)
+			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", menuLine, padding, asciiColors, asciiLines[i], Reset))
 		} else {
 			combinedLines = append(combinedLines, menuLines[i])
 		}
 	}
 
+	if position == "top" {
+		return strings.Join(combinedLines, "\n")
+	} else if position == "bottom" {
+		// When the ASCII art is below the menu, simply concatenate the menu and ASCII art without padding
+		return strings.Join(menuLines, "\n") + "\n" + asciiColors + strings.Join(asciiLines, "\n") + Reset
+	}
+
 	return strings.Join(combinedLines, "\n")
-}
-
-func BuildWTFMenu(items map[string]string, asciiArt string, config Config, borderWidth int) string {
-	println("WTF")
-
-	return ""
 }
 
 func max(a, b int) int {

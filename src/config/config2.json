@@ -1,0 +1,192 @@
+{
+  "items": [
+    {
+      "text": "user",
+      "keyword": "user",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "icon_color": "red"
+    },
+    {
+      "text": "shell",
+      "keyword": "shell",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "yellow",
+      "value": "zsh"
+    },
+    {
+      "text": "Distro",
+      "keyword": "os_pretty_name",
+      "icon": "󰌢",
+      "value_color": "green",
+      "text_color": "",
+      "icon_color": "green"
+    },
+    {
+      "text": "dm",
+      "keyword": "dm",
+      "icon": "󰏘",
+      "value_color": "blue",
+      "text_color": "",
+      "icon_color": "blue"
+    },
+    {
+      "text": "uptime",
+      "keyword": "uptime",
+      "icon": "",
+      "value_color": "cyan",
+      "text_color": "",
+      "icon_color": "cyan"
+    },
+    {
+      "text": "gpu",
+      "keyword": "gpu",
+      "icon": "",
+      "value_color": "purple",
+      "text_color": "",
+      "icon_color": "purple"
+    },
+    {
+      "text": "gpu usage",
+      "keyword": "gpu %",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "icon_color": "red"
+    },
+    {
+      "text": "cpu",
+      "keyword": "cpu",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "yellow"
+    },
+    {
+      "text": "cpu %",
+      "keyword": "cpu %",
+      "icon": "",
+      "value_color": "green",
+      "text_color": "",
+      "icon_color": "green"
+    },
+    {
+      "text": "ram",
+      "keyword": "ram",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "",
+      "icon_color": "blue"
+    },
+    {
+      "text": "ram %",
+      "keyword": "ram %",
+      "icon": "",
+      "value_color": "cyan",
+      "text_color": "",
+      "icon_color": "cyan"
+    },
+    {
+      "text": "drive",
+      "keyword": "drive",
+      "icon": "",
+      "value_color": "purple",
+      "text_color": "",
+      "icon_color": "purple"
+    },
+    {
+      "text": "drive %",
+      "keyword": "drive %",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "icon_color": "red"
+    },
+    {
+      "text": "terminal",
+      "keyword": "term",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "yellow"
+    },
+    {
+      "text": "version",
+      "keyword": "os_version",
+      "icon": "",
+      "value_color": "green",
+      "text_color": "",
+      "icon_color": "green"
+    },
+    {
+      "text": "public ip",
+      "keyword": "public ip",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "",
+      "icon_color": "blue"
+    },
+    {
+      "text": "processes",
+      "keyword": "processes",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "",
+      "icon_color": "blue"
+    },
+    {
+      "text": "wm",
+      "keyword": "wm",
+      "icon": "",
+      "value_color": "cyan",
+      "text_color": "",
+      "icon_color": "cyan"
+    },
+    {
+      "text": "kernel",
+      "keyword": "kernel",
+      "icon": "󰻀",
+      "value_color": "green",
+      "text_color": "",
+      "icon_color": "green"
+    },
+    {
+      "text": "host",
+      "keyword": "hostname",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "#FFFFFF",
+      "icon_color": "blue",
+      "value": "nixos"
+    }
+  ],
+  "ascii": {
+    "path": "ascii/gysmo2",
+    "colors": "",
+    "enabled": true,
+    "horizontal_padding": 0,
+    "vertical_padding": 0,
+    "position": "left"
+  },
+  "header": {
+    "enabled": false,
+    "text": "NixOS",
+    "text_color": "white",
+    "line": false,
+    "line_color": "red"
+  },
+  "footer": {
+    "enabled": false,
+    "text": "gysmo2",
+    "text_color": "white",
+    "line": true,
+    "line_color": "red"
+  },
+  "general": {
+    "menu_type": "box",
+    "columns": false
+  }
+}

@@ -43,7 +43,7 @@
     "enabled": true,
     "horizontal_padding": 0,
     "vertical_padding": 0,
-    "position": "left"
+    "position": "top"
   },
   "header": {
     "enabled": true,

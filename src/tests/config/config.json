@@ -6,7 +6,7 @@
       "icon": "",
       "text_color": "red",
       "value_color": "green",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "OS Pretty Name",
@@ -14,7 +14,7 @@
       "icon": "",
       "text_color": "yellow",
       "value_color": "blue",
-      "image_color": "cyan"
+      "icon_color": "cyan"
     },
     {
       "text": "OS Bug Report URL",
@@ -22,7 +22,7 @@
       "icon": "",
       "text_color": "purple",
       "value_color": "white",
-      "image_color": "red"
+      "icon_color": "red"
     },
     {
       "text": "OS Build ID",
@@ -30,7 +30,7 @@
       "icon": "",
       "text_color": "green",
       "value_color": "yellow",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "OS CPE Name",
@@ -38,7 +38,7 @@
       "icon": "",
       "text_color": "cyan",
       "value_color": "purple",
-      "image_color": "green"
+      "icon_color": "green"
     },
     {
       "text": "OS Default Hostname",
@@ -46,7 +46,7 @@
       "icon": "",
       "text_color": "blue",
       "value_color": "red",
-      "image_color": "yellow"
+      "icon_color": "yellow"
     },
     {
       "text": "OS Documentation URL",
@@ -54,7 +54,7 @@
       "icon": "",
       "text_color": "white",
       "value_color": "cyan",
-      "image_color": "purple"
+      "icon_color": "purple"
     },
     {
       "text": "OS Home URL",
@@ -62,7 +62,7 @@
       "icon": "",
       "text_color": "red",
       "value_color": "green",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "OS ID",
@@ -70,7 +70,7 @@
       "icon": "",
       "text_color": "yellow",
       "value_color": "blue",
-      "image_color": "cyan"
+      "icon_color": "cyan"
     },
     {
       "text": "OS ID Like",
@@ -78,7 +78,7 @@
       "icon": "",
       "text_color": "purple",
       "value_color": "white",
-      "image_color": "red"
+      "icon_color": "red"
     },
     {
       "text": "OS Image ID",
@@ -86,7 +86,7 @@
       "icon": "",
       "text_color": "green",
       "value_color": "yellow",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "OS Image Version",
@@ -94,7 +94,7 @@
       "icon": "",
       "text_color": "cyan",
       "value_color": "purple",
-      "image_color": "green"
+      "icon_color": "green"
     },
     {
       "text": "OS Version",
@@ -102,7 +102,7 @@
       "icon": "",
       "text_color": "blue",
       "value_color": "red",
-      "image_color": "yellow"
+      "icon_color": "yellow"
     },
     {
       "text": "OS Logo",
@@ -110,7 +110,7 @@
       "icon": "",
       "text_color": "white",
       "value_color": "cyan",
-      "image_color": "purple"
+      "icon_color": "purple"
     },
     {
       "text": "OS Name",
@@ -118,7 +118,7 @@
       "icon": "",
       "text_color": "red",
       "value_color": "green",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "OS Support URL",
@@ -126,7 +126,7 @@
       "icon": "",
       "text_color": "yellow",
       "value_color": "blue",
-      "image_color": "cyan"
+      "icon_color": "cyan"
     },
     {
       "text": "OS Variant",
@@ -134,7 +134,7 @@
       "icon": "",
       "text_color": "purple",
       "value_color": "white",
-      "image_color": "red"
+      "icon_color": "red"
     },
     {
       "text": "OS Variant ID",
@@ -142,7 +142,7 @@
       "icon": "",
       "text_color": "green",
       "value_color": "yellow",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "OS Vendor Name",
@@ -150,7 +150,7 @@
       "icon": "",
       "text_color": "cyan",
       "value_color": "purple",
-      "image_color": "green"
+      "icon_color": "green"
     },
     {
       "text": "OS Vendor URL",
@@ -158,7 +158,7 @@
       "icon": "",
       "text_color": "blue",
       "value_color": "red",
-      "image_color": "yellow"
+      "icon_color": "yellow"
     },
     {
       "text": "OS Version Codename",
@@ -166,7 +166,7 @@
       "icon": "",
       "text_color": "white",
       "value_color": "cyan",
-      "image_color": "purple"
+      "icon_color": "purple"
     },
     {
       "text": "OS Version ID",
@@ -174,7 +174,7 @@
       "icon": "",
       "text_color": "red",
       "value_color": "green",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "User",
@@ -182,7 +182,7 @@
       "icon": "",
       "text_color": "yellow",
       "value_color": "blue",
-      "image_color": "cyan"
+      "icon_color": "cyan"
     },
     {
       "text": "Hostname",
@@ -190,7 +190,7 @@
       "icon": "",
       "text_color": "purple",
       "value_color": "white",
-      "image_color": "red"
+      "icon_color": "red"
     },
     {
       "text": "Kernel",
@@ -198,7 +198,7 @@
       "icon": "",
       "text_color": "green",
       "value_color": "yellow",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "Shell",
@@ -206,7 +206,7 @@
       "icon": "",
       "text_color": "cyan",
       "value_color": "purple",
-      "image_color": "green"
+      "icon_color": "green"
     },
     {
       "text": "Uptime",
@@ -214,7 +214,7 @@
       "icon": "",
       "text_color": "blue",
       "value_color": "red",
-      "image_color": "yellow"
+      "icon_color": "yellow"
     },
     {
       "text": "Desktop Manager",
@@ -222,7 +222,7 @@
       "icon": "",
       "text_color": "white",
       "value_color": "cyan",
-      "image_color": "purple"
+      "icon_color": "purple"
     },
     {
       "text": "GPU",
@@ -230,7 +230,7 @@
       "icon": "",
       "text_color": "red",
       "value_color": "green",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "CPU",
@@ -238,7 +238,7 @@
       "icon": "",
       "text_color": "yellow",
       "value_color": "blue",
-      "image_color": "cyan"
+      "icon_color": "cyan"
     },
     {
       "text": "RAM",
@@ -246,7 +246,7 @@
       "icon": "",
       "text_color": "purple",
       "value_color": "white",
-      "image_color": "red"
+      "icon_color": "red"
     },
     {
       "text": "Drive",
@@ -254,7 +254,7 @@
       "icon": "",
       "text_color": "green",
       "value_color": "yellow",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "GPU Usage",
@@ -262,7 +262,7 @@
       "icon": "",
       "text_color": "cyan",
       "value_color": "purple",
-      "image_color": "green"
+      "icon_color": "green"
     },
     {
       "text": "CPU Usage",
@@ -270,7 +270,7 @@
       "icon": "",
       "text_color": "blue",
       "value_color": "red",
-      "image_color": "yellow"
+      "icon_color": "yellow"
     },
     {
       "text": "RAM Usage",
@@ -278,7 +278,7 @@
       "icon": "",
       "text_color": "white",
       "value_color": "cyan",
-      "image_color": "purple"
+      "icon_color": "purple"
     },
     {
       "text": "Drive Usage",
@@ -286,7 +286,7 @@
       "icon": "",
       "text_color": "red",
       "value_color": "green",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "Terminal",
@@ -294,7 +294,7 @@
       "icon": "",
       "text_color": "yellow",
       "value_color": "blue",
-      "image_color": "cyan"
+      "icon_color": "cyan"
     },
     {
       "text": "Processes",
@@ -302,7 +302,7 @@
       "icon": "",
       "text_color": "purple",
       "value_color": "white",
-      "image_color": "red"
+      "icon_color": "red"
     },
     {
       "text": "Window Manager",
@@ -310,7 +310,7 @@
       "icon": "",
       "text_color": "green",
       "value_color": "yellow",
-      "image_color": "blue"
+      "icon_color": "blue"
     },
     {
       "text": "IP Address",
@@ -318,7 +318,7 @@
       "icon": "",
       "text_color": "cyan",
       "value_color": "purple",
-      "image_color": "green"
+      "icon_color": "green"
     },
     {
       "text": "Public IP Address",
@@ -326,7 +326,7 @@
       "icon": "",
       "text_color": "blue",
       "value_color": "red",
-      "image_color": "yellow"
+      "icon_color": "yellow"
     },
     {
       "text": "Resolution",
@@ -334,7 +334,7 @@
       "icon": "",
       "text_color": "white",
       "value_color": "cyan",
-      "image_color": "purple"
+      "icon_color": "purple"
     }
   ],
   "ascii": {
