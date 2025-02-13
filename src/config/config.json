@@ -1,0 +1,198 @@
+{
+  "items": [
+    {
+      "text": "user",
+      "keyword": "user",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "image_color": "red"
+    },
+    {
+      "text": "shell",
+      "keyword": "shell",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "image_color": "yellow",
+      "value": "zsh"
+    },
+    {
+      "text": "Distro",
+      "keyword": "os_pretty_name",
+      "icon": "󰌢",
+      "value_color": "green",
+      "text_color": "",
+      "image_color": "green"
+    },
+    {
+      "text": "dm",
+      "keyword": "dm",
+      "icon": "󰏘",
+      "value_color": "blue",
+      "text_color": "",
+      "image_color": "blue"
+    },
+    {
+      "text": "uptime",
+      "keyword": "uptime",
+      "icon": "",
+      "value_color": "cyan",
+      "text_color": "",
+      "image_color": "cyan"
+    },
+    {
+      "text": "gpu",
+      "keyword": "gpu",
+      "icon": "",
+      "value_color": "purple",
+      "text_color": "",
+      "image_color": "purple"
+    },
+    {
+      "text": "gpu usage",
+      "keyword": "gpu %",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "image_color": "red"
+    },
+    {
+      "text": "cpu",
+      "keyword": "cpu",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "image_color": "yellow"
+    },
+    {
+      "text": "cpu %",
+      "keyword": "cpu %",
+      "icon": "",
+      "value_color": "green",
+      "text_color": "",
+      "image_color": "green"
+    },
+    {
+      "text": "ram",
+      "keyword": "ram",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "",
+      "image_color": "blue"
+    },
+    {
+      "text": "ram %",
+      "keyword": "ram %",
+      "icon": "",
+      "value_color": "cyan",
+      "text_color": "",
+      "image_color": "cyan"
+    },
+    {
+      "text": "drive",
+      "keyword": "drive",
+      "icon": "",
+      "value_color": "purple",
+      "text_color": "",
+      "image_color": "purple"
+    },
+    {
+      "text": "drive %",
+      "keyword": "drive %",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "image_color": "red"
+    },
+    {
+      "text": "terminal",
+      "keyword": "term",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "image_color": "yellow"
+    },
+    {
+      "text": "version",
+      "keyword": "os_version",
+      "icon": "",
+      "value_color": "green",
+      "text_color": "",
+      "image_color": "green"
+    },
+    {
+      "text": "processes",
+      "keyword": "processes",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "",
+      "image_color": "blue"
+    },
+    {
+      "text": "wm",
+      "keyword": "wm",
+      "icon": "",
+      "value_color": "cyan",
+      "text_color": "",
+      "image_color": "cyan"
+    },
+    {
+      "text": "resolution",
+      "keyword": "resolution",
+      "icon": "",
+      "value_color": "purple",
+      "text_color": "",
+      "image_color": "purple"
+    },
+    {
+      "text": "ip",
+      "keyword": "ip",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "image_color": "red"
+    },
+    {
+      "text": "kernel",
+      "keyword": "kernel",
+      "icon": "󰻀",
+      "value_color": "green",
+      "text_color": "",
+      "image_color": "green"
+    },
+    {
+      "text": "host",
+      "keyword": "hostname",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "#FFFFFF",
+      "image_color": "blue",
+      "value": "nixos"
+    }
+  ],
+  "ascii": {
+    "path": "ascii/gysmo2",
+    "colors": "",
+    "enabled": true,
+    "padding": 20
+  },
+  "header": {
+    "enabled": true,
+    "text": "NixOS",
+    "text_color": "white",
+    "line": true,
+    "line_color": "red"
+  },
+  "footer": {
+    "enabled": true,
+    "text": "gysmo",
+    "text_color": "white",
+    "line": true,
+    "line_color": "red"
+  },
+  "general": {
+    "menu_type": "box",
+    "columns": false
+  }
+}
