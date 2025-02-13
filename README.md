@@ -1,4 +1,11 @@
-# gysmo 🚀
+![Config Examples](screenshot/config-examples.png)
+
+# gysmo 📟
+
+![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
+[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.1.0)
+[![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/main?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/main)
+
 
 **gysmo** is a fun and visually engaging CLI tool written in Go, designed to enhance your terminal experience. While it does provide system information, its primary purpose is to showcase your stylish terminal setup.
 
@@ -12,14 +19,44 @@ gysmo is not intended to be an accurate system information tool. There are many 
 
 ## 📥 Installation
 
-### Download the Binary
+### Build From Source (RECOMMENDED)
+`
+You will need to have Go installed for this.
+`
+If you are a true Linux user and you won't submit to anyone else automated processes (as is your right), you can always prove your superiority by building the project from source.
+This also allows you to understand how the project works a little better.
+
 ```shell
-wget setup.sh
+git clone https://github.com/grosheth/gysmo.git
+# Default branch is main (latest tag), you can switch to a tag to use specific version
+# git checkout tags/v0.1.0-rc
+
+cd gysmo/gysmo
+
+go build -o gysmo
+# -o to rename the binary (default is gysmo)
+
+mkdir ~/.config/gysmo
+cp -R config ~/.config/gysmo/
+cp -R ascii ~/.config/gysmo/
 ```
 
-### Home-manager
-The program is not included in nixpkgs, I might do it later.
-There is still a way to generate your gysmo config with home-manager.
+### Use the installation/update script
+
+The installation/update script does the following
+1. Download the binary
+2. Create the directory structure ~/.config/gysmo/... && ~/bin/gysmo
+3. Copy the template config.json file IF it doesn't exist (don't want to overwrite your config in an update)
+4. Copy the schema validator file
+5. Copy a sample ASCII art IF it doesn't exist
+
+```shell
+wget https://raw.githubusercontent.com/grosheth/gysmo/main/installation.sh && sh installation.sh && rm installation.sh
+```
+
+### Home-manager (Nix users go brrrrrrr)
+⚠️ **NOT OFFICIALLY DONE YET**: still to be done.
+Package will be included in nixpkgs and home-manger eventually.
 
 ```nix
 { pkgs, ... }:
@@ -28,56 +65,209 @@ There is still a way to generate your gysmo config with home-manager.
 }
 ```
 
-### Build From Source
-```shell
-git clone https://github.com/yourusername/gysmo.git
-cd gysmo
-go build
+## 🔧 Configuration
+Here is the directory structure used by gysmo.
+
+### Installation Folders Structure
+```
+$HOME/
+├── .config/
+│   └── gysmo/
+│       ├── config/
+│       │   ├── config.json
+│       │   └── alt-config.json
+│       ├── ascii/
+│       │   ├── ascii_art1
+│       │   └── ascii_art2
+│       └── data/
+│           └── data.json
+└── bin/
+    └── gysmo
 ```
 
-## ⚙️ Configuration
-Like I said in the introduction, the default configuration is not meant to be used and although it can show off your system, it also can show anything you want.
+
+Like I said in the introduction, the default configuration is only meant to be used as a starting point for YOUR configuration and although it can show off your system, it also can show anything you want.
 
 Here are every section of the configuration file you can modify:
+
+### Configuration File Structure
+
 <details>
-  <summary>📝Items</summary>
+  <summary>📄 Example Configuration</summary>
+
+  ```json
+  {
+    "items": [
+      {
+        "text": "User",
+        "keyword": "user",
+        "icon": "",
+        "value_color": "red",
+        "text_color": "",
+        "icon_color": "red"
+      },
+      {
+        "text": "Kernel",
+        "keyword": "kernel",
+        "icon": "󰌽",
+        "value_color": "cyan",
+        "text_color": "",
+        "icon_color": "cyan"
+      },
+      {
+        "text": "WM",
+        "keyword": "wm",
+        "icon": "󱂬",
+        "value_color": "yellow",
+        "text_color": "",
+        "icon_color": "yellow"
+      },
+      {
+        "text": "GPU",
+        "keyword": "gpu",
+        "icon": "",
+        "value_color": "green",
+        "text_color": "",
+        "icon_color": "green"
+      },
+      {
+        "text": "Term",
+        "keyword": "term",
+        "icon": "",
+        "value_color": "blue",
+        "text_color": "",
+        "icon_color": "blue"
+      },
+      {
+        "text": "CPU",
+        "value": "Intel(R) Core(TM) i7-10700K",
+        "icon": "",
+        "value_color": "red",
+        "text_color": "",
+        "icon_color": "red"
+      },
+      {
+        "text": "OS",
+        "value": "NixOs",
+        "icon": "",
+        "value_color": "cyan",
+        "text_color": "",
+        "icon_color": "cyan"
+      },
+      {
+        "text": "RAM",
+        "keyword": "ram",
+        "icon": "",
+        "value_color": "yellow",
+        "text_color": "",
+        "icon_color": "yellow"
+      },
+      {
+        "text": "Shell",
+        "value": "zsh",
+        "icon": "",
+        "value_color": "green",
+        "text_color": "",
+        "icon_color": "green"
+      },
+      {
+        "text": "Uptime",
+        "keyword": "uptime",
+        "icon": "󱑆",
+        "value_color": "blue",
+        "text_color": "",
+        "icon_color": "blue"
+      }
+    ],
+    "ascii": {
+      "path": "ascii/nixos",
+      "colors": "",
+      "enabled": true,
+      "horizontal_padding": 2,
+      "vertical_padding": 0,
+      "position": "top"
+    },
+    "header": {
+      "enabled": false,
+      "text": "NixOS",
+      "text_color": "purple",
+      "line": true,
+      "line_color": ""
+    },
+    "footer": {
+      "enabled": false,
+      "text": "gysmo",
+      "text_color": "blue",
+      "line": true,
+      "line_color": ""
+    },
+    "general": {
+      "menu_type": "box",
+      "columns": false
+    }
+  }
+  ```
+
+</details>
+<details>
+  <summary>⚙️ general</summary>
+  The general section is used to define the type of menu you want and to enable or disable columns. columns only apply to list menus.
+
+  ```json
+  "general": {
+    "menu_type": "box",
+    "columns": false
+  }
+  ```
+
+  | Option       | Description                                                                 | Example Value       |
+  |--------------|-----------------------------------------------------------------------------|---------------------|
+  | `menu_type`      | Specify the type of menu you want.             | `"box"`, `"list"`        |
+  | `columns`       | Set columns or not. Only applied when using list menu_type             | `true`            |
+
+</details>
+<details>
+  <summary>📋 Items</summary>
   The items section is where you define what you want to show in your gysmo main menu. The following is an example configuration:
 
   ```json
   "items": [
     {
-      "alias": "user",
-      "name": "user",
+      "text": "user",
+      "keyword": "user",
       "icon": "",
-      "value_color": "purple",
+      "value_color": "red",
       "text_color": "",
-      "image_color": "red",
-      "value": "Custom value"
+      "icon_color": "red",
+      "value": "My user"
     },
     {
-      "alias": "name-alias",
-      "name": "name",
-      "icon": "",
-      "value_color": "purple",
-      "text_color": "green",
-      "image_color": "red"
+      "text": "shell",
+      "keyword": "shell",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "yellow"
     }
-  ]
+  ],
   ```
 
 Here is a brief explanation of each option:
 
 | Option       | Description                                                                 | Example Value       |
 |--------------|-----------------------------------------------------------------------------|---------------------|
-| `alias`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
-| `name`       | This is the system value gysmo will return.                                 | `"user"`            |
-| `icon`       | An icon to display alongside the item.                                      | `""`               |
+| `text`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
+| `keyword`       | This is the system value gysmo will return. (incompatible with "value")              | `"user"`            |
+| `icon`       | An icon to display alongside the item. Can also be text.                                     | `""`               |
 | `value_color`| The color of the value text.                                                | `"purple"`          |
 | `text_color` | The color of the item text.                                                 | `"green"`           |
-| `image_color`| The color of the icon.                                                      | `"red"`             |
-| `value`      | A custom value to display for the item. (will replace the value returned by the keyword)                                    | `"Custom value"`    |
+| `icon_color`| The color of the icon.                                                      | `"red"`             |
+| `value`      | A custom value to display for the item. (Does not work with keyword)                                    | `"Custom value"`    |
 
-## Keywords for `name` Option
+## Text
+
+## Keywords for `keyword` Option
+⚠️ **WARNING**: Incompatible with the field "value".
 Some values of /etc/os-release are not available on some distros, look at [os-release](https://github.com/which-distro/os-release) to get an idea.
 
 | Keyword                | Description                                      | Example Value            |
@@ -105,6 +295,7 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 | `os_version_codename`  | Version codename of the /etc/os-release                       | `"warbler"`|
 | `os_version_id`        | Version ID of the /etc/os-release                             | `"25.05"`   |
 | `user`                 | Username of the current user                     | `"user"`          |
+| `motherboard`          | Motherboard model                                | `"ROG MAXIMUS XII HERO (WI-FI)"`          |
 | `hostname`             | Hostname of the system                           | `"hostname"`          |
 | `kernel`               | Kernel version of the system                     | `"6.6.75"`     |
 | `shell`                | Default shell of the user                        | `"zsh"`             |
@@ -121,59 +312,87 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 | `term`                 | Terminal information                             | `"ghostty"`          |
 | `processes`            | Number of running processes                      | `"121"`|
 | `wm`            | Window Manager                     | `"none+bpswm"`|
-| ``            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
 
-  ⚠️ **WARNING**: If you are using custom images, the borders might get messed up. Using icons from [Nerd Fonts](https://www.nerdfonts.com/) seems to work fine.
+![Full Config](screenshot/config-full.png)
+## Icon
+```
+The "icon" field is where you define the icons you want to use in your gysmo main menu. This section comes a bit before the Text.
+```
+
+⚠️ **WARNING**:
+```
+You technically can use text or multiple icons on the same line, but it is not recommended as it can break the alignment of the menu.
+If you want to have icons only on some lines, you might need to add spaces instead of an empty field to keep the alignment of box menu.
+```
+
+## Value
+
+This field is where you can set a custom value for the item. This is useful if you want to display a custom value that is not available in the keywords. If you set a value, you cannot set a keyword.
+
 </details>
 
 <details>
   <summary>🎨 ascii</summary>
-I don't aim to keep millions of ASCII art in this repo.
+I will open a discussion on the repo so people can share their ASCII art and configs.
 
-I might open an Issue so people can share their ASCII art.
-
-Instead, I suggest you get the ASCII art you like from the following sources:
+I suggest you get the ASCII art you like from the following sources:
 
 ### Sources
-- [asciiart.eu](https://www.asciiart.eu/) (all the gysmo ASCII art were made there)
-- [asciiflow](https://asciiflow.com/#/)
-
+- [asciiart.eu](https://www.asciiart.eu/)
+- [ascii.co.uk](https://ascii.co.uk/art)
 
 Here is an example of the ASCII configuration:
 the ascii section is a simple dictionnary with the following options:
 
   ```json
-  "ascii": {
-    "path": "ascii/gysmo4",
-    "colors": "red",
-    "enabled": true,
-    "padding": 2
-  },
+    "ascii": {
+      "path": "ascii/gysmo2",
+      "colors": "",
+      "enabled": true,
+      "horizontal_padding": 0,
+      "vertical_padding": 0,
+      "position": "left"
+    }
   ```
+
+| Option       | Description                                                                 | Example Value       |
+|--------------|-----------------------------------------------------------------------------|---------------------|
+| `path`      | the path to obtain the ascii art. (relative to ~/.config/gysmo/)             | `"ascii/gysmo1"`        |
+| `colors`       | The color applied to the ascii art.              | `"green"`            |
+| `enabled`       | Enable an ascii art or not.                                     | `true, false`               |
+| `horizontal_padding`| Padding added to the left of ascii art.                                                | `0`          |
+| `vertical_padding` | Padding added to under the ascii art.                                                | `0`           |
+| `position`| The position of the ascii art.                                                      | `"top", "bottom", "right", "left"`             |
+
+![Asci Position](screenshot/ascii-position.png)
 
 </details>
 
 <details>
-  <summary>📝 header</summary>
+  <summary>🔺 header</summary>
 
   ```json
   "header": {
     "enabled": true,
     "text": "NixOS",
-    "text_color": "white",
+    "text_color": "purple",
     "line": true,
-    "line_color": "red"
+    "line_color": ""
   },
   ```
+
+| Option       | Description                                                                 | Example Value       |
+|--------------|-----------------------------------------------------------------------------|---------------------|
+| `enabled`      | This will enable the header.             | `true, false`        |
+| `text`       | This is the text shown in the header              | `"text shown in header"`            |
+| `text_color`       | Color of the text shown in the header.                                     | `"red"`               |
+| `line`| Adds a line below the header.                                              | `true, false`          |
+| `line_color` | The color of the line.                                                 | `"purple"`           |
+
 </details>
 
 <details>
-  <summary>📝 footer</summary>
+  <summary>🔻 footer</summary>
 
   ```json
   "footer": {
@@ -184,29 +403,98 @@ the ascii section is a simple dictionnary with the following options:
     "line_color": "red"
   },
   ```
-</details>
-
-<details>
-  <summary>📝 general</summary>
-
-  ```json
-  "general": {
-    "padding": 2,
-    "left_padding": 200,
-    "menu_type": "box"
-  }
-  ```
+  | Option       | Description                                                                 | Example Value       |
+  |--------------|-----------------------------------------------------------------------------|---------------------|
+  | `enabled`      | This will enable the footer.             | `true, false`        |
+  | `text`       | This is the text shown in the footer.              | `"text shown in footer"`            |
+  | `text_color`       | Color of the text shown in the footer.                                     | `"red"`               |
+  | `line`| Adds a line over the footer.                                              | `true, false`          |
+  | `line_color` | The color of the line.                                                 | `"purple"`           |
 
 </details>
 
-Here are some examples of what you can do with gysmo.
 ## Examples
+You can get creative with Gysmo and implement it with some API's. I have made two very simple examples in the [extras](extras/). folder.
+
+This one generates a config based on a user's Github languages usage.
+![Github Stats](screenshot/github-stats.png)
+[Example here](extras/github-stats)
+
 - GitHub stats (stars, forks, issues, pull requests)
-- Weather information
-- System information
 
-## 🤝 Contributing
+Here is one that generates a config based on the current weather in a selected location.
+![Github Stats](screenshot/weather.png)
 
-### Versioning
-A github workflow is in place to automatically bump the version of the project. I will merge the PRs when I am ready.
-To version this project, I use [Semantic Versioning](https://semver.org/).
+[Example here](extras/weather)
+
+## Other Information
+
+### Flags
+-f : Specify a configuration file. Config should be in the ~/.config/gysmo/config/ directory.
+```
+gysmo -f config-full.json
+```
+
+-c : Use the stored data in the data.json file. This is useful if you want a fast execution of gysmo but it may not be 100% accurate.
+Every time gysmo runs wihtout -c, the data.json file is updated.
+```
+gysmo -c
+```
+
+You can also specify both flags at the same time.
+```
+gysmo -f full-config.json -c
+```
+
+### 🎨Colors
+You can specify any of these values in the color fields in the config to use the ANSI colors from you terminal.
+
+```
+Red
+Green
+Yellow
+Blue
+Purple
+Cyan
+White
+```
+
+![My config](screenshot/portable-config.png)
+
+If you wish to use any other colors, you can specify the RGB values in the following format:
+```
+#FFFFFF
+```
+
+### Json Validation
+The configuration file is validated every time you run gysmo so you can be sure that your configuration is not missing anything.
+
+
+## 🛤️ ROADMAP
+
+- [ ] Set ascii art in the background of the menu.
+
+- [ ] Add option to use images.
+
+- [ ] Add an API to generate configuration file.
+
+## CONTRIBUTING
+```
+To share your feature ideas lookout at the discussions.
+
+You can open issues and PRs if you find bugs. When opening issues, please provide the version of Gysmo and the configuration file you are using.
+
+Feel free to fork the project if you want to play around.
+
+I will manage the releases and the versioning of the project.
+```
+
+## Examples
+### Complex config
+![Complex Config](screenshot/config-full-list.png)
+
+### Minimalist
+![Minimalist Config](screenshot/config-simple.png)
+
+## 📜 License
+MIT LICENSE
