@@ -304,7 +304,12 @@ func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string,
 		} else if position == "right" {
 			menuLine := menuLines[i]
 			asciiLine := asciiLines[i]
-			padding := max(2, maxMenuLineWidth-len(menuLine))
+			padding := 0
+			if len(menuLine) == 0 {
+				padding = max(2, maxMenuLineWidth)
+			} else {
+				padding = max(2, maxMenuLineWidth-len(menuLine))
+			}
 			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", asciiColors, menuLine, Reset, strings.Repeat(" ", padding), asciiLine))
 		} else {
 			combinedLines = append(combinedLines, menuLines[i])

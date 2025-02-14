@@ -4,6 +4,8 @@
   - [x] - Menu type: box (default)
   - [x] - Menu type: list (same as box but without the box)
   - [ ] - Menu type: wtf (completely randomized menu, mixes all the types)
+    - split the ascii art in half and put it on the left and top or right and bottom
+    - Put the ascii art behind the menu?
 
 - [x] - Option to passe RGB values for colors
 
@@ -35,8 +37,8 @@
 
 - [ ] - Add Github tracking in README (see nitch)
 
-- [ ] - Redo README
-
 - [ ] - Github action Go test workflow
 
-- [ ] - First Release
+- [ ] - Documentation
+
+- [ ] - First Official Release
