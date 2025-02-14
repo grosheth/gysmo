@@ -277,6 +277,14 @@ func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string,
 		}
 	}
 
+	// Calculate the maximum width of the menu lines
+	maxMenuLineWidth := 0
+	for _, line := range menuLines {
+		if len(line) > maxMenuLineWidth {
+			maxMenuLineWidth = len(line)
+		}
+	}
+
 	// Ensure both menuLines and asciiLines have the same number of lines
 	for len(menuLines) < maxLines {
 		menuLines = append(menuLines, "")
@@ -291,18 +299,13 @@ func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string,
 		if position == "left" {
 			asciiLine := asciiLines[i]
 			menuLine := menuLines[i]
-			padding := strings.Repeat(" ", maxAsciiLineWidth-len(asciiLine))
-			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", asciiColors, asciiLine, Reset, padding, menuLine))
+			padding := max(0, maxAsciiLineWidth-len(asciiLine))
+			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", asciiColors, asciiLine, Reset, strings.Repeat(" ", padding), menuLine))
 		} else if position == "right" {
 			menuLine := menuLines[i]
-			asciiPadding := ""
-			if len(menuLine) == 0 {
-				asciiPadding = strings.Repeat(" ", maxMenuValueWidth)
-			} else {
-				asciiPadding = strings.Repeat(" ", maxMenuValueWidth)
-			}
-			println(len(asciiPadding))
-			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", menuLine, asciiPadding, asciiColors, asciiLines[i], Reset))
+			asciiLine := asciiLines[i]
+			padding := max(2, maxMenuLineWidth-len(menuLine))
+			combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", asciiColors, menuLine, Reset, strings.Repeat(" ", padding), asciiLine))
 		} else {
 			combinedLines = append(combinedLines, menuLines[i])
 		}
