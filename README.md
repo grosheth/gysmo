@@ -4,8 +4,7 @@
 [![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/Alpha-0.1.0)
 [![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/0.1.0?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/0.1.0)
 
-</div>
-
+# ADD IMAGES HERE
 
 **gysmo** is a fun and visually engaging CLI tool written in Go, designed to enhance your terminal experience. While it does provide system information, its primary purpose is to showcase your stylish terminal setup.
 
@@ -19,30 +18,8 @@ gysmo is not intended to be an accurate system information tool. There are many 
 
 ## 📥 Installation
 
-### Download the Binary (Why not take the easy way?)
-The installation/update script basically does the following
-1. Download the binary
-2. Create the directory structure ~/.config/gysmo/... && ~/bin/gysmo
-3. Copy the template config.json file IF it doesn't exist (don't want to lose your config in an update)
-4. Copy the schema validator file
-5. Copy the ASCII art IF it doesn't exist
-
-```shell
-wget installation.sh
-```
-
-### Home-manager (NIxOS users go brrrrrrr)
-Package will be included in nixpkgs at first release.
-
-```nix
-{ pkgs, ... }:
-{
-
-}
-```
-
 ### Build From Source (RECOMMENDED)
-If you are a true Linux user and you won't submit to anyone's else automated processes (as is your right), you can always prove your superiority by building the project from source.
+If you are a true Linux user and you won't submit to anyone else automated processes (as is your right), you can always prove your superiority by building the project from source.
 This also allows you to understand how the project works a little better.
 
 ```shell
@@ -53,6 +30,30 @@ go build -o gysmo
 mkdir ~/.config/gysmo
 cp -R config ~/.config/gysmo/
 cp -R ascii ~/.config/gysmo/
+```
+
+### Use the installation/update script (Why not take the easy way?)
+The installation/update script basically does the following
+1. Download the binary
+2. Create the directory structure ~/.config/gysmo/... && ~/bin/gysmo
+3. Copy the template config.json file IF it doesn't exist (don't want to overwrite your config in an update)
+4. Copy the schema validator file
+5. Copy a sample ASCII art IF it doesn't exist
+
+```shell
+wget installation.sh
+```
+
+### Home-manager (Nix users go brrrrrrr)
+⚠️ **NOT OFFICIALLY DONE YET**: still to be done.
+Package will be included in nixpkgs and home-manger eventually.
+
+⚠️ **BUT**: Here is a way to do it in you nix config without an "official" home-manager module.
+```nix
+{ pkgs, ... }:
+{
+
+}
 ```
 
 ## ⚙️ Configuration
@@ -301,3 +302,4 @@ A github workflow is in place to automatically bump the version of the project. 
 To version this project, I use [Semantic Versioning](https://semver.org/).
 
 ## 📜 License
+MIT LICENSE

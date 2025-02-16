@@ -31,14 +31,22 @@
   - [ ] - Github api stats (stars, forks, issues, etc)(Python)
   - [ ] - Weather api (current weather, forecast with ASCII art for current weather)(Python)
 
+- [ ] - Go through all codefactor again
+
+- [ ] - Rewrite Go tests since functions have changed
+
 - [ ] - Github action Build Go binary
 
 - [ ] - Github action versioning Workflow
 
-- [ ] - Add Github tracking in README (see nitch)
+- [x] - Add Github tracking in README
 
 - [ ] - Github action Go test workflow
 
 - [ ] - Documentation
 
 - [ ] - First Official Release
+
+- [ ] - Add to Nixpkgs
+
+- [ ] - Add to Home-manager
