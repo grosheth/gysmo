@@ -430,7 +430,6 @@ func combineAsciiAndMenuRightBox(menu string, paddedAsciiArt string, asciiColors
 	for _, line := range menuLines {
 		if strings.Contains(line, " │ ") {
 			parts := strings.SplitN(line, " │ ", 4)
-			println(parts[1])
 			currentLine := stripAnsiCodes(parts[1])
 			if menuLength < len(currentLine) {
 				menuLength = len(currentLine)
@@ -444,7 +443,6 @@ func combineAsciiAndMenuRightBox(menu string, paddedAsciiArt string, asciiColors
 		}
 	}
 
-	println("longestvaluelength", longestValueLength)
 	// Ensure both menuLines and asciiLines have the same number of lines
 	for len(menuLines) < maxLines {
 		menuLines = append(menuLines, "")
