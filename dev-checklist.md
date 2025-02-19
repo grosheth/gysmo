@@ -23,7 +23,9 @@
 
 - [x] - Go through all codefactor checkup
 
-- [ ] - Test ascii position feature
+- [x] - Test ascii position feature
+
+- [ ] - Rewrite Go tests since functions have changed
 
 - [ ] - Config examples for README
 
@@ -32,8 +34,6 @@
   - [ ] - Weather api (current weather, forecast with ASCII art for current weather)(Python)
 
 - [ ] - Go through all codefactor again
-
-- [ ] - Rewrite Go tests since functions have changed
 
 - [ ] - Github action Build Go binary
 

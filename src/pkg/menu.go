@@ -89,7 +89,7 @@ func BuildBoxMenu(items map[string]string, asciiArt string, config Config, borde
 	if config.Ascii.Position == "left" {
 		menu = combineAsciiAndMenuLeft(menu, paddedAsciiArt, asciiColors, config, items)
 	} else if config.Ascii.Position == "right" {
-		menu = combineAsciiAndMenuRightBox(menu, paddedAsciiArt, asciiColors, config, items)
+		menu = combineAsciiAndMenuRightBox(menu, paddedAsciiArt, asciiColors)
 	}
 
 	return menu
@@ -400,7 +400,7 @@ func combineAsciiAndMenuRightColumns(menu string, paddedAsciiArt string, asciiCo
 		asciiLine := asciiLines[i]
 
 		// Check if the current line has two columns by looking for the | delimiter
-		// Didn't want to add this between the columns but i'm kinda out of good ideas
+		// Didn't want to add this between the columns but i'm not clever enough to figure out how to do it
 		hasTwoColumns := strings.Contains(menuLine, " | ")
 
 		padding := 0
@@ -423,17 +423,28 @@ func combineAsciiAndMenuRightBox(menu string, paddedAsciiArt string, asciiColors
 	asciiLines := strings.Split(paddedAsciiArt, "\n")
 	maxLines := max(len(menuLines), len(asciiLines))
 
-	// hasTwoColumns := len(rightColumn) > 0
-
 	// Calculate the maximum width of the menu lines
-	longestMenuLineWidth := 0
+	// Find the longest value length in the menu
+	menuLength := 0
+	longestValueLength := 0
 	for _, line := range menuLines {
-		currentLine := stripAnsiCodes(line)
-		if longestMenuLineWidth < len(currentLine) {
-			longestMenuLineWidth = len(currentLine)
+		if strings.Contains(line, " │ ") {
+			parts := strings.SplitN(line, " │ ", 4)
+			println(parts[1])
+			currentLine := stripAnsiCodes(parts[1])
+			if menuLength < len(currentLine) {
+				menuLength = len(currentLine)
+			}
+			if len(parts) > 1 {
+				valueLength := len(stripAnsiCodes(parts[2]))
+				if valueLength > longestValueLength {
+					longestValueLength = valueLength
+				}
+			}
 		}
 	}
 
+	println("longestvaluelength", longestValueLength)
 	// Ensure both menuLines and asciiLines have the same number of lines
 	for len(menuLines) < maxLines {
 		menuLines = append(menuLines, "")
@@ -448,10 +459,19 @@ func combineAsciiAndMenuRightBox(menu string, paddedAsciiArt string, asciiColors
 		menuLine := menuLines[i]
 		asciiLine := asciiLines[i]
 		padding := 0
+
+		// Validate if line has a value
+		hasValue := strings.Contains(menuLine, " │ ")
+
+		// all value added with + are because of default spaces added throughout the menu building
+		part := strings.SplitN(menuLine, " │ ", 4)
 		if len(menuLine) == 0 {
-			padding = max(2, longestMenuLineWidth)
+			padding = menuLength + longestValueLength + 6
+		} else if hasValue {
+			valueLine := len(stripAnsiCodes(part[2]))
+			padding = longestValueLength - valueLine + 2
 		} else {
-			padding = max(2, longestMenuLineWidth-len(stripAnsiCodes(menuLine))+2)
+			padding = longestValueLength + 3
 		}
 		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", menuLine, strings.Repeat(" ", padding), asciiColors, asciiLine, Reset))
 	}
