@@ -11,7 +11,7 @@ import (
 // Mock implementation of os.Open for testing
 func mockOpenAscii(name string) (*os.File, error) {
 	if name == "ascii/gysmo" {
-		return os.Open("ascii/gysmo")
+		return os.Open("tests/ascii/gysmo")
 	}
 	return nil, fmt.Errorf("file not found")
 }

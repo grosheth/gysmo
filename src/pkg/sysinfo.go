@@ -173,7 +173,7 @@ func GetKernelVersion() string {
 		SaveDataToFile(map[string]string{"kernel": defaultConfigValue}, "data/datafile.json")
 		return defaultConfigValue
 	}
-	value := charsToString(uname.Release)
+	value := CharsToString(uname.Release)
 	SaveDataToFile(map[string]string{"kernel": value}, "data/datafile.json")
 	return value
 }
@@ -437,11 +437,11 @@ func GetCPUSample() (uint64, uint64) {
 }
 
 func GetGPUInfo() string {
-	if isCommandAvailable("nvidia-smi") {
+	if IsCommandAvailable("nvidia-smi") {
 		return GetNvidiaGPUInfo()
-	} else if isCommandAvailable("rocm-smi") {
+	} else if IsCommandAvailable("rocm-smi") {
 		return GetAmdGPUInfo()
-	} else if isCommandAvailable("intel_gpu_top") {
+	} else if IsCommandAvailable("intel_gpu_top") {
 		return GetIntelGPUInfo()
 	}
 	SaveDataToFile(map[string]string{"gpu": defaultConfigValue}, "data/datafile.json")
@@ -449,11 +449,11 @@ func GetGPUInfo() string {
 }
 
 func GetGPUUsage() string {
-	if isCommandAvailable("nvidia-smi") {
+	if IsCommandAvailable("nvidia-smi") {
 		return GetNvidiaGPUUsage()
-	} else if isCommandAvailable("rocm-smi") {
+	} else if IsCommandAvailable("rocm-smi") {
 		return GetAmdGPUUsage()
-	} else if isCommandAvailable("intel_gpu_top") {
+	} else if IsCommandAvailable("intel_gpu_top") {
 		return GetIntelGPUUsage()
 	}
 	SaveDataToFile(map[string]string{"gpu %": defaultConfigValue}, "data/datafile.json")

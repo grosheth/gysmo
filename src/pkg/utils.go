@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
 	"strings"
 )
 
@@ -38,7 +39,7 @@ func GetColorCode(color string) string {
 	default:
 		// Check if the color is an RGB code in the format "#RRGGBB"
 		if strings.HasPrefix(color, "#") && len(color) == 7 {
-			r, g, b := hexToRGB(color)
+			r, g, b := HexToRGB(color)
 			return fmt.Sprintf("\033[38;2;%d;%d;%dm", r, g, b)
 		}
 		return Reset
@@ -56,14 +57,14 @@ func GetEnvVar(envVars []string) string {
 
 func GetRunningProcess(processes map[string]string) string {
 	for process, name := range processes {
-		if isProcessRunning(process) {
+		if IsProcessRunning(process) {
 			return name
 		}
 	}
 	return defaultConfigValue
 }
 
-func hexToRGB(hex string) (int, int, int) {
+func HexToRGB(hex string) (int, int, int) {
 	var r, g, b int
 	fmt.Sscanf(hex, "#%02x%02x%02x", &r, &g, &b)
 	return r, g, b
@@ -76,7 +77,7 @@ func Abs(x int64) int64 {
 	return x
 }
 
-func charsToString(ca [65]int8) string {
+func CharsToString(ca [65]int8) string {
 	s := make([]byte, len(ca))
 	for i, v := range ca {
 		if v == 0 {
@@ -87,7 +88,7 @@ func charsToString(ca [65]int8) string {
 	return strings.TrimRight(string(s), "\x00")
 }
 
-func isCommandAvailable(name string) bool {
+func IsCommandAvailable(name string) bool {
 	cmd := exec.Command("which", name)
 	if err := cmd.Run(); err != nil {
 		return false
@@ -95,7 +96,7 @@ func isCommandAvailable(name string) bool {
 	return true
 }
 
-func isProcessRunning(processName string) bool {
+func IsProcessRunning(processName string) bool {
 	procDir := "/proc"
 	entries, err := os.ReadDir(procDir)
 	if err != nil {
@@ -113,6 +114,11 @@ func isProcessRunning(processName string) bool {
 	}
 
 	return false
+}
+
+func StripAnsiCodes(str string) string {
+	re := regexp.MustCompile(`\x1b\[[0-9;]*m`)
+	return re.ReplaceAllString(str, "")
 }
 
 func SaveDataToFile(data map[string]string, filename string) error {
@@ -144,4 +150,30 @@ func SaveDataToFile(data map[string]string, filename string) error {
 	}
 
 	return nil
+}
+
+func IsHeaderOrFooter(line string, config Config) string {
+	if strings.Contains(line, config.Header.Text) {
+		return "Header"
+	}
+	if strings.Contains(line, config.Footer.Text) {
+		return "Footer"
+	}
+	return "Content"
+}
+
+// validate if string is a footer or header line
+func IsLine(s string) bool {
+	hasDash := false
+	s = strings.TrimSpace(s)
+	s = StripAnsiCodes(s)
+	for _, char := range s {
+		if char != '─' {
+			return false
+		}
+		if char == '─' {
+			hasDash = true
+		}
+	}
+	return hasDash
 }

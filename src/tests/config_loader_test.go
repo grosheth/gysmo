@@ -12,7 +12,7 @@ import (
 // Mock implementation of os.Open for testing
 func mockOpen(name string) (*os.File, error) {
 	if name == "config/config.json" {
-		return os.Open("config/config.json")
+		return os.Open("tests/config/config.json")
 	}
 	return nil, fmt.Errorf("file not found")
 }
@@ -54,5 +54,15 @@ func TestLoadConfig(t *testing.T) {
 	expectedAsciiPath := "ascii/gysmo"
 	if config.Ascii.Path != expectedAsciiPath {
 		t.Errorf("Expected ASCII path to be %s, but got %s", expectedAsciiPath, config.Ascii.Path)
+	}
+}
+
+func TestValidateJsonConfig(t *testing.T) {
+	configPath := "tests/config/config.json"
+	schemaPath := "tests/config/schema/config_schema.json"
+
+	err := pkg.ValidateJsonConfig(configPath, schemaPath)
+	if err != nil {
+		t.Errorf("Expected no error, but got %v", err)
 	}
 }

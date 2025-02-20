@@ -341,7 +341,7 @@
     "path": "ascii/gysmo",
     "colors": "red",
     "enabled": true,
-    "padding": 2
+    "position": "top"
   },
   "header": {
     "text": "Header",

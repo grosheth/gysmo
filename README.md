@@ -297,6 +297,8 @@ Here are some examples of what you can do with gysmo.
 
 ## 🤝 Contributing
 
+### Forking
+
 ### Versioning
 A github workflow is in place to automatically bump the version of the project. I will merge the PRs when I am ready.
 To version this project, I use [Semantic Versioning](https://semver.org/).
