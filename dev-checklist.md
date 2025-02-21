@@ -25,7 +25,7 @@
 
 - [x] - Test ascii position feature
 
-- [ ] - Rewrite Go tests since functions have changed
+- [x] - Rewrite Go tests since functions have changed
 
 - [ ] - Config examples for README
 

@@ -2,6 +2,7 @@ import urllib.request
 import urllib.parse
 import json
 from jinja2 import Template
+from urllib.parse import urlparse
 
 # Define the URL and parameters for the Open-Meteo API
 url = "https://api.open-meteo.com/v1/forecast"
@@ -17,6 +18,11 @@ params = {
 # Encode the parameters and create the full URL
 query_string = urllib.parse.urlencode(params)
 full_url = f"{url}?{query_string}"
+
+# Validate the URL scheme
+parsed_url = urlparse(full_url)
+if parsed_url.scheme not in ('http', 'https'):
+    raise ValueError("URL scheme is not permitted")
 
 # Make the HTTP request to the Open-Meteo API
 with urllib.request.urlopen(full_url) as response:
