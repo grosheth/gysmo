@@ -212,10 +212,58 @@ func TestBuildListMenuWithAsciiRight(t *testing.T) {
 	borderWidth := pkg.DefineBoxBorder(config)
 	menu := pkg.BuildListMenu(items, asciiArt, config, borderWidth)
 
-	expectedMenu := " Header             ASCII ART\n" +
-		" ──────────\n" +
+	expectedMenu := " Header\n" +
+		" ────────── ASCII ART\n" +
 		"  user testuser\n" +
 		"  shell zsh\n" +
+		" ──────────\n" +
+		" Footer\n"
+
+	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+
+	if normalizedMenu != normalizedExpectedMenu {
+		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
+		printByteValues(menu)
+	}
+}
+
+func TestBuildListMenuWithAsciiLeft(t *testing.T) {
+	config := GetConfigWithAscii("left")
+	items := GetTestItems()
+	asciiArt := "ASCII ART"
+	borderWidth := pkg.DefineBoxBorder(config)
+	menu := pkg.BuildListMenu(items, asciiArt, config, borderWidth)
+
+	expectedMenu := "            Header\n" +
+		"                       ASCII ART ──────────\n" +
+		"                         user testuser\n" +
+		"                         shell zsh\n" +
+		"                        ──────────\n" +
+		"                        Footer\n"
+
+	// Strip ANSI codes and normalize strings
+	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+
+	if normalizedMenu != normalizedExpectedMenu {
+		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
+		printByteValues(menu)
+	}
+}
+
+func TestBuildListMenuWithColumns(t *testing.T) {
+	config := GetConfigWithHeader()
+	config.General.Columns = true
+	items := GetTestItems()
+	asciiArt := "ASCII ART"
+	borderWidth := pkg.DefineBoxBorder(config)
+	menu := pkg.BuildListMenu(items, asciiArt, config, borderWidth)
+
+	expectedMenu := "  ASCII ART\n" +
+		" Header\n" +
+		" ──────────\n" +
+		"  user testuser |  shell zsh\n" +
 		" ──────────\n" +
 		" Footer\n"
 
@@ -228,83 +276,6 @@ func TestBuildListMenuWithAsciiRight(t *testing.T) {
 		printByteValues(menu)
 	}
 }
-
-// func TestBuildListMenuWithAsciiLeft(t *testing.T) {
-// 	config := GetConfigWithAscii("left")
-// 	items := GetTestItems()
-// 	asciiArt := "ASCII ART"
-// 	borderWidth := pkg.DefineBoxBorder(config)
-// 	menu := pkg.BuildListMenu(items, asciiArt, config, borderWidth)
-
-// 	expectedMenu := "          ASCII ART     Header\n" +
-// 		"                        ──────────\n" +
-// 		"                         user testuser\n" +
-// 		"                         shell zsh\n" +
-// 		"                        ──────────\n" +
-// 		"                        Footer\n"
-
-// 	// Strip ANSI codes and normalize strings
-// 	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-// 	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
-
-// 	if normalizedMenu != normalizedExpectedMenu {
-// 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
-// 		printByteValues(menu)
-// 	}
-// }
-
-// func TestBuildListMenuWithAsciiPadding(t *testing.T) {
-// 	config := GetConfigWithAscii("top")
-// 	config.Ascii.HorizontalPadding = 4
-// 	config.Ascii.VerticalPadding = 2
-// 	items := GetTestItems()
-// 	asciiArt := "ASCII ART"
-// 	borderWidth := pkg.DefineBoxBorder(config)
-// 	menu := pkg.BuildListMenu(items, asciiArt, config, borderWidth)
-
-// 	expectedMenu := "    ASCII ART    \n" +
-// 		"                \n" +
-// 		" Header\n" +
-// 		" ──────────\n" +
-// 		"  user testuser\n" +
-// 		"  shell zsh\n" +
-// 		" ──────────\n" +
-// 		" Footer\n"
-
-// 	// Strip ANSI codes and normalize strings
-// 	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-// 	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
-
-// 	if normalizedMenu != normalizedExpectedMenu {
-// 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
-// 		printByteValues(menu)
-// 	}
-// }
-
-// func TestBuildListMenuWithColumns(t *testing.T) {
-// 	config := GetConfigWithHeader()
-// 	config.General.Columns = true
-// 	items := GetTestItems()
-// 	asciiArt := "ASCII ART"
-// 	borderWidth := pkg.DefineBoxBorder(config)
-// 	menu := pkg.BuildListMenu(items, asciiArt, config, borderWidth)
-
-// 	expectedMenu := "  ASCII ART\n" +
-// 		" Header\n" +
-// 		" ──────────\n" +
-// 		"  user testuser |  shell zsh\n" +
-// 		" ──────────\n" +
-// 		" Footer\n"
-
-// 	// Strip ANSI codes and normalize strings
-// 	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-// 	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
-
-// 	if normalizedMenu != normalizedExpectedMenu {
-// 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
-// 		printByteValues(menu)
-// 	}
-// }
 
 // Helper functions to Get configurations and items for tests
 

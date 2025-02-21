@@ -152,11 +152,11 @@ func SaveDataToFile(data map[string]string, filename string) error {
 	return nil
 }
 
-func IsHeaderOrFooter(line string, config Config) string {
-	if strings.Contains(line, config.Header.Text) {
+func IsHeaderOrFooter(line string, config Config, index int, totalLines int) string {
+	if index == 0 && strings.Contains(line, config.Header.Text) {
 		return "Header"
 	}
-	if strings.Contains(line, config.Footer.Text) {
+	if index != 0 && strings.Contains(line, config.Footer.Text) {
 		return "Footer"
 	}
 	return "Content"

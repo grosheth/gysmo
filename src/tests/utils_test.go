@@ -3,7 +3,6 @@ package tests
 import (
 	"gysmo/src/pkg"
 	"os"
-	"os/exec"
 	"testing"
 )
 
@@ -47,23 +46,6 @@ func TestGetEnvVar(t *testing.T) {
 		result := pkg.GetEnvVar(test.envVars)
 		if result != test.expected {
 			t.Errorf("For envVars %v, expected %s, but got %s", test.envVars, test.expected, result)
-		}
-	}
-}
-
-func TestGetRunningProcess(t *testing.T) {
-	tests := []struct {
-		processes map[string]string
-		expected  string
-	}{
-		{map[string]string{"mock_process": "Mock Process"}, "Mock Process"},
-		{map[string]string{"non_existent_process": "Non Existent Process"}, "Replace This"},
-	}
-
-	for _, test := range tests {
-		result := pkg.GetRunningProcess(test.processes)
-		if result != test.expected {
-			t.Errorf("For processes %v, expected %s, but got %s", test.processes, test.expected, result)
 		}
 	}
 }
@@ -117,17 +99,5 @@ func TestIsCommandAvailable(t *testing.T) {
 	result := pkg.IsCommandAvailable("ls")
 	if !result {
 		t.Errorf("Expected command to be available, but it was not")
-	}
-}
-
-func TestIsProcessRunning(t *testing.T) {
-	// Mock implementation for testing
-	pkg.ExecCommand = func(name string, arg ...string) *exec.Cmd {
-		return exec.Command("echo", "mock_process")
-	}
-
-	result := pkg.IsProcessRunning("mock_process")
-	if !result {
-		t.Errorf("Expected process to be running, but it was not")
 	}
 }

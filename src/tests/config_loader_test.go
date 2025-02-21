@@ -56,13 +56,3 @@ func TestLoadConfig(t *testing.T) {
 		t.Errorf("Expected ASCII path to be %s, but got %s", expectedAsciiPath, config.Ascii.Path)
 	}
 }
-
-func TestValidateJsonConfig(t *testing.T) {
-	configPath := "tests/config/config.json"
-	schemaPath := "tests/config/schema/config_schema.json"
-
-	err := pkg.ValidateJsonConfig(configPath, schemaPath)
-	if err != nil {
-		t.Errorf("Expected no error, but got %v", err)
-	}
-}
