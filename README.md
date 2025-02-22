@@ -223,6 +223,7 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 ## Colors
 Add anchor from the table to here
 You can specify any of these values in the color fields in the config to use the ANSI colors from you terminal.
+```
 	Red
 	Green
 	Yellow
@@ -230,10 +231,12 @@ You can specify any of these values in the color fields in the config to use the
 	Purple
 	Cyan
 	White
+```
 
 if you wish to use any other colors, you can specify the RGB values in the following format:
+```
 #FFFFFF
-
+```
 ## Value
 
 </details>
