@@ -123,8 +123,8 @@ Here are every section of the configuration file you can modify:
 
   ```json
   "general": {
-    "left_padding": 200,
-    "menu_type": "box"
+    "menu_type": "box",
+    "columns": false
   }
   ```
 
@@ -215,17 +215,25 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 | `wm`            | Window Manager                     | `"none+bpswm"`|
 | ``            | Number of running processes                      | `"121"`|
 | `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
-| `processes`            | Number of running processes                      | `"121"`|
 
 ## Icon
-  ⚠️ **WARNING**: If you are using custom images, the borders might get messed up. Using icons from [Nerd Fonts](https://www.nerdfonts.com/) seems to work fine.
+  ⚠️ **WARNING**: If you are using custom icons, the borders might get messed up. Using icons from [Nerd Fonts](https://www.nerdfonts.com/) seems to work fine.
 
 
 ## Colors
 Add anchor from the table to here
+You can specify any of these values in the color fields in the config to use the ANSI colors from you terminal.
+	Red
+	Green
+	Yellow
+	Blue
+	Purple
+	Cyan
+	White
+
+if you wish to use any other colors, you can specify the RGB values in the following format:
+#FFFFFF
+
 ## Value
 
 </details>
