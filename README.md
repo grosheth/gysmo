@@ -219,24 +219,6 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 ## Icon
   ⚠️ **WARNING**: If you are using custom icons, the borders might get messed up. Using icons from [Nerd Fonts](https://www.nerdfonts.com/) seems to work fine.
 
-
-## Colors
-Add anchor from the table to here
-You can specify any of these values in the color fields in the config to use the ANSI colors from you terminal.
-```
-	Red
-	Green
-	Yellow
-	Blue
-	Purple
-	Cyan
-	White
-```
-
-if you wish to use any other colors, you can specify the RGB values in the following format:
-```
-#FFFFFF
-```
 ## Value
 
 </details>
@@ -303,6 +285,23 @@ Here are some examples of what you can do with gysmo.
 - System information
 
 ## Other Information
+
+### 🎨Colors
+You can specify any of these values in the color fields in the config to use the ANSI colors from you terminal.
+```
+Red
+Green
+Yellow
+Blue
+Purple
+Cyan
+White
+```
+
+if you wish to use any other colors, you can specify the RGB values in the following format:
+```
+#FFFFFF
+```
 
 ## Json Validation
 
