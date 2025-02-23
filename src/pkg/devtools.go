@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// This file was only for debugging and optimizing purposes.
+// This file was only for debugging and testing optimization.
 // I keep it just in case
 
 // Function type for functions that return a string
@@ -119,11 +119,6 @@ func MeasureAllFunctions() {
 
 	_, duration = MeasureTime("GetUptime", GetUptime)
 	results = append(results, FunctionResult{"GetUptime", duration})
-
-	_, duration = MeasureTime("AbsProcessesCount", func() string {
-		return fmt.Sprintf("%d", GetRunningProcessesCount())
-	})
-	results = append(results, FunctionResult{"GetRunningProcessesCount", duration})
 
 	_, duration = MeasureTime("GetWM", GetWM)
 	results = append(results, FunctionResult{"GetWM", duration})

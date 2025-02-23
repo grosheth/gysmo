@@ -86,7 +86,7 @@ func BuildBoxMenu(items map[string]string, asciiArt string, config Config, borde
 	}
 
 	if config.Ascii.Position == "left" {
-		menu = combineAsciiAndMenuLeft(menu, paddedAsciiArt, asciiColors, config, items)
+		menu = combineAsciiAndMenuLeft(menu, paddedAsciiArt, asciiColors)
 	} else if config.Ascii.Position == "right" {
 		menu = combineAsciiAndMenuRightBox(menu, paddedAsciiArt, asciiColors)
 	}
@@ -144,7 +144,7 @@ func BuildListMenu(items map[string]string, asciiArt string, config Config, bord
 	}
 
 	if config.Ascii.Position == "left" {
-		menu = combineAsciiAndMenuLeft(menu, paddedAsciiArt, asciiColors, config, items)
+		menu = combineAsciiAndMenuLeft(menu, paddedAsciiArt, asciiColors)
 	} else if config.Ascii.Position == "right" {
 		if config.General.Columns {
 			menu = combineAsciiAndMenuRightColumns(menu, paddedAsciiArt, asciiColors, config, borderWidth, headerWidth, footerWidth)
@@ -271,7 +271,7 @@ func buildColumns(formattedItems []string) string {
 		}
 	}
 
-	for i := 0; i < len(leftColumn); i++ {
+	for i := range len(leftColumn) {
 		if i < len(rightColumn) {
 			menu += fmt.Sprintf("%-*s | %s\n", maxLeftLength, leftColumn[i], rightColumn[i])
 		} else {
@@ -281,9 +281,9 @@ func buildColumns(formattedItems []string) string {
 	return menu
 }
 
-func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string, position string, config Config, items map[string]string, maxWidth int, borderWidth int, headerWidth int, footerWidth int) string {
+func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string, position string, config Config, borderWidth int, headerWidth int, footerWidth int) string {
 	if position == "left" {
-		return combineAsciiAndMenuLeft(menu, paddedAsciiArt, asciiColors, config, items)
+		return combineAsciiAndMenuLeft(menu, paddedAsciiArt, asciiColors)
 	} else if position == "right" {
 		return combineAsciiAndMenuRight(menu, paddedAsciiArt, asciiColors, config, borderWidth, headerWidth, footerWidth)
 	}
@@ -301,7 +301,7 @@ func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string,
 	}
 
 	combinedLines := []string{}
-	for i := 0; i < maxLines; i++ {
+	for i := range maxLines {
 		combinedLines = append(combinedLines, menuLines[i])
 	}
 
@@ -314,15 +314,13 @@ func combineAsciiAndMenu(menu string, paddedAsciiArt string, asciiColors string,
 	return strings.Join(combinedLines, "\n")
 }
 
-func combineAsciiAndMenuLeft(menu string, paddedAsciiArt string, asciiColors string, config Config, items map[string]string) string {
+func combineAsciiAndMenuLeft(menu string, paddedAsciiArt string, asciiColors string) string {
 	menuLines := strings.Split(menu, "\n")
 	asciiLines := strings.Split(paddedAsciiArt, "\n")
 	maxLines := max(len(menuLines), len(asciiLines))
 
-	// Calculate the maximum width of the ASCII art lines
 	maxAsciiLineWidth := GetMaxLineWidth(asciiLines)
 
-	// Ensure both menuLines and asciiLines have the same number of lines
 	for len(menuLines) < maxLines {
 		menuLines = append(menuLines, "")
 	}
@@ -332,7 +330,7 @@ func combineAsciiAndMenuLeft(menu string, paddedAsciiArt string, asciiColors str
 
 	combinedLines := []string{}
 
-	for i := 0; i < maxLines; i++ {
+	for i := range maxLines {
 		asciiLine := asciiLines[i]
 		menuLine := menuLines[i]
 		padding := max(2, maxAsciiLineWidth-len(StripAnsiCodes(asciiLine))+2)
@@ -366,7 +364,7 @@ func combineAsciiAndMenuRight(menu string, paddedAsciiArt string, asciiColors st
 
 	combinedLines := []string{}
 
-	for i := 0; i < maxLines; i++ {
+	for i := range maxLines {
 		menuLine := menuLines[i]
 		asciiLine := asciiLines[i]
 		padding := 0
@@ -412,7 +410,7 @@ func combineAsciiAndMenuRightColumns(menu string, paddedAsciiArt string, asciiCo
 
 	combinedLines := []string{}
 
-	for i := 0; i < maxLines; i++ {
+	for i := range maxLines {
 		menuLine := menuLines[i]
 		asciiLine := asciiLines[i]
 
@@ -479,16 +477,13 @@ func combineAsciiAndMenuRightBox(menu string, paddedAsciiArt string, asciiColors
 
 	combinedLines := []string{}
 
-	for i := 0; i < maxLines; i++ {
+	for i := range maxLines {
 		menuLine := menuLines[i]
 		asciiLine := asciiLines[i]
 		padding := 0
 
 		hasValue := strings.Contains(menuLine, " │ ")
 
-		// all value added with + are because of default spaces added throughout the menu building
-		// If line is empty it sometime doesnt add up
-		// TODO
 		part := strings.SplitN(menuLine, " │ ", 4)
 		if len(menuLine) == 0 {
 			padding = menuLength + longestValueLength + 4
