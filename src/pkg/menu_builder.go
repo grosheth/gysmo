@@ -211,11 +211,9 @@ func buildMenuItems(config Config, items map[string]string, borderWidth int, min
 	for _, item := range config.Items {
 		value, exists := items[item.Keyword]
 		if exists {
-			if item.Value != "" {
-				value = item.Value
-			} else if items[item.Keyword] != "" {
-				value = items[item.Keyword]
-			}
+			value = items[item.Keyword]
+		} else {
+			value = item.Value
 		}
 
 		fixedLength := minIconLength + len(item.Text) + padding
@@ -238,11 +236,9 @@ func formatMenuItems(config Config, items map[string]string, borderWidth int, mi
 	for _, item := range config.Items {
 		value, exists := items[item.Keyword]
 		if exists {
-			if item.Value != "" {
-				value = item.Value
-			} else if items[item.Keyword] != "" {
-				value = items[item.Keyword]
-			}
+			value = items[item.Keyword]
+		} else {
+			value = item.Value
 		}
 
 		fixedLength := minIconLength + len(item.Text) + padding

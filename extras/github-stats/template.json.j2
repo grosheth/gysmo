@@ -9,12 +9,12 @@
       "text_color": "",
       "icon_color": "",
       "value": "{{ lang.stats }}"
-    },
+    }{% if not loop.last %},{% endif %}
     {% endfor %}
   ],
   "ascii": {
     "path": "ascii/github",
-    "colors": ",
+    "colors": "",
     "enabled": true,
     "horizontal_padding": 0,
     "vertical_padding": 10,

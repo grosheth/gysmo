@@ -102,7 +102,6 @@ func GetOsRelease(reader io.Reader) OSRelease {
 		}
 	}
 
-	// Save the data to datafile.json
 	SaveDataToFile(data, "data/datafile.json")
 
 	return osRelease

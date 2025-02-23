@@ -136,40 +136,40 @@ Here are every section of the configuration file you can modify:
   ```json
   "items": [
     {
-      "alias": "user",
-      "name": "user",
+      "text": "user",
+      "keyword": "user",
       "icon": "",
-      "value_color": "purple",
+      "value_color": "red",
       "text_color": "",
-      "image_color": "red",
-      "value": "Custom value"
+      "icon_color": "red",
+      "value": "My user"
     },
     {
-      "alias": "name-alias",
-      "name": "name",
-      "icon": "",
-      "value_color": "purple",
-      "text_color": "green",
-      "image_color": "red"
+      "text": "shell",
+      "keyword": "shell",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "yellow"
     }
-  ]
+  ],
   ```
 
 Here is a brief explanation of each option:
 
 | Option       | Description                                                                 | Example Value       |
 |--------------|-----------------------------------------------------------------------------|---------------------|
-| `alias`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
-| `name`       | This is the system value gysmo will return.                                 | `"user"`            |
+| `text`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
+| `keyword`       | This is the system value gysmo will return. (does  not work with "value")              | `"user"`            |
 | `icon`       | An icon to display alongside the item.                                      | `""`               |
 | `value_color`| The color of the value text.                                                | `"purple"`          |
 | `text_color` | The color of the item text.                                                 | `"green"`           |
-| `image_color`| The color of the icon.                                                      | `"red"`             |
-| `value`      | A custom value to display for the item. (will replace the value returned by the keyword)                                    | `"Custom value"`    |
+| `icon_color`| The color of the icon.                                                      | `"red"`             |
+| `value`      | A custom value to display for the item. (Does not work with keyword)                                    | `"Custom value"`    |
 
 ## Text
 
-## Keywords for `name` Option
+## Keywords for `keyword` Option
 Some values of /etc/os-release are not available on some distros, look at [os-release](https://github.com/which-distro/os-release) to get an idea.
 
 | Keyword                | Description                                      | Example Value            |
@@ -213,7 +213,6 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 | `term`                 | Terminal information                             | `"ghostty"`          |
 | `processes`            | Number of running processes                      | `"121"`|
 | `wm`            | Window Manager                     | `"none+bpswm"`|
-| ``            | Number of running processes                      | `"121"`|
 | `processes`            | Number of running processes                      | `"121"`|
 
 ## Icon
@@ -227,25 +226,26 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
   <summary>🎨 ascii</summary>
 I don't aim to keep millions of ASCII art in this repo.
 
-I might open an Issue so people can share their ASCII art.
+Instead, I will open a discussion on the repo so people can share their ASCII art and configs.
 
 Instead, I suggest you get the ASCII art you like from the following sources:
 
 ### Sources
-- [asciiart.eu](https://www.asciiart.eu/) (all the gysmo ASCII art were made there)
-- [asciiflow](https://asciiflow.com/#/)
-
+- [asciiart.eu](https://www.asciiart.eu/)
+- [ascii.co.uk](https://ascii.co.uk/art)
 
 Here is an example of the ASCII configuration:
 the ascii section is a simple dictionnary with the following options:
 
   ```json
-  "ascii": {
-    "path": "ascii/gysmo4",
-    "colors": "red",
-    "enabled": true,
-    "padding": 2
-  },
+    "ascii": {
+      "path": "ascii/gysmo2",
+      "colors": "",
+      "enabled": true,
+      "horizontal_padding": 0,
+      "vertical_padding": 0,
+      "position": "left"
+    }
   ```
 
 </details>
@@ -257,9 +257,9 @@ the ascii section is a simple dictionnary with the following options:
   "header": {
     "enabled": true,
     "text": "NixOS",
-    "text_color": "white",
+    "text_color": "purple",
     "line": true,
-    "line_color": "red"
+    "line_color": ""
   },
   ```
 </details>
@@ -304,14 +304,16 @@ if you wish to use any other colors, you can specify the RGB values in the follo
 ```
 
 ## Json Validation
+The configuration file is validated every time you run gysmo so you can be sure that your configuration is not missing anything. You can change this schema to your liking.
 
-## 🤝 Contributing
 
-### Forking
+## 🛤️ ROADMAP
 
-### Versioning
-A github workflow is in place to automatically bump the version of the project. I will merge the PRs when I am ready.
-To version this project, I use [Semantic Versioning](https://semver.org/).
+- [ ] Set ascii art in the background of the menu
+
+- [ ] Add option to use images
+
+- [ ] Easier integration of custom script to generate config files
 
 ## 📜 License
 MIT LICENSE

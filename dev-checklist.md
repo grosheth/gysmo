@@ -1,52 +1,59 @@
-- [x] - System information functions
+- [x] System information functions
 
-- [ ] - Implement different menu types
-  - [x] - Menu type: box (default)
-  - [x] - Menu type: list (same as box but without the box)
-  - [ ] - Menu type: wtf (completely randomized menu, mixes all the types)
-    - split the ascii art in half and put it on the left and top or right and bottom
-    - Put the ascii art behind the menu?
+- [x] Implement different menu types
+  - [x] Menu type: box (default)
+  - [x] Menu type: list (removes the box and add option to split into columns)
 
-- [x] - Option to passe RGB values for colors
+- [x] Option to passe RGB values for colors
 
-- [x] - Adding Coroutines to optimize system information functions
+- [x] Adding Coroutines to optimize system information functions
 
-- [x] - JSON scheme file for config
+- [x] JSON scheme file for config
 
-- [x] - write Go tests
+- [x] write Go tests
 
-- [x] - Move to new Repo
+- [x] Move to new Repo
 
-- [x] - Installation script
+- [x] Installation script
 
-- [x] - Change configuration files to use ./config/gysmo
+- [x] Change configuration files to use ./config/gysmo
 
-- [x] - Go through all codefactor checkup
+- [x] Go through all codefactor checkup
 
-- [x] - Test ascii position feature
+- [x] Test ascii position feature
 
-- [x] - Rewrite Go tests since functions have changed
+- [x] Rewrite Go tests since functions have changed
 
-- [ ] - Config examples for README
+- [ ] Bugfixes
+  - [] If icon is empty, padding is not good
+  - [x] If keyword is empty, value is not displayed
+  - [ ] Datafile not populated at all
 
-- [ ] - Extra projects examples
-  - [ ] - Github api stats (stars, forks, issues, etc)(Python)
-  - [ ] - Weather api (current weather, forecast with ASCII art for current weather)(Python)
+- [ ] Config examples for README
 
-- [ ] - Go through all codefactor again
+- [ ] Extra projects examples
+  - [ ] Github api stats (stars, forks, issues, etc)(Python)
+  - [ ] Weather api (current weather, forecast with ASCII art for current weather)(Python)
 
-- [ ] - Github action Build Go binary
+- [ ] Go through all codefactor again
 
-- [ ] - Github action versioning Workflow
+- [ ] Github action Build Go binary
 
-- [x] - Add Github tracking in README
+- [ ] Github action versioning Workflow
+  - CHANGELOG.md
+  - installation.sh
+  - README.md
 
-- [ ] - Github action Go test workflow
+- [x] Add Github tracking in README
 
-- [ ] - Documentation
+- [ ] Github action Go test workflow
 
-- [ ] - First Official Release
+- [ ] Documentation
 
-- [ ] - Add to Nixpkgs
+- [ ] First Official Release
 
-- [ ] - Add to Home-manager
+- [ ] Add to Nixpkgs
+
+- [ ] Add to Home-manager
+
+- [v1.0.0]

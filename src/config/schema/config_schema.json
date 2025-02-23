@@ -15,7 +15,8 @@
           "icon_color": { "type": "string" },
           "value": { "type": "string" }
         },
-        "required": ["text", "keyword", "icon"]
+        "required": ["text", "icon"],
+        "oneOf": [{ "required": ["value"] }, { "required": ["keyword"] }]
       }
     },
     "ascii": {
