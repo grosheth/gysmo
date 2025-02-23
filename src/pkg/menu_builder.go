@@ -3,9 +3,25 @@ package pkg
 import (
 	"fmt"
 	"strings"
+	"unicode"
 )
 
 const padding = 2
+
+func isSymbolLetterNumberOrSpace(r rune) bool {
+	return unicode.IsLetter(r) || unicode.IsNumber(r) || unicode.IsSpace(r) || unicode.IsSymbol(r)
+}
+
+func GetMaxIconLength(items []ConfigItem) int {
+	maxIconLength := 0
+	for _, item := range items {
+		iconLength := len(StripAnsiCodes(item.Icon))
+		if iconLength > maxIconLength {
+			maxIconLength = iconLength
+		}
+	}
+	return maxIconLength
+}
 
 func AddPaddingToMultilineString(s string, horizontalPadding int, verticalPadding int) string {
 	lines := strings.Split(s, "\n")
@@ -19,19 +35,13 @@ func AddPaddingToMultilineString(s string, horizontalPadding int, verticalPaddin
 func DefineBoxBorder(config Config) int {
 	maxLength := 0
 
-	// Find the maximum image length can be weird
-	minIconLength := 1000
-	for _, item := range config.Items {
-		imageLength := len(item.Icon)
-		if imageLength < minIconLength {
-			minIconLength = imageLength
-		}
-	}
+	maxIconLength := GetMaxIconLength(config.Items)
 
 	for _, item := range config.Items {
-		itemLength := len(item.Text) + minIconLength + padding
-		if itemLength > maxLength {
-			maxLength = itemLength
+		maxitemLength := len(StripAnsiCodes(item.Text)) + maxIconLength + padding
+
+		if maxitemLength > maxLength {
+			maxLength = maxitemLength
 		}
 	}
 
@@ -66,13 +76,15 @@ func BuildBoxMenu(items map[string]string, asciiArt string, config Config, borde
 		menu += fmt.Sprintf(" ╭%s╮\n", border)
 	}
 
-	minIconLength := GetMinIconLength(config.Items)
+	maxIconLength := GetMaxIconLength(config.Items)
+
+	// minIconLength := GetMinIconLength(config.Items)
 
 	if config.Header.Enabled {
 		menu += buildHeader(config, borderWidth, border)
 	}
 
-	menu += buildMenuItems(config, items, borderWidth, minIconLength)
+	menu += buildMenuItems(config, items, borderWidth, maxIconLength)
 
 	if config.Footer.Enabled {
 		menu += buildFooter(config, borderWidth, border)
@@ -115,9 +127,10 @@ func BuildListMenu(items map[string]string, asciiArt string, config Config, bord
 		}
 	}
 
-	minIconLength := GetMinIconLength(config.Items)
+	maxIconLength := GetMaxIconLength(config.Items)
+	// minIconLength := GetMinIconLength(config.Items)
 
-	formattedItems := formatMenuItems(config, items, borderWidth, minIconLength)
+	formattedItems := formatMenuItems(config, items, borderWidth, maxIconLength)
 
 	maxItemWidth := 0
 	for _, item := range formattedItems {
@@ -169,17 +182,6 @@ func GetMaxLineWidth(lines []string) int {
 	return maxWidth
 }
 
-func GetMinIconLength(items []ConfigItem) int {
-	minIconLength := 1000
-	for _, item := range items {
-		imageLength := len(item.Icon)
-		if imageLength < minIconLength {
-			minIconLength = imageLength
-		}
-	}
-	return minIconLength
-}
-
 func buildHeader(config Config, borderWidth int, border string) string {
 	header := ""
 	headerColor := GetColorCode(config.Header.TextColor)
@@ -206,7 +208,7 @@ func buildFooter(config Config, borderWidth int, border string) string {
 	return footer
 }
 
-func buildMenuItems(config Config, items map[string]string, borderWidth int, minIconLength int) string {
+func buildMenuItems(config Config, items map[string]string, borderWidth int, IconLength int) string {
 	menuItems := ""
 	for _, item := range config.Items {
 		value, exists := items[item.Keyword]
@@ -216,7 +218,7 @@ func buildMenuItems(config Config, items map[string]string, borderWidth int, min
 			value = item.Value
 		}
 
-		fixedLength := minIconLength + len(item.Text) + padding
+		fixedLength := IconLength + len(item.Text) + padding
 		paddingLength := borderWidth - fixedLength
 		if paddingLength < 0 {
 			paddingLength = 0
@@ -231,7 +233,7 @@ func buildMenuItems(config Config, items map[string]string, borderWidth int, min
 	return menuItems
 }
 
-func formatMenuItems(config Config, items map[string]string, borderWidth int, minIconLength int) []string {
+func formatMenuItems(config Config, items map[string]string, borderWidth int, IconLength int) []string {
 	formattedItems := []string{}
 	for _, item := range config.Items {
 		value, exists := items[item.Keyword]
@@ -241,7 +243,7 @@ func formatMenuItems(config Config, items map[string]string, borderWidth int, mi
 			value = item.Value
 		}
 
-		fixedLength := minIconLength + len(item.Text) + padding
+		fixedLength := IconLength + len(item.Text) + padding
 		paddingLength := borderWidth - fixedLength
 
 		padding := strings.Repeat(" ", paddingLength)

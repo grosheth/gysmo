@@ -161,7 +161,7 @@ Here is a brief explanation of each option:
 |--------------|-----------------------------------------------------------------------------|---------------------|
 | `text`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
 | `keyword`       | This is the system value gysmo will return. (does  not work with "value")              | `"user"`            |
-| `icon`       | An icon to display alongside the item.                                      | `""`               |
+| `icon`       | An icon to display alongside the item. Can also be text.                                     | `""`               |
 | `value_color`| The color of the value text.                                                | `"purple"`          |
 | `text_color` | The color of the item text.                                                 | `"green"`           |
 | `icon_color`| The color of the icon.                                                      | `"red"`             |
@@ -216,7 +216,7 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 | `processes`            | Number of running processes                      | `"121"`|
 
 ## Icon
-  ⚠️ **WARNING**: If you are using custom icons, the borders might get messed up. Using icons from [Nerd Fonts](https://www.nerdfonts.com/) seems to work fine.
+  ⚠️ **WARNING**: Icons is the most fragile part of gysmo. You technically can use text or multiple icons on one line but it's not that stable.
 
 ## Value
 
