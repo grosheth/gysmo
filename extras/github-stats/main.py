@@ -1,6 +1,6 @@
 import requests
 import json
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 # Define the base URL for the GitHub API
 BASE_URL = "https://api.github.com"
@@ -74,8 +74,11 @@ def main():
             for language, amount in language_usage.items()
         ]
 
-        # Load and render the template
-        env = Environment(loader=FileSystemLoader('.'))
+        # Load and render the template with autoescape enabled
+        env = Environment(
+            loader=FileSystemLoader('.'),
+            autoescape=select_autoescape(['html', 'xml', 'j2', 'json'])
+        )
         template = env.get_template('template.json.j2')
         output = template.render(languages=languages)
 

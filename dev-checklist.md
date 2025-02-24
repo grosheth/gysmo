@@ -25,24 +25,23 @@
 - [x] Rewrite Go tests since functions have changed
 
 - [ ] Bugfixes
-  - [] If icon is empty, padding is not good
+  - [] If icon is empty, padding is not good (might be fixed later since adding spaces fixes it)
   - [x] If keyword is empty, value is not displayed
   - [ ] Datafile not populated at all
 
 - [ ] Config examples for README
-
-- [ ] Extra projects examples
   - [ ] Github api stats (stars, forks, issues, etc)(Python)
   - [ ] Weather api (current weather, forecast with ASCII art for current weather)(Python)
+  - [ ] System information (CPU, RAM, Disk, etc)
+  - [ ] ...Bit of everything
 
 - [ ] Go through all codefactor again
 
-- [ ] Github action Build Go binary
-
 - [ ] Github action versioning Workflow
-  - CHANGELOG.md
-  - installation.sh
-  - README.md
+  - [ ] Github action Build Go binary
+  - [ ] CHANGELOG.md
+  - [ ] installation.sh
+  - [ ] README.md
 
 - [x] Add Github tracking in README
 
@@ -56,4 +55,4 @@
 
 - [ ] Add to Home-manager
 
-- [v1.0.0]
+- [v0.1.0]

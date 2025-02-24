@@ -1,7 +1,7 @@
 import urllib.request
 import urllib.parse
 import json
-from jinja2 import Template
+from jinja2 import Template, Environment, FileSystemLoader, select_autoescape
 from urllib.parse import urlparse
 
 # Define the URL and parameters for the Open-Meteo API
@@ -96,8 +96,14 @@ print(f"Current Time: {current_time}")
 with open('template.json.j2', 'r') as template_file:
     template_content = template_file.read()
 
+# Create a Jinja2 environment with autoescape enabled
+env = Environment(
+    loader=FileSystemLoader('/'),
+    autoescape=select_autoescape(['html', 'xml', 'j2', 'json'])
+)
+
 # Create a Jinja2 template from the template content
-template = Template(template_content)
+template = env.from_string(template_content)
 
 # Render the template with actual values
 output_content = template.render(

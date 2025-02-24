@@ -1,5 +1,6 @@
 {
   "items": [
+    
     {
       "text": "Python",
       "keyword": "",
@@ -9,7 +10,7 @@
       "icon_color": "",
       "value": "62081 bytes (2.17%)"
     },
-
+    
     {
       "text": "Go",
       "keyword": "",
@@ -19,7 +20,7 @@
       "icon_color": "",
       "value": "9139 bytes (0.32%)"
     },
-
+    
     {
       "text": "Rust",
       "keyword": "",
@@ -29,7 +30,7 @@
       "icon_color": "",
       "value": "5433 bytes (0.19%)"
     },
-
+    
     {
       "text": "Nix",
       "keyword": "",
@@ -39,7 +40,7 @@
       "icon_color": "",
       "value": "2303621 bytes (80.58%)"
     },
-
+    
     {
       "text": "JavaScript",
       "keyword": "",
@@ -49,7 +50,7 @@
       "icon_color": "",
       "value": "4762 bytes (0.17%)"
     },
-
+    
     {
       "text": "Shell",
       "keyword": "",
@@ -59,7 +60,7 @@
       "icon_color": "",
       "value": "92723 bytes (3.24%)"
     },
-
+    
     {
       "text": "Ruby",
       "keyword": "",
@@ -69,7 +70,7 @@
       "icon_color": "",
       "value": "6782 bytes (0.24%)"
     },
-
+    
     {
       "text": "HTML",
       "keyword": "",
@@ -79,7 +80,7 @@
       "icon_color": "",
       "value": "1238 bytes (0.04%)"
     },
-
+    
     {
       "text": "Perl",
       "keyword": "",
@@ -89,7 +90,7 @@
       "icon_color": "",
       "value": "1236 bytes (0.04%)"
     },
-
+    
     {
       "text": "CSS",
       "keyword": "",
@@ -99,7 +100,7 @@
       "icon_color": "",
       "value": "11263 bytes (0.39%)"
     },
-
+    
     {
       "text": "Makefile",
       "keyword": "",
@@ -109,7 +110,7 @@
       "icon_color": "",
       "value": "471 bytes (0.02%)"
     },
-
+    
     {
       "text": "Lua",
       "keyword": "",
@@ -119,7 +120,7 @@
       "icon_color": "",
       "value": "305293 bytes (10.68%)"
     },
-
+    
     {
       "text": "Nu",
       "keyword": "",
@@ -129,7 +130,7 @@
       "icon_color": "",
       "value": "141 bytes (0.00%)"
     },
-
+    
     {
       "text": "Nushell",
       "keyword": "",
@@ -139,7 +140,7 @@
       "icon_color": "",
       "value": "136 bytes (0.00%)"
     },
-
+    
     {
       "text": "Sage",
       "keyword": "",
@@ -149,7 +150,7 @@
       "icon_color": "",
       "value": "14 bytes (0.00%)"
     },
-
+    
     {
       "text": "Vim Script",
       "keyword": "",
@@ -159,7 +160,7 @@
       "icon_color": "",
       "value": "51161 bytes (1.79%)"
     },
-
+    
     {
       "text": "C",
       "keyword": "",
@@ -169,6 +170,7 @@
       "icon_color": "",
       "value": "3288 bytes (0.12%)"
     }
+    
   ],
   "ascii": {
     "path": "ascii/github",
