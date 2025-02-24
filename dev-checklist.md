@@ -25,7 +25,7 @@
 - [x] Rewrite Go tests since functions have changed
 
 - [ ] Bugfixes
-  - [] If icon is empty, padding is not good (might be fixed later since adding spaces fixes it)
+  - [] If icon is empty, padding is not good (might be fixed later since adding spaces can fix it)
   - [x] If keyword is empty, value is not displayed
   - [ ] Datafile not populated at all
 

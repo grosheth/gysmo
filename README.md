@@ -220,6 +220,8 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 
 ## Value
 
+
+
 </details>
 
 <details>
@@ -228,7 +230,7 @@ I don't aim to keep millions of ASCII art in this repo.
 
 Instead, I will open a discussion on the repo so people can share their ASCII art and configs.
 
-Instead, I suggest you get the ASCII art you like from the following sources:
+I suggest you get the ASCII art you like from the following sources:
 
 ### Sources
 - [asciiart.eu](https://www.asciiart.eu/)
@@ -248,6 +250,16 @@ the ascii section is a simple dictionnary with the following options:
     }
   ```
 
+| Option       | Description                                                                 | Example Value       |
+|--------------|-----------------------------------------------------------------------------|---------------------|
+| `text`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
+| `keyword`       | This is the system value gysmo will return. (does  not work with "value")              | `"user"`            |
+| `icon`       | An icon to display alongside the item. Can also be text.                                     | `""`               |
+| `value_color`| The color of the value text.                                                | `"purple"`          |
+| `text_color` | The color of the item text.                                                 | `"green"`           |
+| `icon_color`| The color of the icon.                                                      | `"red"`             |
+| `value`      | A custom value to display for the item. (Does not work with keyword)                                    | `"Custom value"`    |
+
 </details>
 
 <details>
@@ -262,6 +274,17 @@ the ascii section is a simple dictionnary with the following options:
     "line_color": ""
   },
   ```
+
+| Option       | Description                                                                 | Example Value       |
+|--------------|-----------------------------------------------------------------------------|---------------------|
+| `text`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
+| `keyword`       | This is the system value gysmo will return. (does  not work with "value")              | `"user"`            |
+| `icon`       | An icon to display alongside the item. Can also be text.                                     | `""`               |
+| `value_color`| The color of the value text.                                                | `"purple"`          |
+| `text_color` | The color of the item text.                                                 | `"green"`           |
+| `icon_color`| The color of the icon.                                                      | `"red"`             |
+| `value`      | A custom value to display for the item. (Does not work with keyword)                                    | `"Custom value"`    |
+
 </details>
 
 <details>
@@ -276,6 +299,16 @@ the ascii section is a simple dictionnary with the following options:
     "line_color": "red"
   },
   ```
+  | Option       | Description                                                                 | Example Value       |
+  |--------------|-----------------------------------------------------------------------------|---------------------|
+  | `text`      | This is the value that will be shown in the middle of the menu.             | `"username"`        |
+  | `keyword`       | This is the system value gysmo will return. (does  not work with "value")              | `"user"`            |
+  | `icon`       | An icon to display alongside the item. Can also be text.                                     | `""`               |
+  | `value_color`| The color of the value text.                                                | `"purple"`          |
+  | `text_color` | The color of the item text.                                                 | `"green"`           |
+  | `icon_color`| The color of the icon.                                                      | `"red"`             |
+  | `value`      | A custom value to display for the item. (Does not work with keyword)                                    | `"Custom value"`    |
+
 </details>
 
 Here are some examples of what you can do with gysmo.
