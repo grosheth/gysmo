@@ -227,12 +227,15 @@ func buildMenuItems(config Config, items map[string]string, borderWidth int, Ico
 		itemIconColor := GetColorCode(item.IconColor)
 		itemValueColor := GetColorCode(item.ValueColor)
 
-		fixedIconSpace := ""
+		fixedIconSpace := fmt.Sprintf("%-*s", IconLength, item.Icon)
+		itemString := fmt.Sprintf("%s%s%s", itemIconColor, fixedIconSpace, Reset)
+		itemTextString := fmt.Sprintf("%s%s%s", itemTextColor, item.Text, Reset)
+		itemValueString := fmt.Sprintf("%s%s%s", itemValueColor, value, Reset)
+
 		if IconLength > 0 {
-			fixedIconSpace = fmt.Sprintf("%-*s", IconLength, item.Icon)
-			menuItems += fmt.Sprintf("%s│ %s%s%s%s%s%s%s │ %s%s%s\n", menuPadding, itemIconColor, fixedIconSpace, Reset, itemTextColor, item.Text, Reset, padding, itemValueColor, value, Reset)
+			menuItems += fmt.Sprintf("%s│ %s%s%s │ %s\n", menuPadding, itemString, itemTextString, padding, itemValueString)
 		} else {
-			menuItems += fmt.Sprintf("%s│ %s%s%s%s │ %s%s%s\n", menuPadding, itemTextColor, item.Text, Reset, padding, itemValueColor, value, Reset)
+			menuItems += fmt.Sprintf("%s│ %s%s │ %s\n", menuPadding, itemTextString, padding, itemValueString)
 		}
 	}
 	return menuItems
@@ -371,8 +374,9 @@ func combineAsciiAndMenuLeft(menu string, paddedAsciiArt string, asciiColors str
 	for i := range maxLines {
 		asciiLine := asciiLines[i]
 		menuLine := menuLines[i]
-		padding := max(2, maxAsciiLineWidth-len(StripAnsiCodes(asciiLine))+2)
-		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", asciiColors, asciiLine, Reset, strings.Repeat(" ", padding), menuLine))
+		asciiString := fmt.Sprintf("%s%s%s", asciiColors, asciiLine, Reset)
+		padding := strings.Repeat(" ", max(2, maxAsciiLineWidth-len(StripAnsiCodes(asciiLine))+2))
+		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s", asciiString, padding, menuLine))
 	}
 
 	return strings.Join(combinedLines, "\n")
@@ -414,7 +418,8 @@ func combineAsciiAndMenuRight(menu string, paddedAsciiArt string, asciiColors st
 		} else {
 			padding = longestMenuLineWidth - len(StripAnsiCodes(menuLine)) + 2
 		}
-		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", menuLine, strings.Repeat(" ", padding), asciiColors, asciiLine, Reset))
+		asciiString := fmt.Sprintf("%s%s%s", asciiColors, asciiLine, Reset)
+		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s", menuLine, strings.Repeat(" ", padding), asciiString))
 	}
 	return strings.Join(combinedLines, "\n")
 }
@@ -466,7 +471,8 @@ func combineAsciiAndMenuRightColumns(menu string, paddedAsciiArt string, asciiCo
 			padding = 0
 		}
 
-		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", menuLine, strings.Repeat(" ", padding), asciiColors, asciiLine, Reset))
+		asciiString := fmt.Sprintf("%s%s%s", asciiColors, asciiLine, Reset)
+		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s", menuLine, strings.Repeat(" ", padding), asciiString))
 	}
 
 	return strings.Join(combinedLines, "\n")
@@ -520,7 +526,8 @@ func combineAsciiAndMenuRightBox(menu string, paddedAsciiArt string, asciiColors
 		} else {
 			padding = longestValueLength + 3
 		}
-		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s%s%s", menuLine, strings.Repeat(" ", padding), asciiColors, asciiLine, Reset))
+		asciiString := fmt.Sprintf("%s%s%s", asciiColors, asciiLine, Reset)
+		combinedLines = append(combinedLines, fmt.Sprintf("%s%s%s", menuLine, strings.Repeat(" ", padding), asciiString))
 	}
 
 	return strings.Join(combinedLines, "\n")
