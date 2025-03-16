@@ -142,7 +142,7 @@ func BuildListMenu(items map[string]string, asciiArt string, config Config) stri
 		menu += buildColumns(formattedItems, config)
 	} else {
 		for _, item := range formattedItems {
-			menu += fmt.Sprintf("%s\n", item)
+			menu += fmt.Sprintf("%s%s\n", menuPadding, item)
 		}
 	}
 
@@ -167,6 +167,7 @@ func BuildListMenu(items map[string]string, asciiArt string, config Config) stri
 	if config.Ascii.Position == "bottom" {
 		menu += fmt.Sprintf("%s%s%s\n", asciiColors, paddedAsciiArt, Reset)
 	}
+
 	return menu
 }
 
