@@ -1,3 +1,4 @@
+#!/bin/sh
 
 VERSION=$(cat "VERSION")
 CHANGELOG_VERSION=$(grep -oP '^## \K[vV]?[0-9]+\.[0-9]+\.[0-9]+' "CHANGELOG.md" | head -n 1)
