@@ -1,0 +1,28 @@
+name: Validate versioning
+
+on:
+  pull_request:
+    branches:
+      - rc
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up jq
+        run: sudo apt-get install -y jq git
+
+      - name: Validate version consistency
+        run: ./check_versions.sh
+        env:
+          GITHUB_HEAD_REF: ${{ github.head_ref }}

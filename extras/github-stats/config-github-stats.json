@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "text": "Bash",
+      "keyword": "user",
+      "icon": "󱆃",
+      "value_color": "red",
+      "text_color": "",
+      "icon_color": "green",
+      "value": "5%"
+    },
+    {
+      "text": "Python",
+      "keyword": "shell",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "cyan",
+      "value": "10%"
+    },
+    {
+      "text": "Go",
+      "keyword": "shell",
+      "icon": "󰟓",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "blue",
+      "value": "35%"
+    },
+    {
+      "text": "Rust",
+      "keyword": "shell",
+      "icon": "",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "red",
+      "value": "20%"
+    }
+  ],
+  "ascii": {
+    "path": "ascii/gysmo3",
+    "colors": "",
+    "enabled": false,
+    "padding": 2
+  },
+  "header": {
+    "enabled": true,
+    "text": "Github Languages Stats",
+    "text_color": "white",
+    "line": true,
+    "line_color": "red"
+  },
+  "footer": {
+    "enabled": false,
+    "text": "gysmo",
+    "text_color": "white",
+    "line": true,
+    "line_color": "red"
+  },
+  "general": {
+    "padding": 2,
+    "menu_type": "box",
+    "columns": false
+  }
+}

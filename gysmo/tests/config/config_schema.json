@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "keyword": { "type": "string" },
+          "icon": { "type": "string" },
+          "text_color": { "type": "string" },
+          "value_color": { "type": "string" },
+          "icon_color": { "type": "string" },
+          "value": { "type": "string" }
+        },
+        "required": ["text", "keyword", "icon"]
+      }
+    },
+    "ascii": {
+      "type": "object",
+      "properties": {
+        "path": { "type": "string" },
+        "colors": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "padding": { "type": "integer" },
+        "position": {
+          "type": "string",
+          "enum": ["top", "bottom", "left", "right"]
+        }
+      },
+      "required": ["path", "enabled", "position"]
+    },
+    "header": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "text_color": { "type": "string" },
+        "line_color": { "type": "string" },
+        "line": { "type": "boolean" },
+        "enabled": { "type": "boolean" }
+      },
+      "required": ["enabled"]
+    },
+    "footer": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "text_color": { "type": "string" },
+        "line_color": { "type": "string" },
+        "line": { "type": "boolean" },
+        "enabled": { "type": "boolean" }
+      },
+      "required": ["enabled"]
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "padding": { "type": "integer" },
+        "menu_type": {
+          "type": "string",
+          "enum": ["box", "list"]
+        },
+        "columns": { "type": "boolean" }
+      },
+      "required": ["menu_type"]
+    }
+  },
+  "required": ["items", "ascii", "header", "footer", "general"]
+}
