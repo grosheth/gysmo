@@ -3,8 +3,8 @@
 # gysmo 📟
 
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
-[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/Alpha-0.1.0)
-[![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/0.1.0?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/0.1.0)
+[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.1.0)
+[![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/main?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/main)
 
 
 **gysmo** is a fun and visually engaging CLI tool written in Go, designed to enhance your terminal experience. While it does provide system information, its primary purpose is to showcase your stylish terminal setup.
