@@ -1,0 +1,184 @@
+{
+  "items": [
+    
+    {
+      "text": "Python",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "62081 bytes (2.17%)"
+    },
+    
+    {
+      "text": "Go",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "9139 bytes (0.32%)"
+    },
+    
+    {
+      "text": "Rust",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "5433 bytes (0.19%)"
+    },
+    
+    {
+      "text": "Nix",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "2303621 bytes (80.58%)"
+    },
+    
+    {
+      "text": "JavaScript",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "4762 bytes (0.17%)"
+    },
+    
+    {
+      "text": "Shell",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "92723 bytes (3.24%)"
+    },
+    
+    {
+      "text": "Ruby",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "6782 bytes (0.24%)"
+    },
+    
+    {
+      "text": "HTML",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "1238 bytes (0.04%)"
+    },
+    
+    {
+      "text": "Perl",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "1236 bytes (0.04%)"
+    },
+    
+    {
+      "text": "CSS",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "11263 bytes (0.39%)"
+    },
+    
+    {
+      "text": "Makefile",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "471 bytes (0.02%)"
+    },
+    
+    {
+      "text": "Lua",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "305293 bytes (10.68%)"
+    },
+    
+    {
+      "text": "Nu",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "141 bytes (0.00%)"
+    },
+    
+    {
+      "text": "Nushell",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "136 bytes (0.00%)"
+    },
+    
+    {
+      "text": "Sage",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "14 bytes (0.00%)"
+    },
+    
+    {
+      "text": "Vim Script",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "51161 bytes (1.79%)"
+    },
+    
+    {
+      "text": "C",
+      "icon": "",
+      "value_color": "",
+      "text_color": "",
+      "icon_color": "",
+      "value": "3288 bytes (0.12%)"
+    }
+    
+  ],
+  "ascii": {
+    "path": "ascii/github",
+    "colors": "",
+    "enabled": true,
+    "horizontal_padding": 10,
+    "vertical_padding": 0,
+    "position": "top"
+  },
+  "header": {
+    "enabled": false,
+    "text": "",
+    "text_color": "",
+    "line": true,
+    "line_color": ""
+  },
+  "footer": {
+    "enabled": false,
+    "text": "",
+    "text_color": "",
+    "line": true,
+    "line_color": ""
+  },
+  "general": {
+    "menu_type": "list",
+    "columns": true
+  }
+}

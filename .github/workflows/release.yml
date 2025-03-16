@@ -1,0 +1,99 @@
+---
+name: Update version, build binary, and create release
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+
+jobs:
+  update-version:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.17"
+
+      - name: Get current version
+        id: get_version
+        run: |
+          CURRENT_VERSION=$(cat VERSION)
+          echo "Current version: $CURRENT_VERSION"
+          echo "::set-output name=current_version::$CURRENT_VERSION"
+
+      - name: Determine version bump type
+        id: determine_bump
+        run: |
+          LABELS=$(echo "${{ github.event.pull_request.labels[*] }}" | tr -d '[],' | tr ' ' '\n')
+          echo "Labels: $LABELS"
+          if echo "$LABELS" | grep -iq "major"; then
+            echo "major" > bump_type.txt
+          elif echo "$LABELS" | grep -iq "minor"; then
+            echo "minor" > bump_type.txt
+          else
+            echo "patch" > bump_type.txt
+          fi
+          BUMP_TYPE=$(cat bump_type.txt)
+          echo "Bump type: $BUMP_TYPE"
+          echo "::set-output name=bump_type::$BUMP_TYPE"
+
+      - name: Calculate new version
+        id: calculate_version
+        run: |
+          CURRENT_VERSION=${{ steps.get_version.outputs.current_version }}
+          BUMP_TYPE=${{ steps.determine_bump.outputs.bump_type }}
+          IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
+          if [ "$BUMP_TYPE" == "major" ]; then
+            NEW_VERSION="$((VERSION_PARTS[0] + 1)).0.0"
+          elif [ "$BUMP_TYPE" == "minor" ]; then
+            NEW_VERSION="${VERSION_PARTS[0]}.$((VERSION_PARTS[1] + 1)).0"
+          else
+            NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.$((VERSION_PARTS[2] + 1))"
+          fi
+
+          # Add -rc suffix if the target branch is rc
+          if [ "${{ github.event.pull_request.base.ref }}" == "rc" ]; then
+            NEW_VERSION="$NEW_VERSION-rc"
+          fi
+
+          echo "New version: $NEW_VERSION"
+          echo "::set-output name=new_version::$NEW_VERSION"
+
+      - name: Update version in files
+        run: |
+          NEW_VERSION=${{ steps.calculate_version.outputs.new_version }}
+          echo "$NEW_VERSION" > VERSION
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add VERSION
+          git commit -m "Bump version to $NEW_VERSION [skip ci]"
+          git tag "v$NEW_VERSION"
+          git push origin HEAD:${{ github.event.pull_request.base.ref }}
+          git push origin HEAD:${{ github.event.pull_request.base.ref }} --tags
+
+      - name: Build Go binary
+        run: |
+          go build -o gysmo
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.calculate_version.outputs.new_version }}
+        run: |
+          gh release create "v${{ steps.calculate_version.outputs.new_version }}" \\
+              --repo="$GITHUB_REPOSITORY" \\
+              --title="${{ steps.calculate_version.outputs.new_version }}" \\
+              --generate-notes \\
+              gysmo
+
+      - name: Clean up
+        run: |
+          rm gysmo
