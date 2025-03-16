@@ -1,4 +1,4 @@
-![Portable Config](screenshot/portable-config.png)
+![Config Examples](screenshot/config-examples.png)
 
 # gysmo 📟
 
@@ -313,7 +313,7 @@ Some values of /etc/os-release are not available on some distros, look at [os-re
 | `processes`            | Number of running processes                      | `"121"`|
 | `wm`            | Window Manager                     | `"none+bpswm"`|
 
-![Full Config](screenshot/full-config.png)
+![Full Config](screenshot/config-full.png)
 ## Icon
 ```
 The "icon" field is where you define the icons you want to use in your gysmo main menu. This section comes a bit before the Text.
@@ -459,7 +459,7 @@ Cyan
 White
 ```
 
-![Portable Config](screenshot/portable-config.png)
+![My config](screenshot/portable-config.png)
 
 If you wish to use any other colors, you can specify the RGB values in the following format:
 ```
@@ -472,12 +472,11 @@ The configuration file is validated every time you run gysmo so you can be sure 
 
 ## 🛤️ ROADMAP
 
-- [ ] Set ascii art in the background of the menu (behind option)
+- [ ] Set ascii art in the background of the menu.
 
-- [ ] Add option to use images
+- [ ] Add option to use images.
 
-- [ ] Easier integration of custom script to generate config files
-
+- [ ] Add an API to generate configuration file.
 
 ## CONTRIBUTING
 ```
@@ -489,6 +488,13 @@ Feel free to fork the project if you want to play around.
 
 I will manage the releases and the versioning of the project.
 ```
+
+## Examples
+### Complex config
+![Complex Config](screenshot/config-full-list.png)
+
+### Minimalist
+![Minimalist Config](screenshot/config-simple.png)
 
 ## 📜 License
 MIT LICENSE
