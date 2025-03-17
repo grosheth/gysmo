@@ -82,7 +82,7 @@
     }
   ],
   "ascii": {
-    "path": "ascii/nixos",
+    "path": "ascii/gysmo",
     "colors": "",
     "enabled": true,
     "horizontal_padding": 2,

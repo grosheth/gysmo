@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.1 (2025-03-17)
+
+### Fix
+- Correcting default ascii art in the config
+- adding colors to installation script so it's readable.
+
 ## v0.1.0 (2025-03-16)
 
 ### Feature
