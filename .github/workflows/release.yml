@@ -1,5 +1,5 @@
 ---
-name: Build Binary
+name: Build Binary an create release
 
 on:
   pull_request:
