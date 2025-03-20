@@ -22,6 +22,7 @@ jobs:
 
       - name: Build Go binary
         run: |
+          cd gysmo
           go build -o gysmo
 
       - name: run Gysmo
