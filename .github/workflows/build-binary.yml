@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  build-and-release:
+  build-binary:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,17 +28,3 @@ jobs:
         run: |
           chmod +x gysmo
           ./gysmo
-      # - name: Create release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     VERSION=$(cat VERSION)
-      #     gh release create "v$VERSION" \\
-      #         --repo="$GITHUB_REPOSITORY" \\
-      #         --title="$VERSION" \\
-      #         --generate-notes \\
-      #         gysmo
-
-      # - name: Clean up
-      #   run: |
-      #     rm gysmo
