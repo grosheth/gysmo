@@ -1,5 +1,5 @@
 ---
-name: Build and create release
+name: Build Binary an create release
 
 on:
   pull_request:
@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
           go-version: "1.23"
 
