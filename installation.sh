@@ -79,6 +79,11 @@ if [ ! -f "$CONFIG_FILE" ]; then
         fi
     elif command_exists curl; then
         if ! curl -o "$CONFIG_FILE" "$CONFIG_URL"; then
+            echo "Error: Failed to download configuration file using curl."
+            exit 1
+        fi
+    fi
+    echo "Configuration file downloaded successfully."
             echo -e "${RED}Error: Failed to download configuration file using curl.${NC}"
             exit 1
         fi
@@ -97,6 +102,11 @@ if command_exists wget; then
     fi
 elif command_exists curl; then
     if ! curl -o "$SCHEMA_FILE" "$SCHEMA_URL"; then
+        echo -e "${RED}Error: Failed to download schema file using curl.${NC}"
+        exit 1
+    fi
+fi
+echo "Schema file downloaded successfully."
         echo -e "${RED}Error: Failed to download schema file using curl.${NC}"
         exit 1
     fi

@@ -2,7 +2,7 @@ package tests
 
 import (
 	"fmt"
-	"gysmo/gysmo/pkg"
+	"gysmo/src/pkg"
 	"os"
 	"strings"
 	"testing"

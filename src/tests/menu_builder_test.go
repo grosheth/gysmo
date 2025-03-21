@@ -2,7 +2,7 @@ package tests
 
 import (
 	"fmt"
-	"gysmo/gysmo/pkg"
+	"gysmo/src/pkg"
 	"strings"
 	"testing"
 )
@@ -318,11 +318,13 @@ func GetConfigWithAscii(position string) pkg.Config {
 			Enabled:   true,
 		},
 		General: struct {
-			MenuType string `json:"menu_type"`
-			Columns  bool   `json:"columns"`
+			MenuType    string `json:"menu_type"`
+			Columns     bool   `json:"columns"`
+			MenuPadding int    `json:"menu_padding"`
 		}{
-			MenuType: "box",
-			Columns:  false,
+			MenuType:    "box",
+			Columns:     false,
+			MenuPadding: 2,
 		},
 	}
 }
@@ -375,11 +377,13 @@ func GetConfigWithHeader() pkg.Config {
 			Enabled:   true,
 		},
 		General: struct {
-			MenuType string `json:"menu_type"`
-			Columns  bool   `json:"columns"`
+			MenuType    string `json:"menu_type"`
+			Columns     bool   `json:"columns"`
+			MenuPadding int    `json:"menu_padding"`
 		}{
-			MenuType: "box",
-			Columns:  false,
+			MenuType:    "box",
+			Columns:     false,
+			MenuPadding: 0,
 		},
 	}
 }
@@ -432,11 +436,13 @@ func GetConfigWithFooter() pkg.Config {
 			Enabled:   true,
 		},
 		General: struct {
-			MenuType string `json:"menu_type"`
-			Columns  bool   `json:"columns"`
+			MenuType    string `json:"menu_type"`
+			Columns     bool   `json:"columns"`
+			MenuPadding int    `json:"menu_padding"`
 		}{
-			MenuType: "box",
-			Columns:  false,
+			MenuType:    "box",
+			Columns:     false,
+			MenuPadding: 0,
 		},
 	}
 }
