@@ -31,7 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pwd
           VERSION=$(cat VERSION)
           cd src
           gh release create "$VERSION" \
