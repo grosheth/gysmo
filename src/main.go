@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gysmo/gysmo/pkg"
+	"gysmo/src/pkg"
 	"path/filepath"
 )
 

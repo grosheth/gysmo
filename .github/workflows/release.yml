@@ -26,19 +26,18 @@ jobs:
 
       - name: Build Go binary
         run: |
+          cd src
           go build -o gysmo
+          chmod +x gysmo
 
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd src
           VERSION=$(cat VERSION)
           gh release create "v$VERSION" \\
               --repo="$GITHUB_REPOSITORY" \\
               --title="$VERSION" \\
               --generate-notes \\
               gysmo
-
-      - name: Clean up
-        run: |
-          rm gysmo

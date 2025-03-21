@@ -3,7 +3,7 @@ package tests
 import (
 	"encoding/json"
 	"fmt"
-	"gysmo/gysmo/pkg"
+	"gysmo/src/pkg"
 	"io"
 	"os"
 	"testing"

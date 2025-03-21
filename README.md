@@ -28,7 +28,7 @@ This also allows you to understand how the project works a little better.
 
 ```shell
 git clone https://github.com/grosheth/gysmo.git
-cd gysmo/gysmo
+cd gysmo/src
 
 go build -o gysmo
 
