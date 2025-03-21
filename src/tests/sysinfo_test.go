@@ -2,7 +2,7 @@ package tests
 
 import (
 	"bytes"
-	"gysmo/gysmo/pkg"
+	"gysmo/src/pkg"
 	"io"
 	"net/http"
 	"os/exec"

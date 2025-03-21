@@ -1,5 +1,5 @@
 ---
-name: Build Binary
+name: Manual release
 
 on:
   workflow_dispatch:
@@ -26,3 +26,15 @@ jobs:
           go build -o binary_test
           chmod +x binary_test
           ./binary_test
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd src
+          VERSION=$(cat VERSION)
+          gh release create "v$VERSION" \\
+              --repo="$GITHUB_REPOSITORY" \\
+              --title="$VERSION" \\
+              --generate-notes \\
+              gysmo

@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"gysmo/gysmo/pkg"
+	"gysmo/src/pkg"
 	"os"
 	"testing"
 )
