@@ -59,9 +59,9 @@ if [ -z "$VERSION" ]; then
 fi
 
 RELEASE_URL="https://github.com/$REPO/releases/download/$VERSION/gysmo"
-CONFIG_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/gysmo/config/config.json"
-SCHEMA_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/gysmo/config/schema/config_schema.json"
-ASCII_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/gysmo/ascii/gysmo"
+CONFIG_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/config/config.json"
+SCHEMA_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/config/schema/config_schema.json"
+ASCII_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/ascii/gysmo"
 
 # Create the necessary directory structure
 mkdir -p "$CONFIGURATION_PATH"
@@ -79,14 +79,10 @@ if [ ! -f "$CONFIG_FILE" ]; then
         fi
     elif command_exists curl; then
         if ! curl -o "$CONFIG_FILE" "$CONFIG_URL"; then
-            echo "Error: Failed to download configuration file using curl."
-            exit 1
-        fi
-    fi
-    echo "Configuration file downloaded successfully."
             echo -e "${RED}Error: Failed to download configuration file using curl.${NC}"
             exit 1
         fi
+        echo "Configuration file downloaded successfully."
     fi
     echo -e "${GREEN}Configuration file downloaded successfully.${NC}"
 else
@@ -102,11 +98,6 @@ if command_exists wget; then
     fi
 elif command_exists curl; then
     if ! curl -o "$SCHEMA_FILE" "$SCHEMA_URL"; then
-        echo -e "${RED}Error: Failed to download schema file using curl.${NC}"
-        exit 1
-    fi
-fi
-echo "Schema file downloaded successfully."
         echo -e "${RED}Error: Failed to download schema file using curl.${NC}"
         exit 1
     fi

@@ -22,19 +22,20 @@ jobs:
 
       - name: Build Go binary
         run: |
-          cd gysmo
-          go build -o binary_test
-          chmod +x binary_test
-          ./binary_test
+          cd src
+          go build -o gysmo
+          chmod +x gysmo
+          pwd
 
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd src
+          pwd
           VERSION=$(cat VERSION)
-          gh release create "v$VERSION" \\
-              --repo="$GITHUB_REPOSITORY" \\
-              --title="$VERSION" \\
-              --generate-notes \\
+          cd src
+          gh release create "$VERSION" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "$VERSION" \
+              --generate-notes \
               gysmo
