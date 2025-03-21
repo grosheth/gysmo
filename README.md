@@ -3,7 +3,7 @@
 # gysmo 📟
 
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
-[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.1.0)
+[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.1.1)
 [![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/main?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/main)
 
 
@@ -28,13 +28,9 @@ This also allows you to understand how the project works a little better.
 
 ```shell
 git clone https://github.com/grosheth/gysmo.git
-# Default branch is main (latest tag), you can switch to a tag to use specific version
-# git checkout tags/v0.1.0-rc
-
 cd gysmo/gysmo
 
 go build -o gysmo
-# -o to rename the binary (default is gysmo)
 
 mkdir ~/.config/gysmo
 cp -R config ~/.config/gysmo/
