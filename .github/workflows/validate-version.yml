@@ -2,8 +2,8 @@ name: Validate versioning
 
 on:
   pull_request:
-    branches:
-      - rc
+    branches-ignore:
+      - main
     types: [opened, synchronize, reopened]
 
 permissions:
