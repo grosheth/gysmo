@@ -45,15 +45,11 @@ if [ -z "$VERSIONS" ]; then
     exit 1
 fi
 
-if [[ -n "$1" ]]; then
-    version_number="$1"
-else
-    echo "Available versions:"
-    echo "$VERSIONS" | nl -w 2 -s '. '
-    echo -e "${BLUE}"
-    read -rp "Enter the number of the version you want to install: " version_number
-    echo -e "${NC}"
-fi
+echo "Available versions:"
+echo "$VERSIONS" | nl -w 2 -s '. '
+echo -e "${BLUE}"
+read -rp "Enter the number of the version you want to install: " version_number
+echo -e "${NC}"
 
 # Get the selected version
 VERSION=$(echo "$VERSIONS" | sed -n "${version_number}p")
