@@ -22,6 +22,7 @@ jobs:
 
       - name: Build Go binary
         run: |
+          ./installation.sh
           cd gysmo
           go build -o gysmo
           chmod +x gysmo
