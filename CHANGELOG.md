@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.4 (2025-03-25)
+
+### Fix
+- Fix in installation script
+
 ## v0.1.3 (2025-03-21)
 
 ### Fix
