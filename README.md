@@ -3,7 +3,7 @@
 # gysmo 📟
 
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
-[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.1.3)
+[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.1.5)
 [![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/main?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/main)
 
 
