@@ -52,16 +52,14 @@
 
 - [ ] release-[v0.1.0-rc]
 
-- [ ] Github action versioning Workflow
-  - [ ] Github action Build Go binary
-  - [ ] Github action Go test workflow
-  - [ ] CHANGELOG.md
-  - [ ] installation.sh
-  - [ ] README.md
-
 - [x] Add Github tracking in README
 
-- [ ] release [v0.1.0]
+- [x] release [v0.1.0]
+
+- [ ] Review installation process
+  - Install in /usr/share/gysmo
+  - Gysmo looks up into /usr/share then copy into ~/.config if config is not already present
+  - Installation does not touch to home
 
 - [ ] Add to Nixpkgs
   - [ ] Documentation
@@ -72,6 +70,8 @@
 - [ ] Full projects
   - [ ] weather api
   - [ ] github stats
+
+- [ ] release [v1.0.0]
 
 - [ ] image support
 
