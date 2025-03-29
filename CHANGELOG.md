@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.5 (2025-03-29)
+
+### Fix
+- Adding a release to Nixpkgs
+
 ## v0.1.4 (2025-03-25)
 
 ### Fix
