@@ -3,6 +3,7 @@ package pkg
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -212,4 +213,46 @@ func IsLine(s string) bool {
 		}
 	}
 	return hasDash
+}
+
+// New functions for copying files and checking their existence
+func CopyFile(src, dst string) error {
+	sourceFile, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer sourceFile.Close()
+
+	destinationFile, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer destinationFile.Close()
+
+	_, err = io.Copy(destinationFile, sourceFile)
+	return err
+}
+
+func EnsureConfigFilesExist() error {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		return err
+	}
+	configDir := filepath.Join(homeDir, ".config", "gysmo")
+	shareDir := "/usr/share/gysmo/"
+
+	files := []string{"config/config.json", "config/schema/config_schema.json", "ascii/gysmo"}
+
+	for _, file := range files {
+		configFilePath := filepath.Join(configDir, file)
+		shareFilePath := filepath.Join(shareDir, file)
+
+		if _, err := os.Stat(configFilePath); os.IsNotExist(err) {
+			if err := CopyFile(shareFilePath, configFilePath); err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
 }

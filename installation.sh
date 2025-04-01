@@ -4,11 +4,13 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+RESET='\033[0m'
 
 REPO="grosheth/gysmo"
-INSTALL_DIR="$HOME/bin"
+INSTALL_DIR="$HOME/.local/bin"
 INSTALL_PATH="$INSTALL_DIR/gysmo"
+
+SHARE_PATH="/usr/share/gysmo"
 CONFIGURATION_PATH="$HOME/.config/gysmo/config"
 ASCII_PATH="$HOME/.config/gysmo/ascii"
 DATA_PATH="$HOME/.config/gysmo/data"
@@ -27,13 +29,14 @@ fetch_releases() {
     elif command_exists wget; then
         wget -qO- "https://api.github.com/repos/$REPO/releases" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
     else
-        echo -e "${RED}Error: wget or curl is not installed. Please install wget or curl and try again.${NC}"
+        echo -e "${RED}Error: wget or curl is not installed. Please install wget or curl and try again.${RESET}"
         exit 1
     fi
 }
 
+# Ensure wget or curl is installed
 if ! command_exists wget && ! command_exists curl; then
-    echo -e "${RED}Error: wget or curl is not installed. Please install wget or curl and try again.${NC}"
+    echo -e "${RED}Error: wget or curl is not installed. Please install wget or curl and try again.${RESET}"
     exit 1
 fi
 
@@ -41,7 +44,7 @@ fi
 echo "Fetching available versions..."
 VERSIONS=$(fetch_releases)
 if [ -z "$VERSIONS" ]; then
-    echo -e "${RED}Error: Failed to fetch available versions.${NC}"
+    echo -e "${RED}Error: Failed to fetch available versions.${RESET}"
     exit 1
 fi
 
@@ -49,12 +52,12 @@ echo "Available versions:"
 echo "$VERSIONS" | nl -w 2 -s '. '
 echo -e "${BLUE}"
 read -rp "Enter the number of the version you want to install: " version_number
-echo -e "${NC}"
+echo -e "${RESET}"
 
 # Get the selected version
 VERSION=$(echo "$VERSIONS" | sed -n "${version_number}p")
 if [ -z "$VERSION" ]; then
-    echo -e "${RED}Error: Invalid version selected.${NC}"
+    echo -e "${RED}Error: Invalid version selected.${RESET}"
     exit 1
 fi
 
@@ -63,109 +66,79 @@ CONFIG_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/confi
 SCHEMA_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/config/schema/config_schema.json"
 ASCII_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/ascii/gysmo"
 
-# Create the necessary directory structure
+# Create the necessary directory structure in /usr/share/gysmo
+echo "Setting up default templates in $SHARE_PATH..."
+sudo mkdir -p "$SHARE_PATH/config"
+sudo mkdir -p "$SHARE_PATH/ascii"
+sudo mkdir -p "$SHARE_PATH/config/schema"
+
+# Download default templates to /usr/share/gysmo
+if [ ! -f "$SHARE_PATH/config/config.json" ]; then
+    echo "Downloading default configuration file..."
+    if command_exists wget; then
+        sudo wget -O "$SHARE_PATH/config/config.json" "$CONFIG_URL"
+    elif command_exists curl; then
+        sudo curl -o "$SHARE_PATH/config/config.json" "$CONFIG_URL"
+    fi
+fi
+
+if [ ! -f "$SHARE_PATH/config/schema/config_schema.json" ]; then
+    echo "Downloading default schema file..."
+    if command_exists wget; then
+        sudo wget -O "$SHARE_PATH/config/schema/config_schema.json" "$SCHEMA_URL"
+    elif command_exists curl; then
+        sudo curl -o "$SHARE_PATH/config/schema/config_schema.json" "$SCHEMA_URL"
+    fi
+fi
+
+if [ ! -f "$SHARE_PATH/ascii/gysmo" ]; then
+    echo "Downloading default ASCII file..."
+    if command_exists wget; then
+        sudo wget -O "$SHARE_PATH/ascii/gysmo" "$ASCII_URL"
+    elif command_exists curl; then
+        sudo curl -o "$SHARE_PATH/ascii/gysmo" "$ASCII_URL"
+    fi
+fi
+
+# Copy missing files from /usr/share/gysmo to ~/.config/gysmo
+echo "Checking for missing files in $HOME/.config/gysmo..."
 mkdir -p "$CONFIGURATION_PATH"
 mkdir -p "$ASCII_PATH"
 mkdir -p "$DATA_PATH"
 mkdir -p "$SCHEMA_PATH"
 
-# Download the config.json file if it doesn't already exist
 if [ ! -f "$CONFIG_FILE" ]; then
-    echo "Downloading configuration file..."
-    if command_exists wget; then
-        if ! wget -O "$CONFIG_FILE" "$CONFIG_URL"; then
-            echo -e "${RED}Error: Failed to download configuration file using wget.${NC}"
-            exit 1
-        fi
-    elif command_exists curl; then
-        if ! curl -o "$CONFIG_FILE" "$CONFIG_URL"; then
-            echo -e "${RED}Error: Failed to download configuration file using curl.${NC}"
-            exit 1
-        fi
-        echo "Configuration file downloaded successfully."
-    fi
-    echo -e "${GREEN}Configuration file downloaded successfully.${NC}"
-else
-    echo "Configuration file already exists. Skipping Config download."
+    echo "Copying default configuration file to $CONFIG_FILE..."
+    cp "$SHARE_PATH/config/config.json" "$CONFIG_FILE"
 fi
 
-# Always download the schema file
-echo "Downloading schema file..."
-if command_exists wget; then
-    if ! wget -O "$SCHEMA_FILE" "$SCHEMA_URL"; then
-        echo -e "${RED}Error: Failed to download schema file using wget.${NC}"
-        exit 1
-    fi
-elif command_exists curl; then
-    if ! curl -o "$SCHEMA_FILE" "$SCHEMA_URL"; then
-        echo -e "${RED}Error: Failed to download schema file using curl.${NC}"
-        exit 1
-    fi
+if [ ! -f "$SCHEMA_FILE" ]; then
+    echo "Copying default schema file to $SCHEMA_FILE..."
+    cp "$SHARE_PATH/config/schema/config_schema.json" "$SCHEMA_FILE"
 fi
-echo -e "${GREEN}Schema file downloaded successfully.${NC}"
 
-# Download the ASCII file if it doesn't already exist
 if [ ! -f "$ASCII_FILE" ]; then
-    echo "Downloading ASCII file..."
-    if command_exists wget; then
-        if ! wget -O "$ASCII_FILE" "$ASCII_URL"; then
-            echo -e "${RED}Error: Failed to download ASCII file using wget.${NC}"
-            exit 1
-        fi
-    elif command_exists curl; then
-        if ! curl -o "$ASCII_FILE" "$ASCII_URL"; then
-            echo -e "${RED}Error: Failed to download ASCII file using curl.${NC}"
-            exit 1
-        fi
-    fi
-    echo -e "${GREEN}ASCII file downloaded successfully.${NC}"
-else
-    echo "ASCII file already exists. Skipping download."
+    echo "Copying default ASCII file to $ASCII_FILE..."
+    cp "$SHARE_PATH/ascii/gysmo" "$ASCII_FILE"
 fi
 
-if [ ! -d "$INSTALL_DIR" ]; then
-    if ! mkdir -p "$INSTALL_DIR"; then
-        echo -e "${RED}Error: Failed to create directory $INSTALL_DIR.${NC}"
-        exit 1
-    fi
-fi
-
-echo "Downloading binary $RELEASE_URL "
+# Download and install the binary
+echo "Downloading binary $RELEASE_URL..."
 if command_exists wget; then
-    if ! wget -O gysmo "$RELEASE_URL"; then
-        echo -e "${RED}Error: Failed to download the release binary using wget.${NC}"
-        exit 1
-    fi
+    wget -O gysmo "$RELEASE_URL"
 elif command_exists curl; then
-    if ! curl -o gysmo "$RELEASE_URL"; then
-        echo -e "${RED}Error: Failed to download the release binary using curl.${NC}"
-        exit 1
-    fi
+    curl -o gysmo "$RELEASE_URL"
 fi
 
 chmod +x gysmo
 
+# Ensure the local bin directory exists
+mkdir -p "$INSTALL_DIR"
+
 if ! mv gysmo "$INSTALL_PATH"; then
-    echo -e "${RED}Error: Failed to move the binary to $INSTALL_PATH.${NC}"
+    echo -e "${RED}Error: Failed to move the binary to $INSTALL_PATH.${RESET}"
     exit 1
 fi
 
-echo -e "${BLUE}"
-read -rp "Do you want to add $INSTALL_DIR to your PATH? (y/n): " response
-echo -e "${NC}"
-case "$response" in
-    [yY][eE][sS]|[yY])
-        if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
-            echo "export PATH=\$PATH:$INSTALL_DIR" >> "$HOME/.profile"
-            echo "Added $INSTALL_DIR to PATH. Please restart your terminal or run 'source ~/.profile' to update your PATH."
-        else
-            echo "$INSTALL_DIR is already in your PATH."
-        fi
-        ;;
-    *)
-        echo "Skipping adding $INSTALL_DIR to PATH."
-        ;;
-esac
-
-echo -e "${GREEN}Installation completed successfully.${NC}"
-echo ""
+echo -e "${GREEN}Installation completed successfully.${RESET}"
+echo -e "${BLUE}Please ensure $INSTALL_DIR is in your PATH.${RESET}"

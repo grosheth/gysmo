@@ -17,7 +17,11 @@ func main() {
 	configPath := filepath.Join(workingPath, "config", *filename)
 	schemaPath := filepath.Join(workingPath, "config", "schema", "config_schema.json")
 
-	// Declare err variable
+	if err := pkg.EnsureConfigFilesExist(); err != nil {
+		fmt.Println("Error ensuring config files exist:", err)
+		return
+	}
+
 	err := pkg.ValidateJsonConfig(configPath, schemaPath)
 	if err != nil {
 		fmt.Println("Error validating config.json:", err)
