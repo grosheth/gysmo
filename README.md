@@ -64,8 +64,21 @@ Package will be included in nixpkgs and home-manger eventually.
 ## 🔧 Configuration
 Here is the directory structure used by gysmo.
 
+Gysmo keeps backup files in /usr/share/gysmo so if you happen to delete some dependencies it can get them back without any issues.
 ### Installation Folders Structure
 ```
+usr/
+├── share/
+│   └── gysmo/
+│       ├── config/
+│       │   ├── config.json
+│       │   └── alt-config.json
+│       ├── ascii/
+│       │   ├── ascii_art1
+│       │   └── ascii_art2
+│       └── data/
+│           └── data.json
+│
 $HOME/
 ├── .config/
 │   └── gysmo/
@@ -79,6 +92,7 @@ $HOME/
 │           └── data.json
 └── bin/
     └── gysmo
+
 ```
 
 
