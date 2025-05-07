@@ -34,8 +34,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd src
           VERSION=$(cat VERSION)
+          cd src
           gh release create "v$VERSION" \\
               --repo="$GITHUB_REPOSITORY" \\
               --title="$VERSION" \\
