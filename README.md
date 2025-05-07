@@ -19,7 +19,40 @@ gysmo is not intended to be an accurate system information tool. There are many 
 
 ## 📥 Installation
 
-### Build From Source (RECOMMENDED)
+### Use the installation script (RECOMMENDED)
+Recommended for most Linux Distros.
+
+The installation/update script does the following
+1. Download the binary
+2. Create the directory structure ~/.config/gysmo/... and ~/.local/bin
+3. Copy the template config.json file if it doesn't exist (don't want to overwrite your config in an update)
+4. Copy the schema validator file
+5. Copy a sample ASCII art if it doesn't exist
+
+```shell
+wget https://raw.githubusercontent.com/grosheth/gysmo/main/installation.sh && sh installation.sh && rm installation.sh
+```
+
+### Home-manager (Package is in Nixpkgs)
+You can add this to your home-manager configuration to install gysmo..
+
+```nix
+{ pkgs, ... }:
+{
+  programs.gysmo = {
+    enable = true;
+  };
+}
+```
+
+### Nixpkgs (Home-manager is the supported way to install)
+⚠️ **WARNING**: when installing directly from nixpkgs without home-manager run the following to make sure everything is correctly installed.
+
+```shell
+wget https://raw.githubusercontent.com/grosheth/gysmo/main/nix_installation.sh && sh nix_installation.sh && rm nix_installation.sh
+```
+
+### Build From Source
 `
 You will need to have Go installed for this.
 `
@@ -35,30 +68,10 @@ go build -o gysmo
 mkdir ~/.config/gysmo
 cp -R config ~/.config/gysmo/
 cp -R ascii ~/.config/gysmo/
-```
 
-### Use the installation/update script
-
-The installation/update script does the following
-1. Download the binary
-2. Create the directory structure ~/.config/gysmo/... && ~/bin/gysmo
-3. Copy the template config.json file IF it doesn't exist (don't want to overwrite your config in an update)
-4. Copy the schema validator file
-5. Copy a sample ASCII art IF it doesn't exist
-
-```shell
-wget https://raw.githubusercontent.com/grosheth/gysmo/main/installation.sh && sh installation.sh && rm installation.sh
-```
-
-### Home-manager (Nix users go brrrrrrr)
-⚠️ **NOT OFFICIALLY DONE YET**: still to be done.
-Package will be included in nixpkgs and home-manger eventually.
-
-```nix
-{ pkgs, ... }:
-{
-
-}
+# Move the binary wherever you want it
+# Make sure this directory is in your PATH
+cp gysmo ~/bin/
 ```
 
 ## 🔧 Configuration
@@ -67,18 +80,6 @@ Here is the directory structure used by gysmo.
 Gysmo keeps backup files in /usr/share/gysmo so if you happen to delete some dependencies it can get them back without any issues.
 ### Installation Folders Structure
 ```
-usr/
-├── share/
-│   └── gysmo/
-│       ├── config/
-│       │   ├── config.json
-│       │   └── alt-config.json
-│       ├── ascii/
-│       │   ├── ascii_art1
-│       │   └── ascii_art2
-│       └── data/
-│           └── data.json
-│
 $HOME/
 ├── .config/
 │   └── gysmo/
@@ -92,7 +93,6 @@ $HOME/
 │           └── data.json
 └── bin/
     └── gysmo
-
 ```
 
 

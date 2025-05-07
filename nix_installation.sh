@@ -8,8 +8,6 @@ RESET='\033[0m'
 
 REPO="grosheth/gysmo"
 
-BINARY_DIR="$HOME/.local/bin"
-INSTALL_PATH="$BINARY_DIR/gysmo"
 CONFIGURATION_PATH="$HOME/.config/gysmo/config"
 ASCII_PATH="$HOME/.config/gysmo/ascii"
 DATA_PATH="$HOME/.config/gysmo/data"
@@ -22,46 +20,36 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-fetch_releases() {
+# Get latest release tag
+get_latest_release() {
     if command_exists curl; then
-        curl -s "https://api.github.com/repos/$REPO/releases" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
+        curl --silent "https://api.github.com/repos/$REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
     elif command_exists wget; then
-        wget -qO- "https://api.github.com/repos/$REPO/releases" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
+        wget -qO- "https://api.github.com/repos/$REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
     else
         echo -e "${RED}Error: wget or curl is not installed. Please install wget or curl and try again.${RESET}"
         exit 1
     fi
 }
 
+# Ensure wget or curl is installed
 if ! command_exists wget && ! command_exists curl; then
     echo -e "${RED}Error: wget or curl is not installed. Please install wget or curl and try again.${RESET}"
     exit 1
 fi
 
-# Fetch the list of releases
-echo "Fetching available versions..."
-VERSIONS=$(fetch_releases)
-if [ -z "$VERSIONS" ]; then
-    echo -e "${RED}Error: Failed to fetch available versions.${RESET}"
+# Fetch the latest release tag
+echo "Fetching the latest release..."
+LATEST_TAG=$(get_latest_release)
+if [ -z "$LATEST_TAG" ]; then
+    echo -e "${RED}Error: Failed to fetch the latest release.${RESET}"
     exit 1
 fi
 
-echo "Available versions:"
-echo "$VERSIONS" | nl -w 2 -s '. '
-echo -e "${BLUE}"
-read -rp "Enter the number of the version you want to install: " version_number
-echo -e "${RESET}"
-
-VERSION=$(echo "$VERSIONS" | sed -n "${version_number}p")
-if [ -z "$VERSION" ]; then
-    echo -e "${RED}Error: Invalid version selected.${RESET}"
-    exit 1
-fi
-
-RELEASE_URL="https://github.com/$REPO/releases/download/$VERSION/gysmo"
-CONFIG_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/config/config.json"
-SCHEMA_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/config/schema/config_schema.json"
-ASCII_URL="https://raw.githubusercontent.com/$REPO/refs/tags/$VERSION/src/ascii/gysmo"
+RELEASE_URL="https://github.com/$REPO/releases/download/$LATEST_TAG/gysmo"
+CONFIG_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/src/config/config.json"
+SCHEMA_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/src/config/schema/config_schema.json"
+ASCII_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/src/ascii/gysmo"
 
 # Create the necessary directory structure in ~/.config/gysmo
 echo "Setting up default templates in $HOME/.config/gysmo..."
@@ -98,23 +86,4 @@ if [ ! -f "$ASCII_FILE" ]; then
     fi
 fi
 
-# Download and install the binary
-echo "Downloading binary $RELEASE_URL..."
-if command_exists wget; then
-    wget -O gysmo "$RELEASE_URL"
-elif command_exists curl; then
-    curl -o gysmo "$RELEASE_URL"
-fi
-
-chmod +x gysmo
-
-mkdir -p "$BINARY_DIR"
-
-if ! mv gysmo "$INSTALL_PATH"; then
-    echo -e "${RED}Error: Failed to move the binary to $INSTALL_PATH.${RESET}"
-    exit 1
-fi
-
-echo -e "${BLUE}Binary Downloaded into ${BINARY_DIR}.${RESET}"
 echo -e "${GREEN}Installation completed successfully.${RESET}"
-echo -e "${BLUE}Please ensure $BINARY_DIR is in your PATH.${RESET}"

@@ -7,12 +7,20 @@ import (
 	"path/filepath"
 )
 
-func main() {
+const version = "0.1.5"
 
+func main() {
 	filename := flag.String("f", "config.json", "name of the config file in ~/.config/gysmo/")
 	useDataFile := flag.Bool("c", false, "use data file for all values")
+	showVersion := flag.Bool("v", false, "Show version of gysmo")
 
 	flag.Parse()
+
+	if *showVersion {
+		fmt.Printf("Version: %s\n", version)
+		return
+	}
+
 	workingPath := pkg.LoadWorkingPath()
 	configPath := filepath.Join(workingPath, "config", *filename)
 	schemaPath := filepath.Join(workingPath, "config", "schema", "config_schema.json")

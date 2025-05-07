@@ -234,12 +234,23 @@ func CopyFile(src, dst string) error {
 }
 
 func EnsureConfigFilesExist() error {
+
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		return err
+		panic(fmt.Sprintf("Failed to get user home directory: %v", err))
 	}
+
 	configDir := filepath.Join(homeDir, ".config", "gysmo")
-	shareDir := "/usr/share/gysmo/"
+	if os.Stat(configDir); os.IsNotExist(err) {
+		if err := os.MkdirAll(configDir, 0755); err != nil {
+			return err
+		}
+	}
+
+	shareDir := ""
+	if shareDir := os.Getenv("GYSMO_SHARE_PATH"); shareDir == "" {
+		shareDir = "/usr/share/gysmo"
+	}
 
 	files := []string{"config/config.json", "config/schema/config_schema.json", "ascii/gysmo"}
 

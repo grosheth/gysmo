@@ -48,21 +48,18 @@
 
 - [x] Fix padding with list columns. Colors break the alignment
 
-- [ ] Standardize way of building strings in menu_builder.go, I was all over the place
-
-- [ ] release-[v0.1.0-rc]
-
 - [x] Add Github tracking in README
 
 - [x] release [v0.1.0]
 
+- [ ] Removing relative path for ascii art
+
 - [ ] Review installation process
-  - Install in /usr/share/gysmo
-  - Gysmo looks up into /usr/share then copy into ~/.config if config is not already present
-  - Installation does not touch to home
 
 - [ ] Add to Nixpkgs
-  - [ ] Documentation
+  - [x] Documentation
+
+- [ ] release [v0.2.0]
 
 - [ ] Add to Home-manager
   - [ ] Documentation
@@ -71,9 +68,11 @@
   - [ ] weather api
   - [ ] github stats
 
-- [ ] release [v1.0.0]
-
 - [ ] image support
+
+- [ ] gif support
+
+- [ ] release [v1.0.0]
 
 - [ ] review "line" for header and footer in list menu
 
