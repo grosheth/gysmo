@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.0 (2025-05-07)
+
+### Feature
+- Changing Path for ascii file so it searches in /ascii by default
+- Adding a version flag
+
 ## v0.1.5 (2025-03-29)
 
 ### Fix

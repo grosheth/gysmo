@@ -338,7 +338,7 @@
     }
   ],
   "ascii": {
-    "path": "ascii/gysmo2",
+    "path": "gysmo2",
     "colors": "",
     "enabled": true,
     "horizontal_padding": 20,

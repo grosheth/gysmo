@@ -48,23 +48,18 @@
 
 - [x] Fix padding with list columns. Colors break the alignment
 
-- [ ] Standardize way of building strings in menu_builder.go, I was all over the place
-
-- [ ] release-[v0.1.0-rc]
-
-- [ ] Github action versioning Workflow
-  - [ ] Github action Build Go binary
-  - [ ] Github action Go test workflow
-  - [ ] CHANGELOG.md
-  - [ ] installation.sh
-  - [ ] README.md
-
 - [x] Add Github tracking in README
 
-- [ ] release [v0.1.0]
+- [x] release [v0.1.0]
 
-- [ ] Add to Nixpkgs
-  - [ ] Documentation
+- [x] Removing relative path for ascii art
+
+- [x] Review installation process
+
+- [x] Add to Nixpkgs
+  - [x] Documentation
+
+- [ ] release [v0.2.0]
 
 - [ ] Add to Home-manager
   - [ ] Documentation
@@ -74,6 +69,10 @@
   - [ ] github stats
 
 - [ ] image support
+
+- [ ] gif support
+
+- [ ] release [v1.0.0]
 
 - [ ] review "line" for header and footer in list menu
 
