@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-const version = "0.1.5"
+const version = "v0.2.0"
 
 func main() {
 	filename := flag.String("f", "config.json", "name of the config file in ~/.config/gysmo/")
@@ -17,13 +17,14 @@ func main() {
 	flag.Parse()
 
 	if *showVersion {
-		fmt.Printf("Version: %s\n", version)
+		fmt.Printf("%s\n", version)
 		return
 	}
 
 	workingPath := pkg.LoadWorkingPath()
 	configPath := filepath.Join(workingPath, "config", *filename)
 	schemaPath := filepath.Join(workingPath, "config", "schema", "config_schema.json")
+	asciiPath := filepath.Join(workingPath, "ascii")
 
 	if err := pkg.EnsureConfigFilesExist(); err != nil {
 		fmt.Println("Error ensuring config files exist:", err)
@@ -44,7 +45,7 @@ func main() {
 
 	var asciiArt string
 	if config.Ascii.Enabled {
-		asciiArt, err = pkg.ReadAsciiArt(filepath.Join(workingPath, config.Ascii.Path))
+		asciiArt, err = pkg.ReadAsciiArt(filepath.Join(asciiPath, config.Ascii.Path))
 		if err != nil {
 			fmt.Println("Error reading ASCII art:", err)
 			return
