@@ -52,11 +52,11 @@
 
 - [x] release [v0.1.0]
 
-- [ ] Removing relative path for ascii art
+- [x] Removing relative path for ascii art
 
-- [ ] Review installation process
+- [x] Review installation process
 
-- [ ] Add to Nixpkgs
+- [x] Add to Nixpkgs
   - [x] Documentation
 
 - [ ] release [v0.2.0]
