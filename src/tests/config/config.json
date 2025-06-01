@@ -1,364 +1,111 @@
 {
   "items": [
     {
-      "text": "OS ANSI Color",
-      "keyword": "os_ansi_color",
-      "icon": "",
-      "text_color": "red",
-      "value_color": "green",
-      "icon_color": "blue"
-    },
-    {
-      "text": "OS Pretty Name",
-      "keyword": "os_pretty_name",
-      "icon": "",
-      "text_color": "yellow",
-      "value_color": "blue",
-      "icon_color": "cyan"
-    },
-    {
-      "text": "OS Bug Report URL",
-      "keyword": "os_bug_report_url",
-      "icon": "",
-      "text_color": "purple",
-      "value_color": "white",
-      "icon_color": "red"
-    },
-    {
-      "text": "OS Build ID",
-      "keyword": "os_build_id",
-      "icon": "",
-      "text_color": "green",
-      "value_color": "yellow",
-      "icon_color": "blue"
-    },
-    {
-      "text": "OS CPE Name",
-      "keyword": "os_cpe_name",
-      "icon": "",
-      "text_color": "cyan",
-      "value_color": "purple",
-      "icon_color": "green"
-    },
-    {
-      "text": "OS Default Hostname",
-      "keyword": "os_default_hostname",
-      "icon": "",
-      "text_color": "blue",
-      "value_color": "red",
-      "icon_color": "yellow"
-    },
-    {
-      "text": "OS Documentation URL",
-      "keyword": "os_documentation_url",
-      "icon": "",
-      "text_color": "white",
-      "value_color": "cyan",
-      "icon_color": "purple"
-    },
-    {
-      "text": "OS Home URL",
-      "keyword": "os_home_url",
-      "icon": "",
-      "text_color": "red",
-      "value_color": "green",
-      "icon_color": "blue"
-    },
-    {
-      "text": "OS ID",
-      "keyword": "os_id",
-      "icon": "",
-      "text_color": "yellow",
-      "value_color": "blue",
-      "icon_color": "cyan"
-    },
-    {
-      "text": "OS ID Like",
-      "keyword": "os_id_like",
-      "icon": "",
-      "text_color": "purple",
-      "value_color": "white",
-      "icon_color": "red"
-    },
-    {
-      "text": "OS Image ID",
-      "keyword": "os_image_id",
-      "icon": "",
-      "text_color": "green",
-      "value_color": "yellow",
-      "icon_color": "blue"
-    },
-    {
-      "text": "OS Image Version",
-      "keyword": "os_image_version",
-      "icon": "",
-      "text_color": "cyan",
-      "value_color": "purple",
-      "icon_color": "green"
-    },
-    {
-      "text": "OS Version",
-      "keyword": "os_version",
-      "icon": "",
-      "text_color": "blue",
-      "value_color": "red",
-      "icon_color": "yellow"
-    },
-    {
-      "text": "OS Logo",
-      "keyword": "os_logo",
-      "icon": "",
-      "text_color": "white",
-      "value_color": "cyan",
-      "icon_color": "purple"
-    },
-    {
-      "text": "OS Name",
-      "keyword": "os_name",
-      "icon": "",
-      "text_color": "red",
-      "value_color": "green",
-      "icon_color": "blue"
-    },
-    {
-      "text": "OS Support URL",
-      "keyword": "os_support_url",
-      "icon": "",
-      "text_color": "yellow",
-      "value_color": "blue",
-      "icon_color": "cyan"
-    },
-    {
-      "text": "OS Variant",
-      "keyword": "os_variant",
-      "icon": "",
-      "text_color": "purple",
-      "value_color": "white",
-      "icon_color": "red"
-    },
-    {
-      "text": "OS Variant ID",
-      "keyword": "os_variant_id",
-      "icon": "",
-      "text_color": "green",
-      "value_color": "yellow",
-      "icon_color": "blue"
-    },
-    {
-      "text": "OS Vendor Name",
-      "keyword": "os_vendor_name",
-      "icon": "",
-      "text_color": "cyan",
-      "value_color": "purple",
-      "icon_color": "green"
-    },
-    {
-      "text": "OS Vendor URL",
-      "keyword": "os_vendor_url",
-      "icon": "",
-      "text_color": "blue",
-      "value_color": "red",
-      "icon_color": "yellow"
-    },
-    {
-      "text": "OS Version Codename",
-      "keyword": "os_version_codename",
-      "icon": "",
-      "text_color": "white",
-      "value_color": "cyan",
-      "icon_color": "purple"
-    },
-    {
-      "text": "OS Version ID",
-      "keyword": "os_version_id",
-      "icon": "",
-      "text_color": "red",
-      "value_color": "green",
-      "icon_color": "blue"
-    },
-    {
       "text": "User",
       "keyword": "user",
       "icon": "",
-      "text_color": "yellow",
-      "value_color": "blue",
-      "icon_color": "cyan"
-    },
-    {
-      "text": "Hostname",
-      "keyword": "hostname",
-      "icon": "",
-      "text_color": "purple",
-      "value_color": "white",
+      "value_color": "red",
+      "text_color": "",
       "icon_color": "red"
     },
     {
       "text": "Kernel",
       "keyword": "kernel",
-      "icon": "",
-      "text_color": "green",
-      "value_color": "yellow",
-      "icon_color": "blue"
-    },
-    {
-      "text": "Shell",
-      "keyword": "shell",
-      "icon": "",
-      "text_color": "cyan",
-      "value_color": "purple",
-      "icon_color": "green"
-    },
-    {
-      "text": "Uptime",
-      "keyword": "uptime",
-      "icon": "",
-      "text_color": "blue",
-      "value_color": "red",
-      "icon_color": "yellow"
-    },
-    {
-      "text": "Desktop Manager",
-      "keyword": "dm",
-      "icon": "",
-      "text_color": "white",
+      "icon": "󰌽",
       "value_color": "cyan",
-      "icon_color": "purple"
+      "text_color": "",
+      "icon_color": "cyan"
+    },
+    {
+      "text": "WM",
+      "keyword": "wm",
+      "icon": "󱂬",
+      "value_color": "yellow",
+      "text_color": "",
+      "icon_color": "yellow"
     },
     {
       "text": "GPU",
       "keyword": "gpu",
-      "icon": "",
-      "text_color": "red",
+      "icon": "",
       "value_color": "green",
+      "text_color": "",
+      "icon_color": "green"
+    },
+    {
+      "text": "Term",
+      "keyword": "term",
+      "icon": "",
+      "value_color": "blue",
+      "text_color": "",
       "icon_color": "blue"
     },
     {
       "text": "CPU",
-      "keyword": "cpu",
-      "icon": "",
-      "text_color": "yellow",
-      "value_color": "blue",
+      "value": "Intel(R) Core(TM) i7-10700K",
+      "icon": "",
+      "value_color": "red",
+      "text_color": "",
+      "icon_color": "red"
+    },
+    {
+      "text": "OS",
+      "value": "NixOs",
+      "icon": "",
+      "value_color": "cyan",
+      "text_color": "",
       "icon_color": "cyan"
     },
     {
       "text": "RAM",
       "keyword": "ram",
-      "icon": "",
-      "text_color": "purple",
-      "value_color": "white",
-      "icon_color": "red"
-    },
-    {
-      "text": "Drive",
-      "keyword": "drive",
-      "icon": "",
-      "text_color": "green",
+      "icon": "",
       "value_color": "yellow",
-      "icon_color": "blue"
-    },
-    {
-      "text": "GPU Usage",
-      "keyword": "gpu %",
-      "icon": "",
-      "text_color": "cyan",
-      "value_color": "purple",
-      "icon_color": "green"
-    },
-    {
-      "text": "CPU Usage",
-      "keyword": "cpu %",
-      "icon": "",
-      "text_color": "blue",
-      "value_color": "red",
+      "text_color": "",
       "icon_color": "yellow"
     },
     {
-      "text": "RAM Usage",
-      "keyword": "ram %",
-      "icon": "",
-      "text_color": "white",
-      "value_color": "cyan",
-      "icon_color": "purple"
-    },
-    {
-      "text": "Drive Usage",
-      "keyword": "drive %",
-      "icon": "",
-      "text_color": "red",
+      "text": "Shell",
+      "value": "zsh",
+      "icon": "",
       "value_color": "green",
-      "icon_color": "blue"
-    },
-    {
-      "text": "Terminal",
-      "keyword": "term",
-      "icon": "",
-      "text_color": "yellow",
-      "value_color": "blue",
-      "icon_color": "cyan"
-    },
-    {
-      "text": "Processes",
-      "keyword": "processes",
-      "icon": "",
-      "text_color": "purple",
-      "value_color": "white",
-      "icon_color": "red"
-    },
-    {
-      "text": "Window Manager",
-      "keyword": "wm",
-      "icon": "",
-      "text_color": "green",
-      "value_color": "yellow",
-      "icon_color": "blue"
-    },
-    {
-      "text": "IP Address",
-      "keyword": "ip",
-      "icon": "",
-      "text_color": "cyan",
-      "value_color": "purple",
+      "text_color": "",
       "icon_color": "green"
     },
     {
-      "text": "Public IP Address",
-      "keyword": "public ip",
-      "icon": "",
-      "text_color": "blue",
-      "value_color": "red",
-      "icon_color": "yellow"
-    },
-    {
-      "text": "Resolution",
-      "keyword": "resolution",
-      "icon": "",
-      "text_color": "white",
-      "value_color": "cyan",
-      "icon_color": "purple"
+      "text": "Uptime",
+      "keyword": "uptime",
+      "icon": "󱑆",
+      "value_color": "blue",
+      "text_color": "",
+      "icon_color": "blue"
     }
   ],
   "ascii": {
-    "path": "ascii/gysmo",
-    "colors": "red",
+    "path": "gysmo",
+    "colors": "",
     "enabled": true,
+    "horizontal_padding": 2,
+    "vertical_padding": 0,
     "position": "top"
   },
   "header": {
-    "text": "Header",
-    "text_color": "white",
-    "line_color": "red",
+    "enabled": false,
+    "text": "NixOS",
+    "text_color": "purple",
     "line": true,
-    "enabled": true
+    "line_color": ""
   },
   "footer": {
-    "text": "Footer",
-    "text_color": "white",
-    "line_color": "red",
+    "enabled": false,
+    "text": "gysmo",
+    "text_color": "blue",
     "line": true,
-    "enabled": true
+    "line_color": ""
   },
   "general": {
     "menu_type": "box",
-    "columns": false
+    "columns": false,
+    "menu_padding": 2
   }
 }

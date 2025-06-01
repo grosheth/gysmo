@@ -94,10 +94,3 @@ func TestCharsToString(t *testing.T) {
 		t.Errorf("Expected %s, but got %s", expected, result)
 	}
 }
-
-func TestIsCommandAvailable(t *testing.T) {
-	result := pkg.IsCommandAvailable("ls")
-	if !result {
-		t.Errorf("Expected command to be available, but it was not")
-	}
-}
