@@ -3,7 +3,7 @@
 # gysmo 📟
 
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
-[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.2.0)
+[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.2.1)
 [![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/main?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/main)
 
 
@@ -31,25 +31,6 @@ The installation/update script does the following
 
 ```shell
 wget https://raw.githubusercontent.com/grosheth/gysmo/main/installation.sh && sh installation.sh && rm installation.sh
-```
-
-### Home-manager (Package is in Nixpkgs)
-You can add this to your home-manager configuration to install gysmo..
-
-```nix
-{ pkgs, ... }:
-{
-  programs.gysmo = {
-    enable = true;
-  };
-}
-```
-
-### Nixpkgs (Home-manager is the supported way to install)
-⚠️ **WARNING**: when installing directly from nixpkgs without home-manager run the following to make sure everything is correctly installed.
-
-```shell
-wget https://raw.githubusercontent.com/grosheth/gysmo/main/nix_installation.sh && sh nix_installation.sh && rm nix_installation.sh
 ```
 
 ### Build From Source
@@ -424,18 +405,15 @@ the ascii section is a simple dictionnary with the following options:
 </details>
 
 ## Examples
-You can get creative with Gysmo and implement it with some API's. I have made two very simple examples in the [extras](extras/). folder.
+You can get creative with Gysmo and implement it with some API's.
 
 This one generates a config based on a user's Github languages usage.
 ![Github Stats](screenshot/github-stats.png)
-[Example here](extras/github-stats)
 
 - GitHub stats (stars, forks, issues, pull requests)
 
 Here is one that generates a config based on the current weather in a selected location.
 ![Github Stats](screenshot/weather.png)
-
-[Example here](extras/weather)
 
 ## Other Information
 
