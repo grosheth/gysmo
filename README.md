@@ -405,18 +405,15 @@ the ascii section is a simple dictionnary with the following options:
 </details>
 
 ## Examples
-You can get creative with Gysmo and implement it with some API's. I have made two very simple examples in the [extras](extras/). folder.
+You can get creative with Gysmo and implement it with some API's.
 
 This one generates a config based on a user's Github languages usage.
 ![Github Stats](screenshot/github-stats.png)
-[Example here](extras/github-stats)
 
 - GitHub stats (stars, forks, issues, pull requests)
 
 Here is one that generates a config based on the current weather in a selected location.
 ![Github Stats](screenshot/weather.png)
-
-[Example here](extras/weather)
 
 ## Other Information
 

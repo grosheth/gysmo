@@ -6,6 +6,7 @@
 - Fixes done to implement gysmo into Nixpkgs.
 - Correcting sysinfo tests so they succeed whenever the value returned by the functions are strings. It does not need to be more specific than this.
 - moving EnsureConfigFileExists to main.go instead of having it in the LoadConfig function. This should help mocking the tests.
+- removing extras folder from this repo.
 
 ## v0.2.0 (2025-05-07)
 
