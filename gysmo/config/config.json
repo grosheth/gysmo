@@ -82,11 +82,7 @@
     }
   ],
   "ascii": {
-<<<<<<< HEAD
-    "path": "ascii/nixos",
-=======
-    "path": "ascii/gysmo",
->>>>>>> refs/rewritten/main
+    "path": "gysmo",
     "colors": "",
     "enabled": true,
     "horizontal_padding": 2,
