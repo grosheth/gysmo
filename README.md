@@ -42,9 +42,9 @@ This also allows you to understand how the project works a little better.
 
 ```shell
 git clone https://github.com/grosheth/gysmo.git
-cd gysmo/src
+cd gysmo/gysmo
 
-go build -o gysmo
+go build
 
 mkdir ~/.config/gysmo
 cp -R config ~/.config/gysmo/

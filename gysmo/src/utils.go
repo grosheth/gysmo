@@ -1,4 +1,4 @@
-package pkg
+package src
 
 import (
 	"encoding/json"
@@ -216,8 +216,8 @@ func IsLine(s string) bool {
 }
 
 // New functions for copying files and checking their existence
-func CopyFile(src, dst string) error {
-	sourceFile, err := os.Open(src)
+func CopyFile(gysmo, dst string) error {
+	sourceFile, err := os.Open(gysmo)
 	if err != nil {
 		return err
 	}

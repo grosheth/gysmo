@@ -2,7 +2,7 @@ package tests
 
 import (
 	"fmt"
-	"gysmo/src/pkg"
+	"gysmo/gysmo/src"
 	"strings"
 	"testing"
 )
@@ -21,7 +21,7 @@ func TestBuildBoxMenuWithAsciiTop(t *testing.T) {
 	config := GetConfigWithAscii("top")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildBoxMenu(items, asciiArt, config)
+	menu := src.BuildBoxMenu(items, asciiArt, config)
 
 	expectedMenu := "  ASCII ART\n" +
 		"\n" +
@@ -35,8 +35,8 @@ func TestBuildBoxMenuWithAsciiTop(t *testing.T) {
 		" ╰──────────╯"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -48,7 +48,7 @@ func TestBuildBoxMenuWithAsciiBottom(t *testing.T) {
 	config := GetConfigWithAscii("bottom")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildBoxMenu(items, asciiArt, config)
+	menu := src.BuildBoxMenu(items, asciiArt, config)
 
 	expectedMenu := " ╭──────────╮\n" +
 		" │ Header   │\n" +
@@ -61,8 +61,8 @@ func TestBuildBoxMenuWithAsciiBottom(t *testing.T) {
 		"  ASCII ART\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -74,7 +74,7 @@ func TestBuildBoxMenuWithAsciiRight(t *testing.T) {
 	config := GetConfigWithAscii("right")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildBoxMenu(items, asciiArt, config)
+	menu := src.BuildBoxMenu(items, asciiArt, config)
 
 	expectedMenu := " ╭──────────╮\n" +
 		" │ Header   │             ASCII ART\n" +
@@ -86,8 +86,8 @@ func TestBuildBoxMenuWithAsciiRight(t *testing.T) {
 		" ╰──────────╯\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -99,7 +99,7 @@ func TestBuildBoxMenuWithAsciiLeft(t *testing.T) {
 	config := GetConfigWithAscii("left")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildBoxMenu(items, asciiArt, config)
+	menu := src.BuildBoxMenu(items, asciiArt, config)
 
 	expectedMenu := "                        ╭──────────╮\n" +
 		"          ASCII ART     │ Header   │\n" +
@@ -111,8 +111,8 @@ func TestBuildBoxMenuWithAsciiLeft(t *testing.T) {
 		"                        ╰──────────╯\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -126,7 +126,7 @@ func TestBuildBoxMenuWithAsciiPadding(t *testing.T) {
 	config.Ascii.VerticalPadding = 2
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildBoxMenu(items, asciiArt, config)
+	menu := src.BuildBoxMenu(items, asciiArt, config)
 
 	expectedMenu := "\n\n" +
 		"    ASCII ART    \n\n" +
@@ -140,8 +140,8 @@ func TestBuildBoxMenuWithAsciiPadding(t *testing.T) {
 		" ╰──────────╯\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -153,7 +153,7 @@ func TestBuildListMenuWithAsciiTop(t *testing.T) {
 	config := GetConfigWithAscii("top")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildListMenu(items, asciiArt, config)
+	menu := src.BuildListMenu(items, asciiArt, config)
 
 	expectedMenu := "  ASCII ART\n" +
 		"\n" +
@@ -165,8 +165,8 @@ func TestBuildListMenuWithAsciiTop(t *testing.T) {
 		"Footer\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -178,7 +178,7 @@ func TestBuildListMenuWithAsciiBottom(t *testing.T) {
 	config := GetConfigWithAscii("bottom")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildListMenu(items, asciiArt, config)
+	menu := src.BuildListMenu(items, asciiArt, config)
 
 	expectedMenu := "Header\n" +
 		"──────────\n" +
@@ -189,8 +189,8 @@ func TestBuildListMenuWithAsciiBottom(t *testing.T) {
 		"  ASCII ART\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -202,7 +202,7 @@ func TestBuildListMenuWithAsciiRight(t *testing.T) {
 	config := GetConfigWithAscii("right")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildListMenu(items, asciiArt, config)
+	menu := src.BuildListMenu(items, asciiArt, config)
 
 	expectedMenu := "Header\n" +
 		"──────────                      ASCII ART\n" +
@@ -212,8 +212,8 @@ func TestBuildListMenuWithAsciiRight(t *testing.T) {
 		"Footer\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -225,7 +225,7 @@ func TestBuildListMenuWithAsciiLeft(t *testing.T) {
 	config := GetConfigWithAscii("left")
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildListMenu(items, asciiArt, config)
+	menu := src.BuildListMenu(items, asciiArt, config)
 
 	expectedMenu := "                       Header\n" +
 		"          ASCII ART   ──────────\n" +
@@ -235,8 +235,8 @@ func TestBuildListMenuWithAsciiLeft(t *testing.T) {
 		"                       Footer\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -249,7 +249,7 @@ func TestBuildListMenuWithColumns(t *testing.T) {
 	config.General.Columns = true
 	items := GetTestItems()
 	asciiArt := "ASCII ART"
-	menu := pkg.BuildListMenu(items, asciiArt, config)
+	menu := src.BuildListMenu(items, asciiArt, config)
 
 	expectedMenu := "  ASCII ART\n" +
 		"Header\n" +
@@ -259,8 +259,8 @@ func TestBuildListMenuWithColumns(t *testing.T) {
 		"Footer\n"
 
 	// Strip ANSI codes and normalize strings
-	normalizedMenu := normalizeString(pkg.StripAnsiCodes(menu))
-	normalizedExpectedMenu := normalizeString(pkg.StripAnsiCodes(expectedMenu))
+	normalizedMenu := normalizeString(src.StripAnsiCodes(menu))
+	normalizedExpectedMenu := normalizeString(src.StripAnsiCodes(expectedMenu))
 
 	if normalizedMenu != normalizedExpectedMenu {
 		t.Errorf("Expected menu:\n%s\nGot:\n%s", expectedMenu, menu)
@@ -270,9 +270,9 @@ func TestBuildListMenuWithColumns(t *testing.T) {
 
 // Helper functions to Get configurations and items for tests
 
-func GetConfigWithAscii(position string) pkg.Config {
-	return pkg.Config{
-		Items: []pkg.ConfigItem{
+func GetConfigWithAscii(position string) src.Config {
+	return src.Config{
+		Items: []src.ConfigItem{
 			{Text: "user", Keyword: "user", Icon: "", TextColor: "", ValueColor: "", IconColor: ""},
 			{Text: "shell", Keyword: "shell", Icon: "", TextColor: "", ValueColor: "", IconColor: ""},
 		},
@@ -329,9 +329,9 @@ func GetConfigWithAscii(position string) pkg.Config {
 	}
 }
 
-func GetConfigWithHeader() pkg.Config {
-	return pkg.Config{
-		Items: []pkg.ConfigItem{
+func GetConfigWithHeader() src.Config {
+	return src.Config{
+		Items: []src.ConfigItem{
 			{Text: "user", Keyword: "user", Icon: "", TextColor: "red", ValueColor: "green", IconColor: "blue"},
 			{Text: "shell", Keyword: "shell", Icon: "", TextColor: "yellow", ValueColor: "blue", IconColor: "cyan"},
 		},
@@ -388,9 +388,9 @@ func GetConfigWithHeader() pkg.Config {
 	}
 }
 
-func GetConfigWithFooter() pkg.Config {
-	return pkg.Config{
-		Items: []pkg.ConfigItem{
+func GetConfigWithFooter() src.Config {
+	return src.Config{
+		Items: []src.ConfigItem{
 			{Text: "user", Keyword: "user", Icon: "", TextColor: "red", ValueColor: "green", IconColor: "blue"},
 			{Text: "shell", Keyword: "shell", Icon: "", TextColor: "yellow", ValueColor: "blue", IconColor: "cyan"},
 		},

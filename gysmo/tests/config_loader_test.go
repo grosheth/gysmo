@@ -3,7 +3,7 @@ package tests
 import (
 	"encoding/json"
 	"fmt"
-	"gysmo/src/pkg"
+	"gysmo/gysmo/src"
 	"io"
 	"os"
 	"testing"
@@ -39,10 +39,10 @@ func mockNewDecoder(file *os.File) *json.Decoder {
 
 func TestLoadConfig(t *testing.T) {
 	// Override the actual functions with the mock functions
-	pkg.OpenFile = mockOpen
-	pkg.NewDecoder = mockNewDecoder
+	src.OpenFile = mockOpen
+	src.NewDecoder = mockNewDecoder
 
-	config, err := pkg.LoadConfig("config/config.json")
+	config, err := src.LoadConfig("config/config.json")
 	if err != nil {
 		t.Fatalf("Expected no error, but got %v", err)
 	}

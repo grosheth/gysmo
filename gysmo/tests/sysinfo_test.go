@@ -1,14 +1,14 @@
 package tests
 
 import (
-	"gysmo/src/pkg"
+	"gysmo/gysmo/src"
 	"reflect"
 	"testing"
 )
 
 // Test GetCPUInfo function
 func TestGetCPUInfo(t *testing.T) {
-	cpuInfo := pkg.GetCPUInfo()
+	cpuInfo := src.GetCPUInfo()
 
 	if reflect.TypeOf(cpuInfo).Kind() != reflect.String {
 		t.Errorf("Expected CPU info to be of type string, got '%T'", cpuInfo)
@@ -17,7 +17,7 @@ func TestGetCPUInfo(t *testing.T) {
 
 // Test GetRAMUsage function with tolerance range
 func TestGetRAMUsage(t *testing.T) {
-	ramUsage := pkg.GetRAMUsage()
+	ramUsage := src.GetRAMUsage()
 	if reflect.TypeOf(ramUsage).Kind() != reflect.String {
 		t.Errorf("Expected RAM Usage to be of type string, got '%T'", ramUsage)
 	}
@@ -25,7 +25,7 @@ func TestGetRAMUsage(t *testing.T) {
 
 // Test GetRAMInfo function with possible sizes
 func TestGetRAMInfo(t *testing.T) {
-	ramInfo := pkg.GetRAMInfo()
+	ramInfo := src.GetRAMInfo()
 	if reflect.TypeOf(ramInfo).Kind() != reflect.String {
 		t.Errorf("Expected RAM info to be of type string, got '%T'", ramInfo)
 	}
@@ -33,7 +33,7 @@ func TestGetRAMInfo(t *testing.T) {
 
 // Test GetDriveInfo function
 func TestGetDriveInfo(t *testing.T) {
-	driveInfo := pkg.GetDriveInfo()
+	driveInfo := src.GetDriveInfo()
 	if reflect.TypeOf(driveInfo).Kind() != reflect.String {
 		t.Errorf("Expected Drive Info to be of type string, got '%T'", driveInfo)
 	}
@@ -41,7 +41,7 @@ func TestGetDriveInfo(t *testing.T) {
 
 // Test GetDriveUsage function with tolerance range
 func TestGetDriveUsage(t *testing.T) {
-	driveUsage := pkg.GetDriveUsage()
+	driveUsage := src.GetDriveUsage()
 	if reflect.TypeOf(driveUsage).Kind() != reflect.String {
 		t.Errorf("Expected Drive Usage to be of type string, got '%T'", driveUsage)
 	}
@@ -49,7 +49,7 @@ func TestGetDriveUsage(t *testing.T) {
 
 // Test GetCPUUsage function with tolerance range
 func TestGetCPUUsage(t *testing.T) {
-	cpuUsage := pkg.GetCPUUsage()
+	cpuUsage := src.GetCPUUsage()
 
 	if reflect.TypeOf(cpuUsage).Kind() != reflect.String {
 		t.Errorf("Expected CPU Usage to be of type string, got '%T'", cpuUsage)
@@ -57,7 +57,7 @@ func TestGetCPUUsage(t *testing.T) {
 }
 
 func TestGetGPUInfo(t *testing.T) {
-	gpuInfo := pkg.GetGPUInfo()
+	gpuInfo := src.GetGPUInfo()
 	if reflect.TypeOf(gpuInfo).Kind() != reflect.String {
 		t.Errorf("Expected GPU info to be of type string, got '%T'", gpuInfo)
 	}
@@ -65,7 +65,7 @@ func TestGetGPUInfo(t *testing.T) {
 
 // Test GetGPUUsage function with tolerance range
 func TestGetGPUUsage(t *testing.T) {
-	gpuUsage := pkg.GetGPUUsage()
+	gpuUsage := src.GetGPUUsage()
 
 	if reflect.TypeOf(gpuUsage).Kind() != reflect.String {
 		t.Errorf("Expected GPU Usage to be of type string, got '%T'", gpuUsage)
@@ -74,7 +74,7 @@ func TestGetGPUUsage(t *testing.T) {
 
 // Test GetUptime function
 func TestGetUptime(t *testing.T) {
-	uptime := pkg.GetUptime()
+	uptime := src.GetUptime()
 
 	if reflect.TypeOf(uptime).Kind() != reflect.String {
 		t.Errorf("Expected Uptime to be of type string, got '%T'", uptime)
@@ -83,7 +83,7 @@ func TestGetUptime(t *testing.T) {
 
 // Test GetResolution function with format validation
 func TestGetResolution(t *testing.T) {
-	resolution := pkg.GetResolution()
+	resolution := src.GetResolution()
 
 	if reflect.TypeOf(resolution).Kind() != reflect.String {
 		t.Errorf("Expected resolution to be of type string, got '%T'", resolution)
@@ -92,7 +92,7 @@ func TestGetResolution(t *testing.T) {
 
 // Test GetPublicIP function
 func TestGetPublicIP(t *testing.T) {
-	publicIP := pkg.GetPublicIP()
+	publicIP := src.GetPublicIP()
 	if reflect.TypeOf(publicIP).Kind() != reflect.String {
 		t.Errorf("Expected public IP to be of type string, got '%T'", publicIP)
 	}

@@ -2,7 +2,7 @@ package tests
 
 import (
 	"fmt"
-	"gysmo/src/pkg"
+	"gysmo/gysmo/src"
 	"os"
 	"strings"
 	"testing"
@@ -18,9 +18,9 @@ func mockOpenAscii(name string) (*os.File, error) {
 
 func TestReadAsciiArt(t *testing.T) {
 	// Override the actual functions with the mock functions
-	pkg.OpenFile = mockOpenAscii
+	src.OpenFile = mockOpenAscii
 
-	asciiArt, err := pkg.ReadAsciiArt("ascii/gysmo")
+	asciiArt, err := src.ReadAsciiArt("ascii/gysmo")
 	if err != nil {
 		t.Fatalf("Expected no error, but got %v", err)
 	}

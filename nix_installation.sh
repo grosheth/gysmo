@@ -47,9 +47,9 @@ if [ -z "$LATEST_TAG" ]; then
 fi
 
 RELEASE_URL="https://github.com/$REPO/releases/download/$LATEST_TAG/gysmo"
-CONFIG_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/src/config/config.json"
-SCHEMA_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/src/config/schema/config_schema.json"
-ASCII_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/src/ascii/gysmo"
+CONFIG_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/gysmo/config/config.json"
+SCHEMA_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/gysmo/config/schema/config_schema.json"
+ASCII_URL="https://raw.githubusercontent.com/$REPO/$LATEST_TAG/gysmo/ascii/gysmo"
 
 # Create the necessary directory structure in ~/.config/gysmo
 echo "Setting up default templates in $HOME/.config/gysmo..."
