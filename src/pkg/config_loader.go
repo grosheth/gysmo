@@ -58,11 +58,6 @@ type Config struct {
 func LoadConfig(filename string) (Config, error) {
 	var config Config
 
-	// Ensure config files exist
-	if err := EnsureConfigFilesExist(); err != nil {
-		return config, fmt.Errorf("error ensuring config files exist: %w", err)
-	}
-
 	file, err := os.Open(filename)
 	if err != nil {
 		return config, fmt.Errorf("error opening config file: %w", err)

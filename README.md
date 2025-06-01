@@ -33,25 +33,6 @@ The installation/update script does the following
 wget https://raw.githubusercontent.com/grosheth/gysmo/main/installation.sh && sh installation.sh && rm installation.sh
 ```
 
-### Home-manager (Package is in Nixpkgs)
-You can add this to your home-manager configuration to install gysmo..
-
-```nix
-{ pkgs, ... }:
-{
-  programs.gysmo = {
-    enable = true;
-  };
-}
-```
-
-### Nixpkgs (Home-manager is the supported way to install)
-⚠️ **WARNING**: when installing directly from nixpkgs without home-manager run the following to make sure everything is correctly installed.
-
-```shell
-wget https://raw.githubusercontent.com/grosheth/gysmo/main/nix_installation.sh && sh nix_installation.sh && rm nix_installation.sh
-```
-
 ### Build From Source
 `
 You will need to have Go installed for this.
