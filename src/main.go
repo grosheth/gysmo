@@ -37,6 +37,13 @@ func main() {
 		return
 	}
 
+	// Ensure config files exist
+	err = pkg.EnsureConfigFilesExist()
+	if err != nil {
+		fmt.Println("No Config file found.", err)
+		return
+	}
+
 	config, err := pkg.LoadConfig(configPath)
 	if err != nil {
 		fmt.Println("Error loading config.json:", err)

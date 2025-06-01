@@ -51,7 +51,7 @@ func TestLoadConfig(t *testing.T) {
 		t.Errorf("Expected items to be loaded, but got none")
 	}
 
-	expectedAsciiPath := "ascii/gysmo"
+	expectedAsciiPath := "gysmo"
 	if config.Ascii.Path != expectedAsciiPath {
 		t.Errorf("Expected ASCII path to be %s, but got %s", expectedAsciiPath, config.Ascii.Path)
 	}
