@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-const version = "v0.2.0"
+const version = "v0.2.1"
 
 func main() {
 	filename := flag.String("f", "config.json", "name of the config file in ~/.config/gysmo/")
