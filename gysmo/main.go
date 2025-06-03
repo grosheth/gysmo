@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gysmo/src/pkg"
+	"gysmo/gysmo/src"
 	"path/filepath"
 )
 
-const version = "v0.2.0"
+const version = "v0.2.1"
 
 func main() {
 	filename := flag.String("f", "config.json", "name of the config file in ~/.config/gysmo/")
@@ -21,30 +21,30 @@ func main() {
 		return
 	}
 
-	workingPath := pkg.LoadWorkingPath()
+	workingPath := src.LoadWorkingPath()
 	configPath := filepath.Join(workingPath, "config", *filename)
 	schemaPath := filepath.Join(workingPath, "config", "schema", "config_schema.json")
 	asciiPath := filepath.Join(workingPath, "ascii")
 
-	if err := pkg.EnsureConfigFilesExist(); err != nil {
+	if err := src.EnsureConfigFilesExist(); err != nil {
 		fmt.Println("Error ensuring config files exist:", err)
 		return
 	}
 
-	err := pkg.ValidateJsonConfig(configPath, schemaPath)
+	err := src.ValidateJsonConfig(configPath, schemaPath)
 	if err != nil {
 		fmt.Println("Error validating config.json:", err)
 		return
 	}
 
 	// Ensure config files exist
-	err = pkg.EnsureConfigFilesExist()
+	err = src.EnsureConfigFilesExist()
 	if err != nil {
 		fmt.Println("No Config file found.", err)
 		return
 	}
 
-	config, err := pkg.LoadConfig(configPath)
+	config, err := src.LoadConfig(configPath)
 	if err != nil {
 		fmt.Println("Error loading config.json:", err)
 		return
@@ -52,7 +52,7 @@ func main() {
 
 	var asciiArt string
 	if config.Ascii.Enabled {
-		asciiArt, err = pkg.ReadAsciiArt(filepath.Join(asciiPath, config.Ascii.Path))
+		asciiArt, err = src.ReadAsciiArt(filepath.Join(asciiPath, config.Ascii.Path))
 		if err != nil {
 			fmt.Println("Error reading ASCII art:", err)
 			return
@@ -62,11 +62,11 @@ func main() {
 	var menu string
 	switch config.General.MenuType {
 	case "box":
-		menu = pkg.BuildBoxMenu(pkg.MenuItems(config, *useDataFile), asciiArt, config)
+		menu = src.BuildBoxMenu(src.MenuItems(config, *useDataFile), asciiArt, config)
 	case "list":
-		menu = pkg.BuildListMenu(pkg.MenuItems(config, *useDataFile), asciiArt, config)
+		menu = src.BuildListMenu(src.MenuItems(config, *useDataFile), asciiArt, config)
 	default:
-		menu = pkg.BuildBoxMenu(pkg.MenuItems(config, *useDataFile), asciiArt, config)
+		menu = src.BuildBoxMenu(src.MenuItems(config, *useDataFile), asciiArt, config)
 	}
 	fmt.Println(menu)
 }

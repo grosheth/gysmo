@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Go binary
         run: |
-          cd src
+          cd gysmo
           go build -o gysmo
           chmod +x gysmo
           pwd
@@ -32,7 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=$(cat VERSION)
-          cd src
+          cd gysmo
           gh release create "$VERSION" \
               --repo "$GITHUB_REPOSITORY" \
               --title "$VERSION" \
