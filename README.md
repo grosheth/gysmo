@@ -19,12 +19,7 @@ gysmo is not intended to be an accurate system information tool. There are many 
 
 ## 📥 Installation
 
-## Post-Install script when installing with Nix (optional)
-Since gysmo is meant to be used as a user binary, the installation done from nixpkgs should not touch your home configuration. (a home-manager module is on the way)
-This means you should either create the default configs or run the nix_installation.sh script to get a basic config.
-```
-wget https://raw.githubusercontent.com/grosheth/gysmo/main/nix_installation.sh && sh nix_installation.sh && rm nix_installation.sh
-```
+## Installing with Nix Flake
 
 ### Use the installation script (RECOMMENDED)
 Recommended for most Linux Distros.
@@ -81,6 +76,17 @@ $HOME/
 │           └── data.json
 └── bin/
     └── gysmo
+```
+
+## Post-Install script when installing with Nix. (Run Once)
+Since gysmo is meant to be used as a user binary, the installation done from nixpkgs should not touch your home configuration.
+This means you should either create the default configs or run the nix_installation.sh script to get a basic config.
+```
+wget https://raw.githubusercontent.com/grosheth/gysmo/main/nix_installation.sh && sh nix_installation.sh && rm nix_installation.sh
+```
+
+## Nix configuration example
+```
 ```
 
 
