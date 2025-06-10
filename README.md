@@ -19,7 +19,21 @@ gysmo is not intended to be an accurate system information tool. There are many 
 
 ## 📥 Installation
 
-## Installing with Nix Flake
+### Use the installation script (RECOMMENDED)
+Recommended for most Linux Distros.
+
+The installation/update script does the following
+1. Download the binary
+2. Create the directory structure ~/.config/gysmo/... and ~/.local/bin
+3. Copy the template config.json file if it doesn't exist (don't want to overwrite your config in an update)
+4. Copy the schema validator file
+5. Copy a sample ASCII art if it doesn't exist
+
+```shell
+wget https://raw.githubusercontent.com/grosheth/gysmo/main/installation.sh && sh installation.sh && rm installation.sh
+```
+
+### Installing with Nix Flake
 
 ```nix
   inputs = {
@@ -46,20 +60,6 @@ gysmo is not intended to be an accurate system information tool. There are many 
       };
     };
   };
-```
-
-### Use the installation script (RECOMMENDED)
-Recommended for most Linux Distros.
-
-The installation/update script does the following
-1. Download the binary
-2. Create the directory structure ~/.config/gysmo/... and ~/.local/bin
-3. Copy the template config.json file if it doesn't exist (don't want to overwrite your config in an update)
-4. Copy the schema validator file
-5. Copy a sample ASCII art if it doesn't exist
-
-```shell
-wget https://raw.githubusercontent.com/grosheth/gysmo/main/installation.sh && sh installation.sh && rm installation.sh
 ```
 
 ### Build From Source
