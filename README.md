@@ -22,7 +22,30 @@ gysmo is not intended to be an accurate system information tool. There are many 
 ## Installing with Nix Flake
 
 ```nix
-
+  inputs = {
+    gysmo = {
+      url = "github:grosheth/gysmo";
+    };
+  }
+  outputs = { self, nixpkgs, gysmo, ... } @ inputs:
+  let
+    username = "myuser"
+    system = "x86_64-linux";
+  in
+  {
+    nixosConfigurations = {
+      default = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs username system; };
+        modules = [
+          {
+            environment.systemPackages = [
+              gysmo.packages.${system}.default
+            ];
+          }
+        ];
+      };
+    };
+  };
 ```
 
 ### Use the installation script (RECOMMENDED)
