@@ -26,3 +26,6 @@ go.work.sum
 venv
 data
 dev-checklist.md
+
+# flake output
+result

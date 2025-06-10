@@ -3,7 +3,7 @@
 # gysmo 📟
 
 ![License](https://shields.io/github/license/grosheth/gysmo?style=for-the-badge&color=blue)
-[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.2.1)
+[![GitHub Tag](https://img.shields.io/github/v/tag/grosheth/gysmo?include_prereleases&sort=semver&style=for-the-badge&color=white)](https://github.com/grosheth/gysmo/releases/tag/v0.2.2)
 [![CodeFactor](https://www.codefactor.io/repository/github/grosheth/gysmo/badge/main?style=for-the-badge)](https://www.codefactor.io/repository/github/grosheth/gysmo/overview/main)
 
 
@@ -19,11 +19,10 @@ gysmo is not intended to be an accurate system information tool. There are many 
 
 ## 📥 Installation
 
-## Post-Install script when installing with Nix (optional)
-Since gysmo is meant to be used as a user binary, the installation done from nixpkgs should not touch your home configuration. (a home-manager module is on the way)
-This means you should either create the default configs or run the nix_installation.sh script to get a basic config.
-```
-wget https://raw.githubusercontent.com/grosheth/gysmo/main/nix_installation.sh && sh nix_installation.sh && rm nix_installation.sh
+## Installing with Nix Flake
+
+```nix
+
 ```
 
 ### Use the installation script (RECOMMENDED)
@@ -81,6 +80,17 @@ $HOME/
 │           └── data.json
 └── bin/
     └── gysmo
+```
+
+## Post-Install script when installing with Nix. (Run Once)
+Since gysmo is meant to be used as a user binary, the installation done from nixpkgs should not touch your home configuration.
+This means you should either create the default configs or run the nix_installation.sh script to get a basic config.
+```
+wget https://raw.githubusercontent.com/grosheth/gysmo/main/nix_installation.sh && sh nix_installation.sh && rm nix_installation.sh
+```
+
+## Nix configuration example
+```
 ```
 
 
