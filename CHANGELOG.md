@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.2 (2025-06-10)
+
+### Fix
+- Using Flake.nix instead of Nixpkgs [see PR #404903](https://github.com/NixOS/nixpkgs/pull/404903)
+
 ## v0.2.1 (2025-06-01)
 
 ### Fix
